@@ -18,10 +18,8 @@ una, puedes (y te recomiendo) utilizar la ya existente.
 El repositorio principal desde el que estaremos trabajando es
 https://github.com/gwolf/clase-sistop-2017-01; lo primero que debes
 hacer es copiar el repositorio a tu espacio personal (hacer un "fork"
-— Una bifurcación). Para esto, oprime el botón en la parte superior
-derecha:
-
-!(https://raw.githubusercontent.com/gwolf/clase-sistop-2017-01/master/img/fork.png)
+— Una bifurcación). Para esto, oprime el botón "Fork" en la parte
+superior derecha.
 
 Notarás que, en la parte superior izquierda, en vez de mostrar
 `gwolf/clase-sistop-2017-01`, ahora lo mostrará con tu nombre de
