@@ -21,7 +21,7 @@ hacer es copiar el repositorio a tu espacio personal (hacer un "fork"
 — Una bifurcación). Para esto, oprime el botón en la parte superior
 derecha:
 
-!(../../img/fork.png)
+!(https://raw.githubusercontent.com/gwolf/clase-sistop-2017-01/master/img/fork.png)
 
 Notarás que, en la parte superior izquierda, en vez de mostrar
 `gwolf/clase-sistop-2017-01`, ahora lo mostrará con tu nombre de
