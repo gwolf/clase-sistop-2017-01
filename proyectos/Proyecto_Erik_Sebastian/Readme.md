@@ -1,4 +1,4 @@
-# Monitor de RAM para Linux
+# Monitor de RAM para Linux exclusivamente.
 
 ## Requisitos para compilar.
 
