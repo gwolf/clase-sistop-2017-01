@@ -56,6 +56,11 @@ Te recomiendo que ubiques a esta copia en un lugar donde puedas
 mantenerlo a largo plazo, dado que seguiremos utilizando este
 repositorio a lo largo del cursado de la materia.
 
+Ahora, vamos a estar trabajando desde *dentro* de tu directorio
+*clonado*:
+
+    $ cd clase-sistop-2017-01
+
 ## 4. Crea un archivo dentro del directorio de esta práctica
 
 Lo único que te pido en esta práctica es que crees un archivo de texto
