@@ -14,6 +14,23 @@
   ¡Ah! Te pido que cuando subas la foto de una tarea, la gires de ser
   necesario para que quede legible en su orientación natural.
 
+## Jesús García
+
+* **Archivo:** [JesusAlberto.pdf](JesusAlberto.pdf)
+* **Calificación:** 7
+* **Comentarios:**
+  Comprendo, como me comentaste, que te cuesta trabajo leer en inglés,
+  y mucho más aún un inglés técnico como el de este artículo. Sin
+  embargo, dime... ¿es esta honestamente tu redacción, o el resultado
+  de una herramienta de traducción automatizada?
+
+	``` Buena utilización SMC requiere este equilibrar mucho más
+	urgente: la compra demasiado muchos dispositivos de memoria flash
+	y muy pocos núcleos o demasiado poca memoria RAM termina
+	emaciación de capital, pero la compra de muy pocos, escasamente
+	repartidos dispositivos flash riesgos cuellos de botella para
+	acceder a ellas ```
+
 ## Andrés López
 
 * **Archivo:** [AndrezLopezJuarez.jpg](AndrezLopezJuarez.jpg)
