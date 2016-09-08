@@ -5,7 +5,7 @@ model		: 42
 model name	: Intel(R) Celeron(R) CPU B820 @ 1.70GHz
 stepping	: 7
 microcode	: 0x25
-cpu MHz		: 853.917
+cpu MHz		: 854.250
 cache size	: 2048 KB
 physical id	: 0
 siblings	: 2
@@ -35,7 +35,7 @@ model		: 42
 model name	: Intel(R) Celeron(R) CPU B820 @ 1.70GHz
 stepping	: 7
 microcode	: 0x25
-cpu MHz		: 808.031
+cpu MHz		: 889.046
 cache size	: 2048 KB
 physical id	: 0
 siblings	: 2
