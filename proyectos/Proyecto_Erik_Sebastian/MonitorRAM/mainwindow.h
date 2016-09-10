@@ -33,6 +33,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_actionAcerca_De_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

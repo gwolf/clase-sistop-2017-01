@@ -14,11 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    process.cpp
+    process.cpp \
+    dialog_acercade.cpp
 
 HEADERS  += mainwindow.h \
     process.h \
     pidlib.h \
-    colib.h
+    colib.h \
+    dialog_acercade.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialog_acercade.ui
