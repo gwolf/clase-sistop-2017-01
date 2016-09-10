@@ -17,19 +17,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mainwindow.h"
 #include "process.h"
+#include "pidlib.h"
 #include <QApplication>
 #include <vector>
+#include <string>
+#include <memory>
 
+using std::string;
 using std::vector;
 
 int main(int argc, char *argv[])
 {
     vector<Process> proceso;
+    vector<string> test;
+    vector<string> test2;
+
+    PIDLIB::parseSysInfo(&test);
+    PIDLIB::parseSysInfo_CPP(&test2);
 
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
+    test2.clear();
+    test2.shrink_to_fit();
+    test.clear();
+    test.shrink_to_fit();
     proceso.clear();
     proceso.shrink_to_fit();
     return a.exec();
