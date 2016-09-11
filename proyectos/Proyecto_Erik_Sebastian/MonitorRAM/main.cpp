@@ -37,9 +37,11 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    int ret{ a.exec() };
+
     test2.clear();
     test2.shrink_to_fit();
     proceso.clear();
     proceso.shrink_to_fit();
-    return a.exec();
+    return ret;
 }
