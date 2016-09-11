@@ -94,8 +94,8 @@ namespace PIDLIB
             pCP->push_back(cadena);
         }
 
-        //pCP->erase(pCP->begin());
-        //pCP->shrink_to_fit();
+        pCP->erase(pCP->begin());
+        pCP->shrink_to_fit();
 
         arch2.close();
 

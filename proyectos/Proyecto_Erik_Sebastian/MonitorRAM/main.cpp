@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <string>
 #include <memory>
+#include <iostream>
 
+using std::cout;
+using std::cin;
 using std::string;
 using std::vector;
 
