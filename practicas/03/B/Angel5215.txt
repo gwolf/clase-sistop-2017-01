@@ -1,0 +1,8 @@
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 10.12 (16A320)
+      Kernel Version: Darwin 16.0.0
+      Time since boot: 1 day 7 minutes
+
