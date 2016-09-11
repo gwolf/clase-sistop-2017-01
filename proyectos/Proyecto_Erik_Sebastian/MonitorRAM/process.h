@@ -21,8 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "colib.h"
-
 using std::string;
 using std::vector;
 
@@ -37,7 +35,7 @@ public:
     //Constructor que toma parametros para asignar.
     Process(int m_P, int m_C, float m_MP);
     //Funcion para asignar el PID
-    FORCEINLINE void set_PID(int P);
+    void set_PID(unsigned int P);
     //Funcion para obtener la cantidad de RAM que utiliza
     bool get_RAM();
     //Funcion para obtener los contenidos de la memoria
@@ -47,7 +45,7 @@ public:
 
 private:
     //Numero del PID
-    int m_PID;
+    unsigned int m_PID;
     //Color que tomara visualmente almazenado en un entero
     int m_Color;
     //Variable para guardar la cantidad de RAM en Bytes

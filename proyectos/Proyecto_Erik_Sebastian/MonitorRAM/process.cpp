@@ -16,7 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
 #include "process.h"
-#include "colib.h"
 #include <unistd.h>
 
 //Constructor sin parametros
@@ -37,7 +36,7 @@ Process::Process(int m_P, int m_C, float m_MP)
 }
 
 //Funcion que asigna el valor del PID
-FORCEINLINE void Process::set_PID(int P)
+void Process::set_PID(unsigned int P)
 {
     m_PID = P;
 }
