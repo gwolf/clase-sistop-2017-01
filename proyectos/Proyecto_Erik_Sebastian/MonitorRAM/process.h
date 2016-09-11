@@ -32,6 +32,8 @@ public:
     Process();
     //destructos default
     ~Process();
+    //Constructor que solo toma m_P como argumento.
+    Process(unsigned int m_P);
     //Constructor que toma parametros para asignar.
     Process(int m_P, int m_C, float m_MP);
     //Funcion para asignar el PID

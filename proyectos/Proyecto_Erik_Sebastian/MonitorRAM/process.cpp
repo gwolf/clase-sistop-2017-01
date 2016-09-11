@@ -26,7 +26,16 @@ Process::Process()
 
 Process::~Process()
 {
+    m_contenidoRAM.clear();
+    m_contenidoRAM.shrink_to_fit();
+    m_PATH.clear();
+    m_PATH.shrink_to_fit();
+}
 
+//Constructor que solo toma m_P como argumento.
+Process::Process(unsigned int m_P)
+{
+    m_PID = m_P;
 }
 
 //Constructor con parametros
