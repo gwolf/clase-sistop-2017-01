@@ -90,7 +90,7 @@ namespace PIDLIB
         while(!arch2.eof())
         {
             cadena.clear();
-            getline(arch2, cadena, '\n');
+            getline(arch2, cadena);
             pCP->push_back(cadena);
         }
 
