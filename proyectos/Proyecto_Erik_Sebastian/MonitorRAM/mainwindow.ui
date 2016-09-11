@@ -22,11 +22,6 @@
      <widget class="QTreeWidget" name="treeWidget">
       <column>
        <property name="text">
-        <string>New Column</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>PID</string>
        </property>
       </column>

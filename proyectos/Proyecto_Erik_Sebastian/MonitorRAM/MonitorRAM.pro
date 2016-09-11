@@ -20,7 +20,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     process.h \
     pidlib.h \
-    colib.h \
     dialog_acercade.h
 
 FORMS    += mainwindow.ui \
