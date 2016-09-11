@@ -22,16 +22,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <string>
 #include <memory>
+#include <iostream>
 
+using std::cout;
+using std::cin;
+using std::endl;
 using std::string;
 using std::vector;
 
 int main(int argc, char *argv[])
-{
-    vector<Process> proceso;
+{  
     vector<string> test2;
+    //vector<Process> proceso;
+    size_t line{};
 
-    PIDLIB::parseSysInfo_CPP(&test2);
+//    if(!PIDLIB::getProcessesInfo(&proceso, &test2, &line))
+//    {
+//        return 1;
+//    }
+
+    PIDLIB::parseSysInfo_CPP(&test2, &line);
+
+    --line;
+
+    vector<Process> proceso(line);
+
+    cout << endl << line;
+
+    /*for(auto y : test2)
+    {
+        cout << endl << y;
+    }*/
+
+    if(!PIDLIB::set_PIDs(&proceso, &test2, &line))
+    {
+        return 1;
+    }
 
     QApplication a(argc, argv);
     MainWindow w;

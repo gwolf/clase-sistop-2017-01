@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include <iostream>
 #include <fstream>
 
 using std::vector;
@@ -31,15 +32,10 @@ using std::endl;
 using std::getline;
 using std::ofstream;
 using std::ifstream;
+using std::cout;
 
 namespace PIDLIB
 {
-    template <typename T>
-    void parseFrom_File(T *ret, unsigned int field, vector<string> *pCP, const size_t line)
-    {
-
-    }
-
     void parseSysInfo(vector<string> *pCP)
     {
         ofstream archTest{ "procesos.txt" };
@@ -77,7 +73,7 @@ namespace PIDLIB
         archTest.close();
     }
 
-    bool parseSysInfo_CPP(vector<string> *pCP)
+    bool parseSysInfo_CPP(vector<string> *pCP, size_t *lines)
     {
         if(system("ps aux > procesos2.txt"))
         {
@@ -87,11 +83,14 @@ namespace PIDLIB
         string cadena;
         ifstream arch2{ "procesos2.txt" };
 
+        *lines = 0;
+
         while(!arch2.eof())
         {
             cadena.clear();
             getline(arch2, cadena);
             pCP->push_back(cadena);
+            ++*lines;
         }
 
         pCP->erase(pCP->begin());
@@ -102,19 +101,61 @@ namespace PIDLIB
         return true;
     }
 
-    bool set_PIDs(vector<Process> *pvP, vector<string> *pC)
+    bool set_PIDs(vector<Process> *pvP, vector<string> *pC, size_t *lines)
     {
-        //get PIDS
-        //unsigned int field_USER{ 2 };
         unsigned int field_PID{ 3 };
         unsigned int num{};
+        size_t h{};
+        size_t dh{};
 
-
-
-        for(int i{}; i < pvP->size(); ++i)
+        for(int i{}; i < (*lines) - 1; ++i)
         {
-            parseFrom_File(&num, field_PID, pC, i);
+            h = pC->at(i).find_first_of("123456789");
+
+            cout << endl <<"h: " << h;
+
+            dh = 0;
+
+            for(int w{ h }; w < h + 5; ++w)
+            {
+                if(pC->at(i).at(w) == ' ')
+                {
+                    break;
+                }
+                else
+                {
+                    ++dh;
+                }
+            }
+
+            string tmp{ pC->at(i).substr(h, dh) };
+
+            cout << "\t" << tmp;
+
+            num = atoi(tmp.c_str());
+
             pvP->at(i).set_PID(num);
+        }
+
+        cout << endl;
+
+        return true;
+    }
+
+    //Funcion para encapsular todas las funciones superiores y correrlas en hilos
+    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
+    {
+        if(!parseSysInfo_CPP(m_vsC, m_line))
+        {
+            return false;
+        }
+
+        --(*m_line);
+        //m_vP->reserve(*m_line);
+
+        if(!set_PIDs(m_vP, m_vsC, m_line))
+        {
+            return false;
         }
     }
 }
