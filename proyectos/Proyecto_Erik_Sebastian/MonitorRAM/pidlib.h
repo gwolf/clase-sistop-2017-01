@@ -103,17 +103,21 @@ namespace PIDLIB
 
     bool set_PIDs(vector<Process> *pvP, vector<string> *pC, size_t *lines)
     {
-        unsigned int field_PID{ 3 };
         unsigned int num{};
         size_t h{};
         size_t dh{};
 
+        if(pvP->size() < *lines)
+        {
+            return false;
+        }
+
         for(int i{}; i < (*lines) - 1; ++i)
         {
             h = pC->at(i).find_first_of("123456789");
-
+#ifdef DEBUG
             cout << endl <<"h: " << h;
-
+#endif
             dh = 0;
 
             for(int w{ h }; w < h + 5; ++w)
@@ -129,22 +133,53 @@ namespace PIDLIB
             }
 
             string tmp{ pC->at(i).substr(h, dh) };
-
+#ifndef NDEBUG
             cout << "\t" << tmp;
-
+#endif
             num = atoi(tmp.c_str());
 
             pvP->at(i).set_PID(num);
         }
-
+#ifndef NDEBUG
         cout << endl;
+#endif
+        return true;
+    }
 
+    bool set_Execs(vector<Process> *pvP, vector<string> *pC, size_t *line)
+    {
+        size_t h{};
+
+        if(pvP->size() < *line)
+        {
+            return false;
+        }
+
+        for(int i{}; i < (*line) - 1; ++i)
+        {
+            h = pC->at(i).find_last_of(" ");
+            ++h;
+#ifndef NDEBUG
+            cout << endl << i <<"\t" << h;
+#endif
+            string tmp{ pC->at(i).substr(h, pC->at(i).size()) };
+#ifndef NDEBUG
+            cout <<"\t" << tmp;
+#endif
+            pvP->at(i).set_Exec(tmp);
+
+        }
+#ifndef NDEBUG
+        cout << endl;
+#endif
         return true;
     }
 
     //Funcion para encapsular todas las funciones superiores y correrlas en hilos
     bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
     {
+        if((m_vP->size() || m_vsC->size()) < *m_line)
+
         if(!parseSysInfo_CPP(m_vsC, m_line))
         {
             return false;

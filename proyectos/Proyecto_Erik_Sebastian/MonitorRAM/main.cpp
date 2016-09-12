@@ -48,15 +48,20 @@ int main(int argc, char *argv[])
     vector<Process> proceso(line);
 
     cout << endl << line;
-
-    /*for(auto y : test2)
+#ifndef NDEBUG
+    for(auto y : test2)
     {
         cout << endl << y;
-    }*/
-
+    }
+#endif
     if(!PIDLIB::set_PIDs(&proceso, &test2, &line))
     {
         return 1;
+    }
+
+    if(!PIDLIB::set_Execs(&proceso, &test2, &line))
+    {
+        return 2;
     }
 
     QApplication a(argc, argv);
