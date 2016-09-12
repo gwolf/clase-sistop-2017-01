@@ -67,3 +67,9 @@ bool Process::set_Color(int val)
 {
 
 }
+
+//Fundion para establecer el ejecutable
+bool Process::set_Exec(string name)
+{
+    m_PATH = name;
+}

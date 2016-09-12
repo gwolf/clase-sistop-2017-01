@@ -44,6 +44,8 @@ public:
     bool get_RAMContents();
     //Funcion para asignar el color
     bool set_Color(int val);
+    //Fundion para establecer el ejecutable
+    bool set_Exec(string name);
 
 private:
     //Numero del PID
