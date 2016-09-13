@@ -149,6 +149,11 @@ namespace PIDLIB
     bool set_Execs(vector<Process> *pvP, vector<string> *pC, size_t *line)
     {
         size_t h{};
+        size_t dh{};
+        size_t espacios{};
+        bool space{ false };
+
+        const string delimitantes{ "abcdefghijklmnopqrstuvwxyz/[(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\?" };
 
         if(pvP->size() < *line)
         {
@@ -157,16 +162,30 @@ namespace PIDLIB
 
         for(int i{}; i < (*line) - 1; ++i)
         {
-            h = pC->at(i).find_last_of(" ");
-            ++h;
-#ifndef NDEBUG
-            cout << endl << i <<"\t" << h;
-#endif
-            string tmp{ pC->at(i).substr(h, pC->at(i).size()) };
-#ifndef NDEBUG
-            cout <<"\t" << tmp;
-#endif
-            pvP->at(i).set_Exec(tmp);
+            espacios = 0;
+            //10 cambios de espacio a caracter
+            //de espacio a delimitantes
+            for(int g{}; g < (pC->size() - 1); ++g)
+            {
+                if((pC->at(i).at(g) == ' ') && !space)
+                {
+                    space = true;
+                    h = i;
+                    ++espacios;
+                }
+                else if(space && (espacios == 10))
+                {
+                    h = pC->at(g).find_first_of(delimitantes, h);
+                }
+                else
+                {
+                    space = false;
+                }
+            }
+
+            dh = pC->at(i).length() - h;
+
+            pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
 
         }
 #ifndef NDEBUG
@@ -178,7 +197,10 @@ namespace PIDLIB
     //Funcion para encapsular todas las funciones superiores y correrlas en hilos
     bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
     {
-        if((m_vP->size() || m_vsC->size()) < *m_line)
+        if((m_vP->size() < *m_line) || (m_vsC->size() < (*m_line)))
+        {
+            return false;
+        }
 
         if(!parseSysInfo_CPP(m_vsC, m_line))
         {
