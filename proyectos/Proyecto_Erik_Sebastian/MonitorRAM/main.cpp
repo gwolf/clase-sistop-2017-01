@@ -59,6 +59,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+ #ifndef NDEBUG
+    cout << endl <<"So far so good..." << endl;
+ #endif
+
     if(!PIDLIB::set_Execs(&proceso, &test2, &line))
     {
         return 2;
