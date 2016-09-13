@@ -166,7 +166,7 @@ namespace PIDLIB
             //10 cambios de espacio a caracter
             //de espacio a delimitantes
             for(int g{}; g < (pC->size() - 1); ++g)
-            {
+            {   //find any of tab or space
                 if(((pC->at(i).at(g) == '\t') || (pC->at(i).at(g) == ' ')) && !space)
                 {
                     space = true;
