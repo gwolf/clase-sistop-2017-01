@@ -167,15 +167,16 @@ namespace PIDLIB
             //de espacio a delimitantes
             for(int g{}; g < (pC->size() - 1); ++g)
             {
-                if((pC->at(i).at(g) == ' ') && !space)
+                if(((pC->at(i).at(g) == '\t') || (pC->at(i).at(g) == ' ')) && !space)
                 {
                     space = true;
-                    h = i;
+                    h = g;
                     ++espacios;
                 }
                 else if(space && (espacios == 10))
                 {
                     h = pC->at(g).find_first_of(delimitantes, h);
+                    break;
                 }
                 else
                 {
@@ -185,12 +186,13 @@ namespace PIDLIB
 
             dh = pC->at(i).length() - h;
 
+#ifndef NDEBUG
+            cout << endl <<"dh: \t" << dh << "\t" << pC->at(i).substr(h, dh);
+#endif
+
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
 
         }
-#ifndef NDEBUG
-        cout << endl;
-#endif
         return true;
     }
 
