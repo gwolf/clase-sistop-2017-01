@@ -153,7 +153,7 @@ namespace PIDLIB
         size_t espacios{};
         bool space{ false };
 
-        const string delimitantes{ "abcdefghijklmnopqrstuvwxyz/[(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\?" };
+        const string delimitantes{ "abcdefghijklmnopqrstuvwxyz/[(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" };
 
         if(pvP->size() < *line)
         {
@@ -165,7 +165,7 @@ namespace PIDLIB
             espacios = 0;
             //10 cambios de espacio a caracter
             //de espacio a delimitantes
-            for(int g{}; g < (pC->size() - 1); ++g)
+            for(int g{}; /*g < (pC->size() - 1)*/; ++g)
             {   //find any of tab or space
                 if(((pC->at(i).at(g) == '\t') || (pC->at(i).at(g) == ' ')) && !space)
                 {
@@ -213,6 +213,11 @@ namespace PIDLIB
         //m_vP->reserve(*m_line);
 
         if(!set_PIDs(m_vP, m_vsC, m_line))
+        {
+            return false;
+        }
+
+        if(!set_Execs(m_vP, m_vsC, m_line))
         {
             return false;
         }
