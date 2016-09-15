@@ -146,6 +146,40 @@ namespace PIDLIB
         return true;
     }
 
+    bool set_RAMPerc(vector<Process> *pvP, vector<string> *pC, size_t *line)
+    {
+        size_t h{};
+        size_t dh{};
+        const string delimitantes{ "." };
+        const string delimitantes2{ " " };
+
+
+        if(pvP->size() < *line)
+        {
+            return false;
+        }
+
+        for(int i{}; i < (*line) - 1; ++i)
+        {
+            h = pC->at(i).find_first_of(delimitantes);
+            ++h;
+            h = pC->at(i).find_first_of(delimitantes, h);
+
+            --h;
+            --h;
+
+            dh = pC->at(i).find_first_of(delimitantes2, h + 1);
+            dh = dh -h;
+            string tmp{ pC->at(i).substr(h, dh) };
+
+            cout << endl << i <<" " << tmp;
+
+            pvP->at(i).set_RAMPerc(atof(tmp.c_str()));
+        }
+
+        return true;
+    }
+
     bool set_Execs(vector<Process> *pvP, vector<string> *pC, size_t *line)
     {
         size_t h{};

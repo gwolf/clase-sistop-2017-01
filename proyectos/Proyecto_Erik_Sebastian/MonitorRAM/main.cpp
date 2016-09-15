@@ -68,6 +68,13 @@ int main(int argc, char *argv[])
         return 2;
     }
 
+    cout << endl <<"Testing RAM percentages: " << endl;
+
+    if(!PIDLIB::set_RAMPerc(&proceso, &test2, &line))
+    {
+        return 3;
+    }
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
