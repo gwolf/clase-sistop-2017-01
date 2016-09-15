@@ -50,26 +50,14 @@ void Process::set_PID(unsigned int P)
     m_PID = P;
 }
 
-//Funcion para obtener la cantidad que utiliza de RAM
-bool Process::get_RAM()
-{
-
-}
-
-//Funcion para obtener el contenido de la memoria del proceso
-bool Process::get_RAMContents()
-{
-
-}
-
-//Funcion que define el color para identificarlo
-bool Process::set_Color(int val)
-{
-
-}
-
 //Fundion para establecer el ejecutable
-bool Process::set_Exec(string name)
+void Process::set_Exec(string name)
 {
     m_PATH = name;
+}
+
+//Funcion para asignar porcentaje RAM
+void Process::set_RAMPerc(double perc)
+{
+    m_MemPerc = perc;
 }

@@ -38,14 +38,10 @@ public:
     Process(int m_P, int m_C, float m_MP);
     //Funcion para asignar el PID
     void set_PID(unsigned int P);
-    //Funcion para obtener la cantidad de RAM que utiliza
-    bool get_RAM();
-    //Funcion para obtener los contenidos de la memoria
-    bool get_RAMContents();
-    //Funcion para asignar el color
-    bool set_Color(int val);
     //Fundion para establecer el ejecutable
-    bool set_Exec(string name);
+    void set_Exec(string name);
+    //Funcion para asignar porcentaje RAM
+    void set_RAMPerc(double perc);
 
 private:
     //Numero del PID
@@ -55,7 +51,7 @@ private:
     //Variable para guardar la cantidad de RAM en Bytes
     unsigned long m_MemQuant;
     //Porcentaje de RAM que utiliza este proceso
-    float m_MemPerc;
+    double m_MemPerc;
     //Cadena de caracteres que contiene el path del ejecutable
     string m_PATH;
     //Vector para guardar los contenidos de la memoria RAM de este proceso
