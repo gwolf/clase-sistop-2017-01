@@ -23,12 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <memory>
 #include <iostream>
+#include <thread>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
+using std::thread;
 
 int main(int argc, char *argv[])
 {  
@@ -40,6 +42,8 @@ int main(int argc, char *argv[])
 //    {
 //        return 1;
 //    }
+
+    thread t1(PIDLIB::getAll, &line);
 
     PIDLIB::parseSysInfo_CPP(&test2, &line);
 
@@ -80,6 +84,8 @@ int main(int argc, char *argv[])
     w.show();
 
     int ret{ a.exec() };
+
+    t1.join();
 
     test2.clear();
     test2.shrink_to_fit();

@@ -256,6 +256,14 @@ namespace PIDLIB
             return false;
         }
     }
+
+    bool getAll(size_t *m_lines)
+    {
+        for(unsigned long long k{}; k < 1000000; ++k)
+        {
+            cout << endl <<"Testing " << *m_lines << "\t" << k;
+        }
+    }
 }
 
 #endif // PIDLIB_H
