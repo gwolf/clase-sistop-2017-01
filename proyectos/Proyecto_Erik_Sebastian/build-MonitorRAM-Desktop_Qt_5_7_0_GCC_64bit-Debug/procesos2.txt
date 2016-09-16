@@ -1,0 +1,191 @@
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.3  0.0 119872  6116 ?        Ss   13:30   0:01 /sbin/init splash
+root         2  0.0  0.0      0     0 ?        S    13:30   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    13:30   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/0:0H]
+root         7  0.1  0.0      0     0 ?        S    13:30   0:00 [rcu_sched]
+root         8  0.0  0.0      0     0 ?        S    13:30   0:00 [rcu_bh]
+root         9  0.0  0.0      0     0 ?        S    13:30   0:00 [migration/0]
+root        10  0.0  0.0      0     0 ?        S    13:30   0:00 [watchdog/0]
+root        11  0.0  0.0      0     0 ?        S    13:30   0:00 [watchdog/1]
+root        12  0.0  0.0      0     0 ?        S    13:30   0:00 [migration/1]
+root        13  0.0  0.0      0     0 ?        S    13:30   0:00 [ksoftirqd/1]
+root        14  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/1:0]
+root        15  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/1:0H]
+root        16  0.0  0.0      0     0 ?        S    13:30   0:00 [watchdog/2]
+root        17  0.0  0.0      0     0 ?        S    13:30   0:00 [migration/2]
+root        18  0.0  0.0      0     0 ?        S    13:30   0:00 [ksoftirqd/2]
+root        19  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/2:0]
+root        20  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/2:0H]
+root        21  0.0  0.0      0     0 ?        S    13:30   0:00 [watchdog/3]
+root        22  0.0  0.0      0     0 ?        S    13:30   0:00 [migration/3]
+root        23  0.0  0.0      0     0 ?        S    13:30   0:00 [ksoftirqd/3]
+root        25  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/3:0H]
+root        26  0.0  0.0      0     0 ?        S    13:30   0:00 [kdevtmpfs]
+root        27  0.0  0.0      0     0 ?        S<   13:30   0:00 [netns]
+root        28  0.0  0.0      0     0 ?        S<   13:30   0:00 [perf]
+root        29  0.0  0.0      0     0 ?        S    13:30   0:00 [khungtaskd]
+root        30  0.0  0.0      0     0 ?        S<   13:30   0:00 [writeback]
+root        31  0.0  0.0      0     0 ?        SN   13:30   0:00 [ksmd]
+root        32  0.0  0.0      0     0 ?        SN   13:30   0:00 [khugepaged]
+root        33  0.0  0.0      0     0 ?        S<   13:30   0:00 [crypto]
+root        34  0.0  0.0      0     0 ?        S<   13:30   0:00 [kintegrityd]
+root        35  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        36  0.0  0.0      0     0 ?        S<   13:30   0:00 [kblockd]
+root        37  0.0  0.0      0     0 ?        S<   13:30   0:00 [ata_sff]
+root        38  0.0  0.0      0     0 ?        S<   13:30   0:00 [md]
+root        39  0.0  0.0      0     0 ?        S<   13:30   0:00 [devfreq_wq]
+root        41  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/0:1]
+root        42  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/2:1]
+root        46  0.0  0.0      0     0 ?        S    13:30   0:00 [kswapd0]
+root        47  0.0  0.0      0     0 ?        S<   13:30   0:00 [vmstat]
+root        48  0.0  0.0      0     0 ?        S    13:30   0:00 [fsnotify_mark]
+root        49  0.0  0.0      0     0 ?        S    13:30   0:00 [ecryptfs-kthrea]
+root        65  0.0  0.0      0     0 ?        S<   13:30   0:00 [kthrotld]
+root        66  0.0  0.0      0     0 ?        S<   13:30   0:00 [acpi_thermal_pm]
+root        68  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        69  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        70  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        71  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        72  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        73  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        74  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        75  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        76  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        77  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        78  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        79  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        80  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        81  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        82  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        83  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        84  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        85  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        86  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        87  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        88  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        89  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        90  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        91  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root        92  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/1:1]
+root        97  0.0  0.0      0     0 ?        S<   13:30   0:00 [ipv6_addrconf]
+root       110  0.0  0.0      0     0 ?        S<   13:30   0:00 [deferwq]
+root       111  0.0  0.0      0     0 ?        S<   13:30   0:00 [charger_manager]
+root       345  0.0  0.0      0     0 ?        S    13:30   0:00 [ips-adjust]
+root       346  0.0  0.0      0     0 ?        S    13:30   0:00 [ips-monitor]
+root       379  0.0  0.0      0     0 ?        S<   13:30   0:00 [kpsmoused]
+root       380  0.0  0.0      0     0 ?        S    13:30   0:00 [scsi_eh_0]
+root       381  0.0  0.0      0     0 ?        S<   13:30   0:00 [scsi_tmf_0]
+root       382  0.0  0.0      0     0 ?        S    13:30   0:00 [scsi_eh_1]
+root       385  0.0  0.0      0     0 ?        S<   13:30   0:00 [scsi_tmf_1]
+root       387  0.0  0.0      0     0 ?        S    13:30   0:00 [scsi_eh_2]
+root       398  0.0  0.0      0     0 ?        S<   13:30   0:00 [scsi_tmf_2]
+root       399  0.0  0.0      0     0 ?        S    13:30   0:00 [scsi_eh_3]
+root       400  0.0  0.0      0     0 ?        S<   13:30   0:00 [scsi_tmf_3]
+root       401  0.0  0.0      0     0 ?        S    13:30   0:00 [scsi_eh_4]
+root       402  0.0  0.0      0     0 ?        S<   13:30   0:00 [scsi_tmf_4]
+root       404  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/u16:4]
+root       457  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/u16:6]
+root       744  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root       746  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root       816  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/3:2]
+root       818  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/0:1H]
+root       929  0.0  0.0      0     0 ?        S<   13:30   0:00 [bioset]
+root       974  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/3:1H]
+root       975  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/1:1H]
+root       977  0.0  0.0      0     0 ?        S    13:30   0:00 [jbd2/sda1-8]
+root       978  0.0  0.0      0     0 ?        S<   13:30   0:00 [ext4-rsv-conver]
+root      1029  0.0  0.0      0     0 ?        S    13:30   0:00 [kauditd]
+root      1034  0.0  0.0  35380  3800 ?        Ss   13:30   0:00 /lib/systemd/systemd-journald
+root      1047  0.0  0.0  94772  1660 ?        Ss   13:30   0:00 /sbin/lvmetad -f
+root      1062  0.2  0.0  46184  5404 ?        Ss   13:30   0:00 /lib/systemd/systemd-udevd
+root      1077  0.0  0.0      0     0 ?        S<   13:30   0:00 [kworker/2:1H]
+root      1153  0.0  0.0      0     0 ?        S<   13:30   0:00 [cfg80211]
+root      1162  0.0  0.0      0     0 ?        S    13:30   0:00 [irq/27-mei_me]
+root      1201  0.0  0.0      0     0 ?        S    13:30   0:00 [irq/28-iwlwifi]
+root      1211  0.0  0.0      0     0 ?        S<   13:30   0:00 [kvm-irqfd-clean]
+root      1240  0.0  0.0      0     0 ?        S    13:30   0:00 [kworker/3:3]
+root      1384  0.0  0.0      0     0 ?        S<   13:30   0:00 [iwlwifi]
+syslog    1467  0.0  0.0 256396  3344 ?        Ssl  13:30   0:00 /usr/sbin/rsyslogd -n
+root      1471  0.0  0.1 277120  8436 ?        Ssl  13:30   0:00 /usr/lib/accountsservice/accounts-daemon
+root      1477  0.0  0.0  30228  3108 ?        Ss   13:30   0:00 /usr/sbin/cron -f
+root      1486  0.0  0.0   4400  1376 ?        Ss   13:30   0:00 /usr/sbin/acpid
+avahi     1487  0.0  0.0  44920  3112 ?        Ss   13:30   0:00 avahi-daemon: running [erikdm4.local]
+root      1492  0.0  0.0  29880  1584 ?        Ss   13:30   0:00 /sbin/cgmanager -m name=systemd
+root      1500  0.0  0.0  28644  2968 ?        Ss   13:30   0:00 /lib/systemd/systemd-logind
+root      1505  0.0  0.1 337396  8544 ?        Ssl  13:30   0:00 /usr/sbin/ModemManager
+root      1511  0.0  0.0  94456  7532 ?        Ss   13:30   0:00 /usr/sbin/cupsd -l
+message+  1520  0.0  0.0  44016  4740 ?        Ss   13:30   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+avahi     1550  0.0  0.0  44788   344 ?        S    13:30   0:00 avahi-daemon: chroot helper
+root      1571  0.0  0.1 274820  9672 ?        Ssl  13:30   0:00 /usr/sbin/cups-browsed
+root      1573  0.0  0.2 376540 16560 ?        Ssl  13:30   0:00 /usr/sbin/NetworkManager --no-daemon
+lp        1585  0.0  0.0  81244  5720 ?        S    13:30   0:00 /usr/lib/cups/notifier/dbus dbus://
+root      1609  0.0  0.0 278696  7888 ?        Ssl  13:30   0:00 /usr/lib/policykit-1/polkitd --no-debug
+root      1621  0.0  0.0  19472   252 ?        Ss   13:30   0:00 /usr/sbin/irqbalance --pid=/var/run/irqbalance.pid
+root      1671  0.0  0.0  65612  6076 ?        Ss   13:30   0:00 /usr/sbin/sshd -D
+root      1686  0.0  0.1 142568  8472 ?        Ss   13:30   0:00 /usr/sbin/mdm --nodaemon
+root      1688  0.0  0.0  17160  1836 tty1     Ss+  13:30   0:00 /sbin/agetty --noclear tty1 linux
+root      1706  0.0  0.0  43984  5568 ?        Ss   13:30   0:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+root      1708  0.0  0.1 194944  8996 ?        S    13:30   0:00 /usr/sbin/mdm --nodaemon
+root      1714  2.3  0.6 339976 53184 tty8     Ssl+ 13:30   0:08 /usr/lib/xorg/Xorg :0 -audit 0 -auth /var/lib/mdm/:0.Xauth -nolisten tcp vt8
+root      1717  0.0  0.0  16120  3744 ?        S    13:30   0:00 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /var/run/dhclient-enp1s0.pid -lf /var/lib/NetworkManager/dhclient-44e59708-f703-4088-9d27-09a6a2063063-enp1s0.lease -cf /var/lib/NetworkManager/dhclient-enp1s0.conf enp1s0
+nobody    1741  0.0  0.0  54088  4252 ?        S    13:30   0:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/var/run/NetworkManager/dnsmasq.pid --listen-address=127.0.1.1 --cache-size=0 --proxy-dnssec --enable-dbus=org.freedesktop.NetworkManager.dnsmasq --conf-dir=/etc/NetworkManager/dnsmasq.d
+ntp       2063  0.0  0.0 112184  4980 ?        Ss   13:30   0:00 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 108:114
+mdm       2121  0.0  0.0  43600  2620 ?        S    13:30   0:00 dbus-launch --autolaunch=2a5d5f96ef9147c0b35535562b32d0ff --binary-syntax --close-stderr
+mdm       2122  0.0  0.0  42768  2612 ?        Ss   13:30   0:00 /usr/bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+erik      2245  0.0  0.0  45248  5100 ?        Ss   13:32   0:00 /lib/systemd/systemd --user
+erik      2248  0.0  0.0 180068  2412 ?        S    13:32   0:00 (sd-pam)
+erik      2253  0.0  0.1 208064  8888 ?        SLl  13:32   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+root      2257  0.0  0.1 2100120 8416 ?        Ssl  13:32   0:00 /usr/sbin/console-kit-daemon --no-daemon
+erik      2331  0.0  0.2 426016 22788 ?        Ssl  13:32   0:00 cinnamon-session --session cinnamon
+erik      2400  0.0  0.0  11232   328 ?        Ss   13:32   0:00 /usr/bin/ssh-agent /usr/bin/dbus-launch --exit-with-session /usr/bin/im-launch cinnamon-session-cinnamon
+erik      2403  0.0  0.0  43600   372 ?        S    13:32   0:00 /usr/bin/dbus-launch --exit-with-session /usr/bin/im-launch cinnamon-session-cinnamon
+erik      2404  0.0  0.0  43264  3656 ?        Ss   13:32   0:00 /usr/bin/dbus-daemon --fork --print-pid 6 --print-address 9 --session
+erik      2417  0.0  0.0 337940  7672 ?        Sl   13:32   0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+erik      2422  0.0  0.0  42900  3532 ?        S    13:32   0:00 /usr/bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+erik      2424  0.0  0.0 206868  4972 ?        Sl   13:32   0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+erik      2433  0.2  0.5 1174760 44032 ?       Sl   13:32   0:00 /usr/lib/x86_64-linux-gnu/cinnamon-settings-daemon/cinnamon-settings-daemon
+erik      2451  0.0  0.1 436160 11416 ?        S<l  13:32   0:00 /usr/bin/pulseaudio --start --log-target=syslog
+rtkit     2452  0.0  0.0 183544  3116 ?        SNsl 13:32   0:00 /usr/lib/rtkit/rtkit-daemon
+root      2456  0.0  0.1 348460 10120 ?        Ssl  13:32   0:00 /usr/lib/upower/upowerd
+erik      2475  0.0  0.0 275640  6344 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfsd
+erik      2480  0.0  0.0 406860  5356 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+erik      2493  0.0  0.0 178664  4820 ?        Sl   13:32   0:00 /usr/lib/dconf/dconf-service
+erik      2500  0.0  0.0 286668  7628 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+root      2503  0.0  0.1 367604  8660 ?        Ssl  13:32   0:00 /usr/lib/udisks2/udisksd --no-debug
+erik      2512  0.0  0.0 272944  6060 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+erik      2517  0.0  0.1 404828  8820 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+erik      2523  0.0  0.0 260748  4648 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+erik      2528  0.0  0.0 258756  4316 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfs-goa-volume-monitor
+erik      2533  0.0  0.3 190884 28164 ?        S    13:32   0:00 /usr/bin/python2 /usr/bin/cinnamon-launcher
+colord    2534  0.0  0.1 302384 11160 ?        Ssl  13:32   0:00 /usr/lib/colord/colord
+erik      2536  0.0  0.0  22372  1104 ?        S    13:32   0:00 syndaemon -i 1.0 -t -K -R
+erik      2538  0.0  0.1 507100 14852 ?        Sl   13:32   0:00 /usr/lib/x86_64-linux-gnu/cinnamon-settings-daemon/csd-printer
+erik      2546  4.7  1.9 1794060 152308 ?      Sl   13:32   0:11 cinnamon --replace
+erik      2565  0.3  0.6 824136 55576 ?        Sl   13:32   0:00 nemo -n
+erik      2568  0.0  0.3 525404 31020 ?        Sl   13:32   0:00 nm-applet
+erik      2569  0.0  0.3 416632 28624 ?        Sl   13:32   0:00 /usr/bin/python2 /usr/bin/cinnamon-killer-daemon
+erik      2572  0.0  0.2 330336 19048 ?        Sl   13:32   0:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+erik      2668  0.0  0.0 351792  6740 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.7 /org/gtk/gvfs/exec_spaw/0
+erik      2681  0.0  0.0 187200  5564 ?        Sl   13:32   0:00 /usr/lib/gvfs/gvfsd-metadata
+erik      2746  0.0  0.2 410952 19384 ?        Sl   13:32   0:00 cinnamon-screensaver
+erik      2760  0.0  0.1  31288 10540 ?        S    13:32   0:00 /usr/bin/python3 /usr/bin/mintupdate-launcher
+erik      2764  0.0  0.0   4508   716 ?        S    13:32   0:00 sh -c /usr/lib/linuxmint/mintUpdate/mintUpdate.py
+erik      2765  0.1  0.6 715160 55028 ?        Sl   13:32   0:00 /usr/bin/python3 /usr/lib/linuxmint/mintUpdate/mintUpdate.py
+erik      2844  0.1  0.3 237288 30796 ?        Sl   13:32   0:00 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+erik      3027  3.8  1.6 1468692 128208 ?      Sl   13:34   0:05 /usr/share/gitkraken/gitkraken
+erik      3054  0.0  0.3 309312 30280 ?        S    13:34   0:00 /usr/share/gitkraken/gitkraken --type=zygote --no-sandbox
+erik      3069  0.0  0.0  62396  5216 ?        S    13:34   0:00 /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
+erik      3083  2.9  1.1 557580 88172 ?        Sl   13:34   0:04 /usr/share/gitkraken/gitkraken --type=gpu-process --channel=3027.0.1412887763 --no-sandbox --window-depth=24 --supports-dual-gpus=false --gpu-driver-bug-workarounds=4,46,54 --disable-gl-extensions=GL_ARB_occlusion_query GL_ARB_occlusion_query2 --gpu-vendor-id=0x8086 --gpu-device-id=0x0046 --gpu-driver-vendor --gpu-driver-version --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+erik      3114 24.2  3.1 1467032 248436 ?      Sl   13:34   0:33 /usr/share/gitkraken/gitkraken --type=renderer --js-flags=--harmony --no-sandbox --primordial-pipe-token=DF3A8E3E8D74E7A160FCF4CDDF6CC55C --lang=en-US --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --disable-accelerated-video-decode --channel=3027.1.1492368595 --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+erik      3115  2.8  1.5 1208696 126208 ?      Sl   13:34   0:03 /usr/share/gitkraken/gitkraken --type=renderer --js-flags=--harmony --no-sandbox --primordial-pipe-token=E141225C2999DD9E7208FC94BF6CB591 --lang=en-US --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --disable-accelerated-video-decode --channel=3027.2.2007222439 --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+root      3237  0.0  0.0      0     0 ?        S    13:35   0:00 [kworker/1:2]
+root      3250  0.0  0.0      0     0 ?        S    13:35   0:00 [kworker/0:2]
+root      3262  0.0  0.0      0     0 ?        S    13:35   0:00 [kworker/u16:0]
+root      3266  0.0  0.0      0     0 ?        S    13:35   0:00 [kworker/2:2]
+root      3268  0.0  0.0      0     0 ?        S    13:35   0:00 [kworker/3:0]
+erik      3269 18.9  3.4 1577324 273280 ?      Sl   13:35   0:05 /home/erik/Qt/Tools/QtCreator/bin/qtcreator
+erik      3336  0.0  0.1 129656  9936 ?        S    13:36   0:00 /home/erik/Documents/sistop/clase-sistop-2017-01/proyectos/Proyecto_Erik_Sebastian/build-MonitorRAM-Desktop_Qt_5_7_0_GCC_64bit-Debug/MonitorRAM
+erik      3337  0.0  0.0   4508   852 ?        S    13:36   0:00 sh -c ps aux > procesos2.txt
+erik      3338  0.0  0.0  38584  3492 ?        R    13:36   0:00 ps aux
