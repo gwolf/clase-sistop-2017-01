@@ -32,10 +32,12 @@ public:
     Process();
     //destructos default
     ~Process();
-    //Constructor que solo toma m_P como argumento.
+    //Constructor que solo toma PID como argumento.
     Process(unsigned int m_P);
-    //Constructor que toma parametros para asignar.
-    Process(int m_P, int m_C, float m_MP);
+    //Constructor que solo toma m_MemPerc como parametro.
+    Process(double m_RP);
+    //Constructor que solo toma exec como parametro
+    Process(string path_exec);
     //Funcion para asignar el PID
     void set_PID(unsigned int P);
     //Fundion para establecer el ejecutable
@@ -45,13 +47,15 @@ public:
     //Funcion para establecer el usuario del PID
     void set_User(string name);
 
+    unsigned int get_PID();
+    string get_Exec();
+    string get_user();
+    double get_Mem();
+
+
 private:
     //Numero del PID
     unsigned int m_PID;
-    //Color que tomara visualmente almazenado en un entero
-    int m_Color;
-    //Variable para guardar la cantidad de RAM en Bytes
-    unsigned long m_MemQuant;
     //Porcentaje de RAM que utiliza este proceso
     double m_MemPerc;
     //Cadena de caracteres que contiene el path del ejecutable

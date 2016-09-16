@@ -107,11 +107,6 @@ namespace PIDLIB
         size_t h{};
         size_t dh{};
 
-        if(pvP->size() < *lines)
-        {
-            return false;
-        }
-
         for(int i{}; i < (*lines) - 1; ++i)
         {
             h = pC->at(i).find_first_of("123456789");
@@ -132,7 +127,9 @@ namespace PIDLIB
             string tmp{ pC->at(i).substr(h, dh) };
             num = atoi(tmp.c_str());
 
-            pvP->at(i).set_PID(num);
+            Process ptmp(num);
+
+            pvP->push_back(ptmp);
         }
         return true;
     }
@@ -143,12 +140,6 @@ namespace PIDLIB
         size_t dh{};
         const string delimitantes{ "." };
         const string delimitantes2{ " " };
-
-
-        if(pvP->size() < *line)
-        {
-            return false;
-        }
 
         for(int i{}; i < (*line) - 1; ++i)
         {
@@ -163,7 +154,11 @@ namespace PIDLIB
             dh = dh -h;
             string tmp{ pC->at(i).substr(h, dh) };
 
+            //Process ptmp(atof(tmp.c_str()));
+
             pvP->at(i).set_RAMPerc(atof(tmp.c_str()));
+
+            //pvP->push_back(ptmp);
         }
 
         return true;
@@ -178,11 +173,6 @@ namespace PIDLIB
 
         const string delimitantes{ "abcdefghijklmnopqrstuvwxyz/[(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" };
         const string delim{ " " };
-
-        if(pvP->size() < *line)
-        {
-            return false;
-        }
 
         for(int i{}; i < (*line) - 1; ++i)
         {
@@ -213,7 +203,9 @@ namespace PIDLIB
 
             dh = pC->at(i).length() - h;
 
+            //Process ptmp(pC->at(i).substr(h, dh));
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
+            //pvP->push_back(ptmp);
         }
 
         return true;
@@ -223,11 +215,6 @@ namespace PIDLIB
     {
         size_t dh{};
         const string delimitante{ " " };
-
-        if(pvP->size() < *line)
-        {
-            return false;
-        }
 
         for(int i{}; i < (*line) - 1; ++i)
         {
@@ -250,6 +237,8 @@ namespace PIDLIB
         --(*m_line);
         m_vP->reserve(*m_line);
 
+        cout << endl << *m_line;
+
         if(!set_PIDs(m_vP, m_vsC, m_line))
         {
             return false;
@@ -269,6 +258,8 @@ namespace PIDLIB
         {
             return false;
         }
+
+        m_vP->shrink_to_fit();
 
         return true;
     }

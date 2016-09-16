@@ -35,47 +35,28 @@ using std::thread;
 int main(int argc, char *argv[])
 {  
     vector<string> test2;
-    //vector<Process> proceso;
+    vector<Process> proceso;
     size_t line{};
 
-//    if(!PIDLIB::getProcessesInfo(&proceso, &test2, &line))
-//    {
-//        return 1;
-//    }
-
-    //thread t1(PIDLIB::getProcessInfo, &proceso, &test2, &line);
-
-    PIDLIB::parseSysInfo_CPP(&test2, &line);
-
-    --line;
-
-    vector<Process> proceso(line);
-
-    if(!PIDLIB::set_PIDs(&proceso, &test2, &line))
+    if(!PIDLIB::getProcessesInfo(&proceso, &test2, &line))
     {
         return 1;
     }
 
-    if(!PIDLIB::set_Execs(&proceso, &test2, &line))
-    {
-        return 2;
-    }
+    //thread t1(PIDLIB::getProcessesInfo(&proceso, &test2, &line));
 
-    if(!PIDLIB::set_RAMPerc(&proceso, &test2, &line))
+    /*for(int u{}; u < proceso.size(); ++u)
     {
-        return 3;
-    }
-
-    if(!PIDLIB::set_User(&proceso, &test2, &line))
-    {
-        return 4;
-    }
+        cout << endl << u <<" " << proceso.at(u).get_user() << "\t" << proceso.at(u).get_PID() << "\t" << proceso.at(u).get_Mem() << "\t" << proceso.at(u).get_Exec();
+    }*/
 
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
     int ret{ a.exec() };
+
+    //t1.join();
 
     test2.clear();
     test2.shrink_to_fit();

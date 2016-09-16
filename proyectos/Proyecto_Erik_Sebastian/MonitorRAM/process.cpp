@@ -32,16 +32,22 @@ Process::~Process()
     m_PATH.shrink_to_fit();
 }
 
-//Constructor que solo toma m_P como argumento.
+//Constructor que solo toma el PID como argumento.
 Process::Process(unsigned int m_P)
 {
     m_PID = m_P;
 }
 
-//Constructor con parametros
-Process::Process(int m_P, int m_C, float m_MP)
+//Constructor que solo toma m_MemPerc como parametro.
+Process::Process(double m_RP)
 {
+    m_MemPerc = m_RP;
+}
 
+//Constructor que solo toma exec como parametro
+Process::Process(string path_exec)
+{
+    m_PATH = path_exec;
 }
 
 //Funcion que asigna el valor del PID
@@ -67,3 +73,24 @@ void Process::set_User(string name)
 {
     m_user = name;
 }
+
+unsigned int Process::get_PID()
+{
+    return m_PID;
+}
+
+string Process::get_Exec()
+{
+    return m_PATH;
+}
+
+string Process::get_user()
+{
+    return m_user;
+}
+
+double Process::get_Mem()
+{
+    return m_MemPerc;
+}
+
