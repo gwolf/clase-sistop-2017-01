@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 //        return 1;
 //    }
 
-    thread t1(PIDLIB::getAll, &line);
+    //thread t1(PIDLIB::getAll, &line);
 
     PIDLIB::parseSysInfo_CPP(&test2, &line);
 
@@ -76,8 +76,6 @@ int main(int argc, char *argv[])
     w.show();
 
     int ret{ a.exec() };
-
-    t1.join();
 
     test2.clear();
     test2.shrink_to_fit();

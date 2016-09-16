@@ -177,6 +177,7 @@ namespace PIDLIB
         bool space{ false };
 
         const string delimitantes{ "abcdefghijklmnopqrstuvwxyz/[(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" };
+        const string delim{ " " };
 
         if(pvP->size() < *line)
         {
@@ -186,14 +187,10 @@ namespace PIDLIB
         for(int i{}; i < (*line) - 1; ++i)
         {
             espacios = 0;
-            //10 cambios de espacio a caracter
-            //de espacio a delimitantes
-            for(int g{}; /*g < (pC->size() - 1)*/; ++g)
-            {   //find any of tab or space
 
-                cout << pC->at(i).at(g);
-
-                if(((pC->at(i).at(g) == '\t') || (pC->at(i).at(g) == ' ')) && !space)
+            for(int g{};; ++g)
+            {
+                if((pC->at(i).at(g) == ' ') && !space)
                 {
                     space = true;
                     h = g;
@@ -204,7 +201,11 @@ namespace PIDLIB
                     h = pC->at(g).find_first_of(delimitantes, h);
                     break;
                 }
-                else
+                else if(space && (pC->at(i).at(g) == ' '))
+                {
+                    continue;
+                }
+                else if(pC->at(i).at(g) != ' ')
                 {
                     space = false;
                 }
@@ -212,13 +213,9 @@ namespace PIDLIB
 
             dh = pC->at(i).length() - h;
 
-#ifndef NDEBUG
-            cout << endl /*<<"dh: \t" << dh*/;
-#endif
-
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
-
         }
+
         return true;
     }
 
@@ -264,6 +261,11 @@ namespace PIDLIB
         }
 
         if(!set_RAMPerc(m_vP, m_vsC, m_line))
+        {
+            return false;
+        }
+
+        if(!set_User(m_vP, m_vsC, m_line))
         {
             return false;
         }
