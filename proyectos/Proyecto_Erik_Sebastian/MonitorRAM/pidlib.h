@@ -213,6 +213,8 @@ namespace PIDLIB
 
             dh = pC->at(i).length() - h;
 
+            cout << endl << pC->at(i).substr(h, dh);
+
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
         }
 
@@ -248,7 +250,7 @@ namespace PIDLIB
         }
 
         --(*m_line);
-        //m_vP->reserve(*m_line);
+        m_vP->reserve(*m_line);
 
         if(!set_PIDs(m_vP, m_vsC, m_line))
         {
@@ -271,14 +273,6 @@ namespace PIDLIB
         }
 
         return true;
-    }
-
-    bool getAll(size_t *m_lines)
-    {
-        for(unsigned long long k{}; k < 10; ++k)
-        {
-            cout << endl <<"Testing " << *m_lines << "\t" << k;
-        }
     }
 }
 

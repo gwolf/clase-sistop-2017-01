@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 //        return 1;
 //    }
 
-    //thread t1(PIDLIB::getAll, &line);
+    //thread t1(PIDLIB::getProcessInfo, &proceso, &test2, &line);
 
     PIDLIB::parseSysInfo_CPP(&test2, &line);
 
