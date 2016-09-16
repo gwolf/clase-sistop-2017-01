@@ -213,8 +213,6 @@ namespace PIDLIB
 
             dh = pC->at(i).length() - h;
 
-            cout << endl << pC->at(i).substr(h, dh);
-
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
         }
 
