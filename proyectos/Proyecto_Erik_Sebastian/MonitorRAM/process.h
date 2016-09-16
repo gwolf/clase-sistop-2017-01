@@ -42,6 +42,8 @@ public:
     void set_Exec(string name);
     //Funcion para asignar porcentaje RAM
     void set_RAMPerc(double perc);
+    //Funcion para establecer el usuario del PID
+    void set_User(string name);
 
 private:
     //Numero del PID
@@ -54,8 +56,8 @@ private:
     double m_MemPerc;
     //Cadena de caracteres que contiene el path del ejecutable
     string m_PATH;
-    //Vector para guardar los contenidos de la memoria RAM de este proceso
-    vector<unsigned short> m_contenidoRAM;
+    //Variable para guardar el usuario del PID
+    string m_user;
 };
 
 #endif // PROCESS_H

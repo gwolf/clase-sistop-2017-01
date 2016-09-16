@@ -115,9 +115,6 @@ namespace PIDLIB
         for(int i{}; i < (*lines) - 1; ++i)
         {
             h = pC->at(i).find_first_of("123456789");
-#ifdef DEBUG
-            cout << endl <<"h: " << h;
-#endif
             dh = 0;
 
             for(int w{ h }; w < h + 5; ++w)
@@ -133,16 +130,10 @@ namespace PIDLIB
             }
 
             string tmp{ pC->at(i).substr(h, dh) };
-#ifndef NDEBUG
-            cout << "\t" << tmp;
-#endif
             num = atoi(tmp.c_str());
 
             pvP->at(i).set_PID(num);
         }
-#ifndef NDEBUG
-        cout << endl;
-#endif
         return true;
     }
 
@@ -172,8 +163,6 @@ namespace PIDLIB
             dh = dh -h;
             string tmp{ pC->at(i).substr(h, dh) };
 
-            cout << endl << i <<" " << tmp;
-
             pvP->at(i).set_RAMPerc(atof(tmp.c_str()));
         }
 
@@ -201,6 +190,9 @@ namespace PIDLIB
             //de espacio a delimitantes
             for(int g{}; /*g < (pC->size() - 1)*/; ++g)
             {   //find any of tab or space
+
+                cout << pC->at(i).at(g);
+
                 if(((pC->at(i).at(g) == '\t') || (pC->at(i).at(g) == ' ')) && !space)
                 {
                     space = true;
@@ -221,7 +213,7 @@ namespace PIDLIB
             dh = pC->at(i).length() - h;
 
 #ifndef NDEBUG
-            cout << endl <<"dh: \t" << dh << "\t" << pC->at(i).substr(h, dh);
+            cout << endl /*<<"dh: \t" << dh*/;
 #endif
 
             pvP->at(i).set_Exec(pC->at(i).substr(h, dh));
@@ -230,14 +222,29 @@ namespace PIDLIB
         return true;
     }
 
-    //Funcion para encapsular todas las funciones superiores y correrlas en hilos
-    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
+    bool set_User(vector<Process> *pvP, vector<string> *pC, size_t *line)
     {
-        if((m_vP->size() < *m_line) || (m_vsC->size() < (*m_line)))
+        size_t dh{};
+        const string delimitante{ " " };
+
+        if(pvP->size() < *line)
         {
             return false;
         }
 
+        for(int i{}; i < (*line) - 1; ++i)
+        {
+            dh = pC->at(i).find_first_of(delimitante);
+
+            pvP->at(i).set_User(pC->at(i).substr(0, dh));
+        }
+
+        return true;
+    }
+
+    //Funcion para encapsular todas las funciones superiores y correrlas en hilos
+    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
+    {
         if(!parseSysInfo_CPP(m_vsC, m_line))
         {
             return false;
@@ -255,11 +262,18 @@ namespace PIDLIB
         {
             return false;
         }
+
+        if(!set_RAMPerc(m_vP, m_vsC, m_line))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     bool getAll(size_t *m_lines)
     {
-        for(unsigned long long k{}; k < 1000000; ++k)
+        for(unsigned long long k{}; k < 10; ++k)
         {
             cout << endl <<"Testing " << *m_lines << "\t" << k;
         }

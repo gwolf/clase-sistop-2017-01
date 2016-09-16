@@ -51,32 +51,24 @@ int main(int argc, char *argv[])
 
     vector<Process> proceso(line);
 
-    cout << endl << line;
-#ifndef NDEBUG
-    for(auto y : test2)
-    {
-        cout << endl << y;
-    }
-#endif
     if(!PIDLIB::set_PIDs(&proceso, &test2, &line))
     {
         return 1;
     }
-
- #ifndef NDEBUG
-    cout << endl <<"So far so good..." << endl;
- #endif
 
     if(!PIDLIB::set_Execs(&proceso, &test2, &line))
     {
         return 2;
     }
 
-    cout << endl <<"Testing RAM percentages: " << endl;
-
     if(!PIDLIB::set_RAMPerc(&proceso, &test2, &line))
     {
         return 3;
+    }
+
+    if(!PIDLIB::set_User(&proceso, &test2, &line))
+    {
+        return 4;
     }
 
     QApplication a(argc, argv);

@@ -26,8 +26,8 @@ Process::Process()
 
 Process::~Process()
 {
-    m_contenidoRAM.clear();
-    m_contenidoRAM.shrink_to_fit();
+    m_user.clear();
+    m_user.shrink_to_fit();
     m_PATH.clear();
     m_PATH.shrink_to_fit();
 }
@@ -60,4 +60,10 @@ void Process::set_Exec(string name)
 void Process::set_RAMPerc(double perc)
 {
     m_MemPerc = perc;
+}
+
+//Funcion para establecer el usuario del PID
+void Process::set_User(string name)
+{
+    m_user = name;
 }
