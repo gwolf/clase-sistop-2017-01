@@ -42,7 +42,7 @@ atomic<bool> D1{ false };
 atomic<bool> D2{ false };
 
 
-void vehiculo(size_t count)         //funcion que simula un vehiculo
+void vehiculo(size_t count)         //funcion que simula un vehiculo, solo pueden ir defrente
 {
     size_t num{};
 
