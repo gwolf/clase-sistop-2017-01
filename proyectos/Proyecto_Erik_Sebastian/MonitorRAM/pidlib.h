@@ -231,6 +231,12 @@ namespace PIDLIB
         return true;
     }
 
+    //funcion que actualiza el QTreeWidget
+    void update_Qtree()
+    {
+
+    }
+
     //Funcion para encapsular todas las funciones superiores y correrlas en un hilo
     bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line, atomic<bool> *flag)
     {
