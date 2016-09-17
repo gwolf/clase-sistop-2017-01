@@ -212,12 +212,12 @@ int main()
 {
     vector<thread> hilos;
 
-    for(int g{} ; g < 10; ++g)
+    for(int g{} ; g < 10; ++g)		//creando 10 hilos
     {
         hilos.push_back(thread(vehiculo, g));
     }
     
-    for(auto &i : hilos)
+    for(auto &i : hilos)		//uniendo los 10 hilos a main()
     {
         i.join();
     }
