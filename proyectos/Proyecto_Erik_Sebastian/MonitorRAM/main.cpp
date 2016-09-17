@@ -36,30 +36,26 @@ using std::atomic;
 
 int main(int argc, char *argv[])
 {  
-    vector<string> test2;
-    vector<Process> proceso;
-    size_t line{};
+    vector<string> test2;                   //vector que contiene la informacion de la salida de ps aux
+    vector<Process> proceso;                //vector de clase proceso que contiene la informacion ya categorizada
+    size_t line{};                          //renglones de la salida de ps aux
+    atomic<bool> banderaGUI{ false };       //semaforo que checa si existe la GUI
 
-    if(!PIDLIB::getProcessesInfo(&proceso, &test2, &line))
-    {
-        return 1;
-    }
+    QApplication a(argc, argv);             //entorno de Qt para la GUI
+    MainWindow w;                           //ventana principal de Qt
+    w.show();                               //mostrando la ventana principal
+    banderaGUI = true;                      //y prendiendo el semaforo de que existe
 
-    //thread t1(PIDLIB::getProcessesInfo(&proceso, &test2, &line));
+    //Iniciando el hilo
+    thread t(PIDLIB::getProcessesInfo, &proceso, &test2, &line, &banderaGUI);
 
-    for(int u{}; u < proceso.size(); ++u)
-    {
-        cout << endl << u <<" " << proceso.at(u).get_user() << "\t" << proceso.at(u).get_PID() << "\t" << proceso.at(u).get_Mem() << "\t" << proceso.at(u).get_Exec();
-    }
+    int ret{ a.exec() };                    //ciclo de aplicacion GUI implementado por Qt
 
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    banderaGUI = false;                     //cuando salimos del ciclo, que se cierra la ventana apagar el semaforo
 
-    int ret{ a.exec() };
+    t.join();                               //unir los dos hilos
 
-    //t1.join();
-
+    //limpiar los vectores, vaciarlos
     test2.clear();
     test2.shrink_to_fit();
     proceso.clear();

@@ -13,9 +13,11 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Fuentes de informacion:
+http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c-using-posix
+http://www.cyberciti.biz/faq/show-all-running-processes-in-linux/
 *********************************************************************/
-//http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c-using-posix
-//http://www.cyberciti.biz/faq/show-all-running-processes-in-linux/
 #ifndef PIDLIB_H
 #define PIDLIB_H
 
@@ -25,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <atomic>
 
 using std::vector;
 using std::string;
@@ -33,6 +36,7 @@ using std::getline;
 using std::ofstream;
 using std::ifstream;
 using std::cout;
+using std::atomic;
 
 namespace PIDLIB
 {
@@ -226,40 +230,52 @@ namespace PIDLIB
         return true;
     }
 
-    //Funcion para encapsular todas las funciones superiores y correrlas en hilos
-    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line)
+    //Funcion para encapsular todas las funciones superiores y correrlas en un hilo
+    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line, atomic<bool> *flag)
     {
-        if(!parseSysInfo_CPP(m_vsC, m_line))
+        while(*flag)
         {
-            return false;
+            if(!parseSysInfo_CPP(m_vsC, m_line))
+            {
+                return false;
+            }
+
+            --(*m_line);
+            m_vP->reserve(*m_line);
+
+            if(!set_PIDs(m_vP, m_vsC, m_line))
+            {
+                return false;
+            }
+
+            if(!set_Execs(m_vP, m_vsC, m_line))
+            {
+                return false;
+            }
+
+            if(!set_RAMPerc(m_vP, m_vsC, m_line))
+            {
+                return false;
+            }
+
+            if(!set_User(m_vP, m_vsC, m_line))
+            {
+                return false;
+            }
+
+            m_vP->shrink_to_fit();
+
+            //Aqui poner funcion que mande la informacion a QTree...
+            //void update_Qtree()...
+
+            //limpiando los vectores para el siguiente ciclo
+            m_vP->clear();
+            m_vP->shrink_to_fit();
+            m_vsC->clear();
+            m_vsC->shrink_to_fit();
         }
 
-        --(*m_line);
-        m_vP->reserve(*m_line);
-
-        cout << endl << *m_line;
-
-        if(!set_PIDs(m_vP, m_vsC, m_line))
-        {
-            return false;
-        }
-
-        if(!set_Execs(m_vP, m_vsC, m_line))
-        {
-            return false;
-        }
-
-        if(!set_RAMPerc(m_vP, m_vsC, m_line))
-        {
-            return false;
-        }
-
-        if(!set_User(m_vP, m_vsC, m_line))
-        {
-            return false;
-        }
-
-        m_vP->shrink_to_fit();
+        cout << endl <<"Finished calculationg on thread..." << endl;
 
         return true;
     }
