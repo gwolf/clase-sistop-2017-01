@@ -131,17 +131,81 @@ void vehiculo(size_t count)         //funcion que simula un vehiculo
             //entrar por B3
 
             cout << endl << "Hilo " << count <<" entrando por B3...";
+
+            if(!B3)
+            {
+                B3 = true;
+
+                if(!B2)
+                {
+                    cout << endl <<"Hilo " << count << " avanzando a B2...";
+                    B3 = false;
+                    B2 = true;
+
+                    if(!B1)
+                    {
+                        cout << endl <<"Hilo " << count << " avanzando a B1...";
+                        B2 = false;
+                        B1 = true;
+
+                        if(!B0)
+                        {
+                            cout << endl <<"Hilo " << count << " avanzando a B0...";
+                            B1 = false;
+                            B0 = true;
+                            sleep(0.5);
+                            B0 = false;
+                            cout << endl <<"Hilo " << count <<" saliendo de B0...";
+
+                            break;
+                        }
+                    }
+                }
+            }
             break;
             case 4:
             //entrar por A1
 
             cout << endl << "Hilo " << count <<" entrando por A1...";
+
+            if(!A1)
+            {
+                A1 = true;
+
+                if(!B1)
+                {
+                    cout << endl <<"Hilo " << count << " avanzando a B1...";
+                    A1 = false;
+                    B1 = true;
+
+                    if(!C1)
+                    {
+                        cout << endl <<"Hilo " << count <<" avanzando a C1...";
+                        B1 = false;
+                        C1 = true;
+
+                        if(!D1)
+                        {
+                            cout << endl << "Hilo " << count <<" avanzando a D1...";
+                            C1 = false;
+                            D1 = true;
+                            sleep(0.5);
+                            D1 = false;
+
+                            cout << endl <<"Hilo " << count <<" saliendo de D1...";
+
+                            break;
+                        }
+                    }
+                }
+            }
             break;
             default:
             continue;
         }
     }
-
+    
+    return;
 }
 
 int main()
