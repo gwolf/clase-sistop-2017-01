@@ -1,5 +1,5 @@
 /**********************************************************************
-Definiciones de las clases de Qt
+Definiciones de las clases de Qt para la ventana principal
 Copyright (C) 2016  Erik Sanabria esanabria136@gmail.com
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_actionAcerca_De_triggered()
-{
+{   //Cuando se da click en el el menu de acerca de mostramos la ventana de acerca de
     Dialog_AcercaDe ayuda1;
     ayuda1.setModal(true);
     ayuda1.exec();

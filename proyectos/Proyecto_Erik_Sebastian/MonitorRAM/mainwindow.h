@@ -1,5 +1,5 @@
 /**********************************************************************
-Definiciones de las clases de Qt
+Definiciones de las clases de Qt para la ventana principal
 Copyright (C) 2016  Erik Sanabria esanabria136@gmail.com
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
