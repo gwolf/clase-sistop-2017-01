@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory>
 #include <iostream>
 #include <thread>
+#include <atomic>
 
 using std::cout;
 using std::cin;
@@ -31,6 +32,7 @@ using std::endl;
 using std::string;
 using std::vector;
 using std::thread;
+using std::atomic;
 
 int main(int argc, char *argv[])
 {  
@@ -45,10 +47,10 @@ int main(int argc, char *argv[])
 
     //thread t1(PIDLIB::getProcessesInfo(&proceso, &test2, &line));
 
-    /*for(int u{}; u < proceso.size(); ++u)
+    for(int u{}; u < proceso.size(); ++u)
     {
         cout << endl << u <<" " << proceso.at(u).get_user() << "\t" << proceso.at(u).get_PID() << "\t" << proceso.at(u).get_Mem() << "\t" << proceso.at(u).get_Exec();
-    }*/
+    }
 
     QApplication a(argc, argv);
     MainWindow w;
