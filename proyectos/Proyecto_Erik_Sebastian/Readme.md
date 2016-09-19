@@ -32,6 +32,6 @@
 * Segundo, seleccionar "Open Project".
 * Navegar a ubicacion del repositorio en el disco. Posteriormente navegar a ``.../clase-sistop-2017-01/proyectos/Proyecto_Erik_Sebastian/MonitorRAM``.
 * En esta carpeta se encuentra un archivo con nombre: ``MonitorRAM.pro`` seleccionarlo y dar click en ``Open``.
-* El proyecto ya esta abierto.
+* Si aparece un mensaje de los settings del proyecto, que no se han generado dar click en "No". El proyecto ya esta abierto.
 * Para compilar presionar el martillo en la esquina inferior izquierda de Qt ó usar ``Ctrl + B``.
 * Para ejecutar el programa dar click en la flecha verde que no tiene un bug ó usar ``Ctrl + R``.
