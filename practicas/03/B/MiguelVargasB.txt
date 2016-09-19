@@ -1,1 +1,1 @@
-"Hola! esta es la parte B de la pr ctica" 
+"Hola! esta es la parte B de la practica" 
