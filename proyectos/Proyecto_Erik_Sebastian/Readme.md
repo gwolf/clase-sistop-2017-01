@@ -4,7 +4,6 @@
 
 * [Qt] (https://www.qt.io/download-open-source/)
 * Instalacion con GCC.
-* Requisitos para compilar:
 * ``sudo apt-get update && sudo apt-get install gcc g++ libgl1-mesa-dev -y``
 
 ## Licenciamiento:
@@ -29,7 +28,7 @@
 ## Procedimiento para abrir proyecto en Qt:
 * Primero abrir Qt.
 * Segundo, seleccionar "Open Project".
-* Navegar a ubicacion del repositorio en el disco. Posteriormente nabegar a ``.../clase-sistop-2017-01/proyectos/Proyecto_Erik_Sebastian/MonitorRAM``.
+* Navegar a ubicacion del repositorio en el disco. Posteriormente navegar a ``.../clase-sistop-2017-01/proyectos/Proyecto_Erik_Sebastian/MonitorRAM``.
 * En esta carpeta se encuentra un archivo con nombre: ``MonitorRAM.pro`` seleccionarlo y dar click en ``Open``.
 * El proyecto ya esta abierto.
 * Para compilar presionar el martillo en la esquina inferior izquierda de Qt ó usar ``Ctrl + B``.
