@@ -6,6 +6,7 @@
 * Instalacion con GCC. Asegurarse de seleccionar ``Desktop gcc 64-bit`` en la ventana de "Select Components" abriendo la pestaña de "Qt 5.7" También asegurarse de que "Tools" este seleccionado ya que este proporciona el editor qtcreator. Todos los demás componentes dejarlos como estan.
 * GCC y G++ mayor o igual al 4.8.4
 * ``sudo apt-get update && sudo apt-get install gcc g++ libgl1-mesa-dev -y``
+* ``sudo yum install mesa-libGL mesa-libGL-devel -y``
 * Este programa ha sido probado en Ubuntu 14.04 y Mint 18.
 
 ## Licenciamiento:
@@ -34,4 +35,5 @@
 * En esta carpeta se encuentra un archivo con nombre: ``MonitorRAM.pro`` seleccionarlo y dar click en ``Open``.
 * Si aparece un mensaje de los settings del proyecto, que no se han generado dar click en "No". El proyecto ya esta abierto.
 * Para compilar presionar el martillo en la esquina inferior izquierda de Qt ó usar ``Ctrl + B``.
+* Si marca este error al compilar ``cannot find -lGL`` asegurarse de que ``libgl1-mesa-dev`` ó ``mesa-libGL-devel`` este instalado.
 * Para ejecutar el programa dar click en la flecha verde que no tiene un bug ó usar ``Ctrl + R``.
