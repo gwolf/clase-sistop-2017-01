@@ -5,8 +5,8 @@
 * [Qt] (https://www.qt.io/download-open-source/). Qt requiere una cuenta pra activar el Qt Open Source en la instalacion. Es gratis.
 * Instalacion con GCC. Asegurarse de seleccionar ``Desktop gcc 64-bit`` en la ventana de "Select Components" abriendo la pestaña de "Qt 5.7" También asegurarse de que "Tools" este seleccionado ya que este proporciona el editor qtcreator. Todos los demás componentes dejarlos como estan.
 * GCC y G++ mayor o igual al 4.8.4
-* ``sudo apt-get update && sudo apt-get install gcc g++ libgl1-mesa-dev -y``
-* ``sudo yum install mesa-libGL mesa-libGL-devel -y``
+* Distros basados en Debian: ``sudo apt-get update && sudo apt-get install gcc g++ libgl1-mesa-dev -y``
+* Distros basados en RedHat: ``sudo yum install mesa-libGL mesa-libGL-devel -y``
 * Este programa ha sido probado en Ubuntu 14.04 y Mint 18.
 
 ## Licenciamiento:
