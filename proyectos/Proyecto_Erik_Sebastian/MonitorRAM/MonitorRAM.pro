@@ -25,6 +25,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     dialog_acercade.ui
 
-CONFIG += c++14 \ c++11
+CONFIG += c++14 \ c++11 \ warn_off
 
 QMAKE_CXXFLAGS += -DDEBUG

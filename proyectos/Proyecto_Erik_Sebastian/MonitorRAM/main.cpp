@@ -44,10 +44,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);             //entorno de Qt para la GUI
     MainWindow w;                           //ventana principal de Qt
     w.show();                               //mostrando la ventana principal
+
     banderaGUI = true;                      //y prendiendo el semaforo de que existe
 
     //Iniciando el hilo
     thread t(PIDLIB::getProcessesInfo, &proceso, &test2, &line, &banderaGUI);
+
+    cout << endl << w.get_PUi() << endl;
 
     int ret{ a.exec() };                    //ciclo de aplicacion GUI implementado por Qt
 

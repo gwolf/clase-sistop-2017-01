@@ -29,9 +29,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+Ui::MainWindow *MainWindow::get_PUi()
+{
+    return ui;
+}
+
 void MainWindow::on_actionAcerca_De_triggered()
 {   //Cuando se da click en el el menu de acerca de mostramos la ventana de acerca de
     Dialog_AcercaDe ayuda1;
     ayuda1.setModal(true);
     ayuda1.exec();
 }
+

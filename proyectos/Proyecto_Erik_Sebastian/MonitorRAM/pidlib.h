@@ -22,12 +22,15 @@ http://www.cyberciti.biz/faq/show-all-running-processes-in-linux/
 #define PIDLIB_H
 
 #include "process.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <cstdlib>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <atomic>
+#include <QTreeWidgetItem>
 
 using std::vector;
 using std::string;
@@ -232,13 +235,18 @@ namespace PIDLIB
     }
 
     //funcion que actualiza el QTreeWidget
-    void update_Qtree()
+    void update_Qtree(vector<Process> *dataI/*, MainWindow *m_GUI*/)
     {
+        QTreeWidgetItem tmp;            //http://doc.qt.io/qt-5/qtreewidgetitem.html
+        tmp.setText(0, "Hello");
 
+        ui->treeWidget->insertTopLevelItem(tmp,0);
+
+        //m_gui->treeWidget->insertTopLevelItem(tmp,0);  //http://doc.qt.io/qt-5/qtreewidget.html#setItemWidget
     }
 
     //Funcion para encapsular todas las funciones superiores y correrlas en un hilo
-    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line, atomic<bool> *flag)
+    bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line, atomic<bool> *flag/*, MainWindow *m_gui*/)
     {
         while(*flag)    //flag es la bandera de si existe la GUI, mientras existe hacer todas las funciones superiores
         {
@@ -275,6 +283,7 @@ namespace PIDLIB
             //Aqui poner funcion que mande la informacion a QTree...
             //void update_Qtree()...
 
+            update_Qtree(m_vP/*, m_gui*/);
             //limpiando los vectores para el siguiente ciclo
             m_vP->clear();
             m_vP->shrink_to_fit();

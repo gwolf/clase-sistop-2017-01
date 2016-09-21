@@ -33,6 +33,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    Ui::MainWindow *get_PUi();
+
 private slots:
     void on_actionAcerca_De_triggered();
 
