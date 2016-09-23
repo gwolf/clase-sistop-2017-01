@@ -9,22 +9,17 @@ Python v3.5
 import time
 from threading import Thread
 from threading import Lock
-#import tempfile
+import tempfile
 
 def hazAlgo(i, mutex):
     mutex.acquire()  #Mutex iniciado
-    #temporal = tempfile.TemporaryFile(mode='w+t') #Se crea archivo temporal
-    archi=open("datos.txt",'a')    
-    #temporal.write("Thread: %d" %(i))
-    archi.write("Thread: %d\n" %(i))
+    temporal = tempfile.TemporaryFile(mode='w+t') #Se crea archivo temporal
+    temporal.write("Thread: %d" %(i))
     time.sleep(0.5)
-    #temporal.seek(0)
-    #lectura = temporal.read()
-    archi=open('datos.txt','r')
-    lectura=archi.readline()
+    temporal.seek(0)
+    lectura = temporal.read()
     print(lectura)
-    #temporal.close()
-    archi.close()
+    temporal.close()
     mutex.release()     #Fin de Mutex
 
 mutex = Lock()
