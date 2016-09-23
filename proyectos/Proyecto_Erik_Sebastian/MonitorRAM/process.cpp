@@ -74,9 +74,9 @@ void Process::set_User(string name)
     m_user = name;
 }
 
-unsigned int Process::get_PID()
+string Process::get_PID()
 {
-    return m_PID;
+    return std::to_string(m_PID);
 }
 
 string Process::get_Exec()
@@ -89,8 +89,8 @@ string Process::get_user()
     return m_user;
 }
 
-double Process::get_Mem()
+string Process::get_Mem()
 {
-    return m_MemPerc;
+    return std::to_string(m_MemPerc);
 }
 

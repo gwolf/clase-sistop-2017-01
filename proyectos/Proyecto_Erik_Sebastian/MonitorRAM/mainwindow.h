@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "process.h"
 
 namespace Ui
 {
@@ -33,7 +34,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    Ui::MainWindow *get_PUi();
+    void updateTree(std::vector<Process> *data);
 
 private slots:
     void on_actionAcerca_De_triggered();

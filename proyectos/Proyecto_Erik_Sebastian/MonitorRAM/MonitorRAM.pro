@@ -20,9 +20,10 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     process.h \
     pidlib.h \
-    dialog_acercade.h
+    dialog_acercade.h \
+    ui_mainwindow.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
     dialog_acercade.ui
 
 CONFIG += c++14 \ c++11 \ warn_off

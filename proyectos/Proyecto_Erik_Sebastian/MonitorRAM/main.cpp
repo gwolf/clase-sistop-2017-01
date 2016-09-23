@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <thread>
 #include <atomic>
+#include <QTreeWidgetItem>
 
 using std::cout;
 using std::cin;
@@ -41,6 +42,7 @@ int main(int argc, char *argv[])
     size_t line{};                          //renglones de la salida de ps aux
     atomic<bool> banderaGUI{ false };       //semaforo que checa si existe la GUI
 
+
     QApplication a(argc, argv);             //entorno de Qt para la GUI
     MainWindow w;                           //ventana principal de Qt
     w.show();                               //mostrando la ventana principal
@@ -48,9 +50,9 @@ int main(int argc, char *argv[])
     banderaGUI = true;                      //y prendiendo el semaforo de que existe
 
     //Iniciando el hilo
-    thread t(PIDLIB::getProcessesInfo, &proceso, &test2, &line, &banderaGUI);
+    thread t(PIDLIB::getProcessesInfo, &proceso, &test2, &line, &banderaGUI, &w);
 
-    cout << endl << w.get_PUi() << endl;
+    //w.updateTree();
 
     int ret{ a.exec() };                    //ciclo de aplicacion GUI implementado por Qt
 

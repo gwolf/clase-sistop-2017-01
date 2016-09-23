@@ -47,10 +47,10 @@ public:
     //Funcion para establecer el usuario del PID
     void set_User(string name);
 
-    unsigned int get_PID();
+    string get_PID();
     string get_Exec();
     string get_user();
-    double get_Mem();
+    string get_Mem();
 
 
 private:
