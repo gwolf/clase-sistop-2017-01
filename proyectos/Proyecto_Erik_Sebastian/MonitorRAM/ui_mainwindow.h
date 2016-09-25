@@ -48,6 +48,8 @@ public:
     QMenuBar *menuBar;
     QMenu *menuAcerca_de;
 
+    int espera;
+
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())

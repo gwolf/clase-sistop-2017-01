@@ -31,6 +31,10 @@ public:
     explicit Dialog_AcercaDe(QWidget *parent = 0);
     ~Dialog_AcercaDe();
 
+private slots:
+
+    void on_spinBox_valueChanged(int arg1);
+
 private:
     Ui::Dialog_AcercaDe *ui;
 };

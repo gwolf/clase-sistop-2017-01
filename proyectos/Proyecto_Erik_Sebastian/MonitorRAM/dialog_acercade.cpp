@@ -28,3 +28,8 @@ Dialog_AcercaDe::~Dialog_AcercaDe()
 {
     delete ui;
 }
+
+void Dialog_AcercaDe::on_spinBox_valueChanged(int arg1)
+{
+
+}
