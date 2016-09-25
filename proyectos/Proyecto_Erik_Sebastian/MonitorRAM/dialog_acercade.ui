@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>342</width>
-    <height>229</height>
+    <height>326</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;F1 -&amp;gt; Muestra esta ayuda.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alt + S -&amp;gt; Cierra la aplicacion.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alt + O -&amp;gt; Cierra esta ventana.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alt + O -&amp;gt; Cierra esta ventana.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tiempo de Actualización: Representa en segundos el tiempo que debe de esperar para actualizar la información.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -39,13 +41,22 @@ p, li { white-space: pre-wrap; }
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Tiempo de Actualizacion (s):</string>
+          <string>Tiempo de Actualización</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QSlider" name="horizontalSlider">
+         <property name="minimum">
+          <number>1</number>
+         </property>
          <property name="maximum">
+          <number>60</number>
+         </property>
+         <property name="singleStep">
+          <number>1</number>
+         </property>
+         <property name="value">
           <number>60</number>
          </property>
          <property name="orientation">
@@ -55,7 +66,13 @@ p, li { white-space: pre-wrap; }
        </item>
        <item>
         <widget class="QSpinBox" name="spinBox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
          <property name="maximum">
+          <number>60</number>
+         </property>
+         <property name="value">
           <number>60</number>
          </property>
         </widget>
