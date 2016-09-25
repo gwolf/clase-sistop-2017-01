@@ -25,3 +25,10 @@ void MainWindow::on_actionAcerca_de_triggered()
     acercaDe.setModal(true);
     acercaDe.exec();
 }
+
+void MainWindow::on_memInfoButton_clicked()
+{
+    ui->memInfoButton->setEnabled(false);
+    memInfo = new MemInfo(0, ui->memInfoButton);
+    memInfo->show();
+}

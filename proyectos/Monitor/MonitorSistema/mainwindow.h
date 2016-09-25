@@ -4,9 +4,9 @@
 #include <QMainWindow>
 #include <QMutex>
 #include <QPushButton>
-#include <QTimer>
 
 #include "information.h"
+#include "meminfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,8 +23,11 @@ public:
 private slots:
     void on_actionAcerca_de_triggered();
 
+    void on_memInfoButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    MemInfo *memInfo;
 };
 
 #endif // MAINWINDOW_H

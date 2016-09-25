@@ -14,13 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    information.cpp
+    information.cpp \
+    meminfo.cpp
 
 HEADERS  += mainwindow.h \
-    information.h
+    information.h \
+    meminfo.h
 
 FORMS    += mainwindow.ui \
-    information.ui
+    information.ui \
+    meminfo.ui
 
 RESOURCES += \
     iconos.qrc
