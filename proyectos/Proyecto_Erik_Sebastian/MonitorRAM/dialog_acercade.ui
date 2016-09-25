@@ -35,6 +35,34 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Tiempo de Actualizacion (s):</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="maximum">
+          <number>60</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBox">
+         <property name="maximum">
+          <number>60</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <spacer name="horizontalSpacer_2">
@@ -84,12 +112,44 @@ p, li { white-space: pre-wrap; }
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>191</x>
-     <y>386</y>
+     <x>210</x>
+     <y>217</y>
     </hint>
     <hint type="destinationlabel">
      <x>191</x>
      <y>204</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>309</x>
+     <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>241</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
