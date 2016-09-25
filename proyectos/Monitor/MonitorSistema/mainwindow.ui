@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Memoria RAM</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="memInfoDescription">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:14pt; font-weight:600; color:#333333;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;El archivo &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;meminfo&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; es uno de los más utilizados en el directorio &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;/proc/&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;. Este archivo reporta una gran cantidad de información acerca del uso de la memoria RAM.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;Para obtener más información acerca del contenido de este archivo, se puede consultar el siguiente enlace: &lt;/span&gt;&lt;a href=&quot;https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-proc-meminfo.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="margin">
+             <number>15</number>
+            </property>
+            <property name="indent">
+             <number>15</number>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="memInfoButton">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Inicia una nueva ventana que monitorea el archivo &lt;span style=&quot; font-weight:600;&quot;&gt;/proc/meminfo/&lt;/span&gt; cada dos segundos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Observar contenido</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="interruptsDescription">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:14pt; font-weight:600; color:#333333;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;El archivo &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;meminfo&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; es uno de los más utilizados en el directorio &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;/proc/&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;. Este archivo reporta una gran cantidad de información acerca del uso de la memoria RAM.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;Para obtener más información acerca del contenido de este archivo, se puede consultar el siguiente enlace: &lt;/span&gt;&lt;a href=&quot;https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-proc-meminfo.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="margin">
+             <number>15</number>
+            </property>
+            <property name="indent">
+             <number>15</number>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="interruptsButton">
+            <property name="text">
+             <string>/proc/interrupts</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="imageLabel">
+        <property name="maximumSize">
+         <size>
+          <width>256</width>
+          <height>256</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>256</width>
+          <height>256</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="text">
+         <string>Cerrar
+programa</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="actionAcerca_de"/>
+   </widget>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
