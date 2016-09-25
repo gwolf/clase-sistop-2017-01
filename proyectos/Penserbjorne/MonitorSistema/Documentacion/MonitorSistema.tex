@@ -3,6 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[spanish]{babel}
+%\usepackage{biblatex}
+%\usepackage{url}
+\usepackage{hyperref}
 
 \title{Monitor de Sistema}
 \author{Aguilar Enriquez, Paul Sebastian a.k.a Penserbjorne}
@@ -21,9 +24,20 @@ debe trabajar de forma concurrente, sincronizando multihilos, multiprocesos o am
 
 \section{Monitor de Sistema}
 
-\subsection{Definicion}
+Investigando un poco, sobre todo por Internet, es muy complicado encontrar una definicion exacta de lo que es un ''Monitor de Sistema''. Para el usuario intermedio-avanzado de un equipo de computo puede que el termino sea inherente, sin embargo a continuacion dejaremos algunas definiciones que podrian describir un poco lo que es un ''Monitor de Sistema''.
 
-\subsection{Caracteristicas}
+\begin{enumerate}
+  \item El monitor del sistema muestra qué programas están en ejecución y cuánto procesador, tiempo, memoria y espacio en disco están usando.\cite{ref:web1}
+  
+  \item ... es una aplicación integrada en los sistemas operativos ... , gracias a la cual podremos obtener información de los programas y procesos que se ejecutan en el equipo, además de proporcionar los indicadores de rendimientos más utilizados en el equipo.\cite{ref:web2}
+  
+  \item These tools are primarily divided into two main categories: real time and log-based. Real time monitoring tools are concerned with measuring the current system state and provide up to date information about the system performance. Log-based monitoring tools record system performance information for post-processing and analysis and to find trends in the system performance.\cite{ref:web3}
+  
+  \item Los procesos que se muestran ... pueden ser apps del usuario, apps del sistema utilizadas o procesos invisibles en segundo plano.\cite{ref:web4}
+
+\end{enumerate}
+
+En general podriamos resumir que un ''Monitor de Sistema'' es un software que monitorea mayormente en tiempo real los procesos e hilos que estan actualmente en ejecucion mostrando usualmente informacion sobre ellos como seria tiempo, memoria y espacio en disco que estan usando, asi como los indicadores de rendimiento mas comunes de un equipo que podrian ser uso de CPU/hardware, memoria, energia, disco y red.
 
 \section{Ejemplos de Monitores de Sistema}
 
@@ -41,4 +55,38 @@ debe trabajar de forma concurrente, sincronizando multihilos, multiprocesos o am
 
 \section{Implementación}
 
+\begin{thebibliography}{}
+
+\bibitem{ref:web1}
+  The GNOME Project.
+  (-).
+  Monitor del sistema.
+  23/09/2016, 
+  de The GNOME Project 
+  Sitio web:   \url{https://help.gnome.org/users/gnome-system-monitor/index.html.es}
+
+\bibitem{ref:web2}
+  Xataka Winows. 
+  (14/07/2014). 
+  El administrador de tareas de Windows: qué es y cómo funciona. 
+  23/09/2016, de Xataka Winows 
+  Sitio web: \url{http://www.xatakawindows.com/bienvenidoawindows8/el-administrador-de-tareas-de-windows-que-es-y-como-funciona}
+
+\bibitem{ref:web3}
+  Arik Brooks. 
+  (-). 
+  Operating System and Process Monitoring Tools. 
+  23/09/2016, de Washington University in St. Louis - School of Engineering \& Applied Science 
+  Sitio web: \url{http://www.cs.wustl.edu/~jain/cse567-06/ftp/os_monitors/}
+
+\bibitem{ref:web4}
+  Apple. 
+  (-). 
+  Cómo usar Monitor de Actividad en la Mac. 
+  23/09/2016, de Apple 
+  Sitio web: \url{https://support.apple.com/es-mx/HT201464}
+
+\end{thebibliography}
+
+Biblioteca ncurses, C
 \end{document}
