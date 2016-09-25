@@ -34,7 +34,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void updateTree(std::vector<Process> *data);
+    void updateTree(vector<Process> *data);
 
 private slots:
     void on_actionAcerca_De_triggered();

@@ -23,10 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include <vector>
 #include <unistd.h>
-#include <iostream>
 
-using std::cout;
-using std::endl;
+using std::vector;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -38,10 +36,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::updateTree(std::vector<Process> *data)
+void MainWindow::updateTree(vector<Process> *data)
 {
-
-
     for(size_t i{}; i < data->size(); ++i)
     {
         QTreeWidgetItem *tmp= new QTreeWidgetItem(ui->treeWidget);
