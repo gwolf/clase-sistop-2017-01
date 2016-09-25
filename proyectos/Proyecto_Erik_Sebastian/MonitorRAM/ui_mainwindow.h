@@ -68,6 +68,9 @@ public:
 
         verticalLayout->addWidget(treeWidget);
         treeWidget->setColumnCount(4);
+        treeWidget->header()->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+        treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+        treeWidget->header()->setStretchLastSection(false);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
