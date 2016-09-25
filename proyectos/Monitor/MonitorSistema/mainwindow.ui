@@ -6,19 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>320</height>
+    <width>700</width>
+    <height>535</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>535</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>700</width>
+    <height>535</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Monitor del sistema.</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -71,7 +89,7 @@
       </widget>
       <widget class="QWidget" name="tab2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Interrupciones</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
@@ -82,7 +100,7 @@
              <bool>false</bool>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:14pt; font-weight:600; color:#333333;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;El archivo &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;meminfo&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; es uno de los más utilizados en el directorio &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;/proc/&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;. Este archivo reporta una gran cantidad de información acerca del uso de la memoria RAM.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;Para obtener más información acerca del contenido de este archivo, se puede consultar el siguiente enlace: &lt;/span&gt;&lt;a href=&quot;https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-proc-meminfo.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/proc/meminfo&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:14pt; font-weight:600; color:#333333;&quot;&gt;/proc/interrupts&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;El archivo &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;interrupts&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; graba el número de interrupciones por IRQ (del inglés: &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-style:italic; color:#333333;&quot;&gt;interrupt request&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;).&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;La primer columna se refiere al número de IRQ. Si se consulta en una máquina con múltiples procesadores, el archivo muestra cada CPU del sistema en una columna diferente y su propio número de interrupciones por IRQ. La siguiente columna indica el tipo de interrupción y la última contiene el dispositivo donde se localiza esa IRQ.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;Cada tipo de interrupciones en este archivo son específicos para una arquitectura, por ello, pueden significar algo diferente.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="textFormat">
              <enum>Qt::AutoText</enum>
@@ -155,7 +173,7 @@ programa</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>700</width>
      <height>19</height>
     </rect>
    </property>
