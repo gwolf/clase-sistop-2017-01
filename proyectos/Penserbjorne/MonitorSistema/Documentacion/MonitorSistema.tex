@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
 %\usepackage{biblatex}
 %\usepackage{url}
 \usepackage{hyperref}
@@ -41,11 +43,138 @@ En general podriamos resumir que un ''Monitor de Sistema'' es un software que mo
 
 \section{Ejemplos de Monitores de Sistema}
 
-\subsection{GNU/Linux}
-
-\subsection{Mac OS}
-
 \subsection{Windows}
+
+Administrador de Tareas
+
+\subsection{Mac OS X}
+
+El Monitor de Sistema por defecto en Mac OS X es el Monitor de Actividad.\\
+
+Los procesos que se muestran en Monitor de Actividad pueden ser apps del usuario, apps del sistema utilizadas por OS X o procesos invisibles en segundo plano.\\
+
+El Monitor de Actividad permite monitorear cinco aspectos:
+\begin{itemize}
+  \item CPU
+  \item Memoria
+  \item Energía
+  \item Disco
+  \item Red
+\end{itemize}
+
+\subsubsection{CPU}
+
+El panel CPU muestra cómo los procesos afectan a la actividad de la CPU (procesador):
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{01macActivityMonitorCPU}
+  \caption{Panel CPU}
+  \label{fig:macActivityMonitorCPU}
+\end{figure}
+
+En la parte inferior del panel CPU:
+
+\begin{itemize}
+  \item \textit{Sistema:} el porcentaje de capacidad de la CPU que utilizan actualmente los procesos del sistema, que son los procesos pertenecientes a OS X.
+  \item \textit{Usuario:} el porcentaje de capacidad de la CPU que utilizan actualmente las apps abiertas por el usuario, o los procesos abiertos por esas apps.
+  \item \textit{Inactividad:} el porcentaje de capacidad de la CPU que no está en uso.
+  \item \textit{Carga de CPU:} el porcentaje de capacidad de la CPU que utilizan todos los procesos del sistema y del usuario. El color azul muestra el porcentaje de capacidad de la CPU total que utilizan actualmente los procesos del usuario. El color rojo muestra el porcentaje de capacidad de la CPU total que utilizan actualmente los procesos del sistema.
+  \item \textit{Subprocesos:} la cantidad total de subprocesos utilizados por todos los procesos combinados.
+  \item \textit{Procesos:} la cantidad total de procesos que se encuentran en ejecución.
+
+\end{itemize}
+
+\subsubsection{Memoria}
+
+El panel Memoria muestra información acerca de cómo se utiliza la memoria:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{02macActivityMonitorMemory}
+  \caption{Panel Memoria}
+  \label{fig:macActivityMonitorMemory}
+\end{figure}
+
+En la parte inferior del panel Memoria:
+
+\begin{itemize}
+  \item \textit{Presión de memoria:} el gráfico ayuda a ilustrar la disponibilidad de los recursos de memoria. El estado actual de los recursos de memoria se indica con un color a la derecha del gráfico:   
+  \begin{itemize}
+    \item \textit{Verde:} los recursos de memoria están disponibles. 
+    \item \textit{Amarillo:} los recursos de memoria todavía están disponibles, pero se están utilizando en tareas de procesos de administración de la memoria, por ejemplo, la compresión.
+    \item \textit{Rojo:} los recursos de memoria están agotados, y OS X está usando la unidad de arranque como memoria. 
+  \end{itemize}
+  \item \textit{Memoria física:} la cantidad de RAM instalada en la Mac. 
+  \item \textit{Memoria usada:} la cantidad total de memoria usada actualmente por todas las apps y los procesos de OS X.
+  \begin{itemize}
+    \item \textit{Memoria de aplicaciones:} la cantidad total de memoria usada actualmente por todas las apps y sus procesos.
+    \item \textit{Memoria física:} la memoria que no se puede comprimir ni vaciar en la unidad de arranque, es por eso que debe permanecer en la RAM. La memoria física utilizada para un proceso no se puede utilizar para otros procesos. El programador de la app es quien determina la cantidad de memoria física que utilizará una app. 
+    \item \textit{Comprimida:} la cantidad de memoria en RAM que se comprime para lograr que haya más memoria RAM disponible para otros procesos.
+  \end{itemize}
+  \item \textit{Espacio de intercambio usado:} el espacio utilizado en la unidad de arranque para la administración de la memoria de OS X.
+  \item \textit{Caché de archivos:} la memoria que usaron recientemente las apps y ahora está disponible para que otras apps la utilicen.
+
+\end{itemize}
+
+\subsubsection{Energia}
+
+El panel Energía muestra el uso general de la energía y la energía usada por cada app:
+
+\begin{itemize}
+  \item \textit{Impacto energético:} una medición relativa del consumo de energía actual de la app.
+  \item \textit{Impacto energético medio:} el impacto energético medio correspondiente a las últimas ocho horas de funcionamiento de la Mac o al período transcurrido desde el arranque de la Mac, lo que sea más breve. El impacto energético medio también se muestra para las apps que se ejecutaron durante ese período, pero que se cerraron desde entonces.
+  \item \textit{App Nap:} las apps que admiten App Nap consumen muy poca energía cuando se encuentran abiertas pero no en uso.
+  \item \textit{Evita reposo:} indica si la app está evitando que la Mac entre en reposo.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{03macActivityMonitorEnergy}
+  \caption{Panel Energia}
+  \label{fig:macActivityMonitorEnergy}
+\end{figure}
+
+En la parte inferior del panel Energía:
+
+\begin{itemize}
+  \item \textit{Impacto energético:} una medición relativa del total de energía utilizado por todas las apps.
+  \item \textit{Tarjeta gráfica:} el tipo de tarjeta gráfica que se utiliza actualmente.
+  \item \textit{Carga restante:} el porcentaje de carga restante de la batería de una Mac portátil.
+  \item \textit{Tiempo para la carga completa:} la cantidad de tiempo que debe estar enchufada la Mac portátil a un tomacorriente de CA para cargarse por completo.
+  \item \textit{Tiempo conectada:} el tiempo transcurrido desde que se enchufó la Mac portátil al tomacorriente de CA.
+  \item \textit{Tiempo restante:} la cantidad estimada de tiempo restante de la batería en la Mac portátil.
+  \item \textit{Tiempo con la batería:} el tiempo transcurrido desde que se desenchufó la Mac portátil del tomacorriente de CA.
+  \item \textit{Batería (últimas 12 horas):} el nivel de carga de la batería de la Mac portátil durante las últimas 12 horas. El color verde muestra los momentos en que la Mac obtenía alimentación de un adaptador de energía.
+\end{itemize}
+
+\subsubsection{Disco}
+
+El panel Disco muestra la cantidad de datos que cada proceso leyó del disco y escribió en el disco. También muestra las "lecturas entrantes" y las "escrituras salientes" (E/S), lo que representa la cantidad de veces que la Mac accede al disco para leer y escribir datos.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{04macActivityMonitorDisk}
+  \caption{Panel Disco}
+  \label{fig:macActivityMonitorDisk}
+\end{figure}
+
+La información en la parte inferior del panel Disco muestra la actividad total del disco en todos los procesos. El gráfico incluye un menú emergente para alternar entre mostrar la actividad de E/S o los datos como una unidad de medición. El color azul muestra la cantidad de lecturas por segundo o la cantidad de datos leídos por segundo. El color rojo muestra la cantidad de escrituras salientes por segundo o la cantidad de datos escritos por segundo.
+
+\subsubsection{Red}
+
+El panel Red muestra cuántos datos envía o recibe la Mac por medio de la red. Utiliza esta información para identificar qué procesos envían o reciben la mayor cantidad de datos.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{05macActivityMonitorNetwork}
+  \caption{Panel Red}
+  \label{fig:macActivityMonitorNetwork}
+\end{figure}
+
+La información en la parte inferior del panel Red muestra la actividad total de red en todas las apps. El gráfico incluye un menú emergente para alternar entre mostrar paquetes o datos como una unidad de medición. El color azul muestra la cantidad de paquetes recibidos por segundo o la cantidad de datos recibidos por segundo. El color rojo muestra la cantidad de paquetes enviados por segundo o la cantidad de datos enviados por segundo.
+
+\subsection{GNU/Linux}
 
 \section{Diseño}
 
