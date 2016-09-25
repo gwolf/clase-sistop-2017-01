@@ -7,6 +7,8 @@
 #include <QFile>
 #include <QPushButton>
 
+#include "readerthread.h"
+
 namespace Ui {
 class MemInfo;
 }
@@ -25,8 +27,9 @@ private:
     QMutex *mutex;
     QPushButton *lockButton;
 
-private slots:
-    void readFile();
+public slots:
+    void createThread();
+    void onFinishedReading(QString);
 };
 
 #endif // MEMINFO_H

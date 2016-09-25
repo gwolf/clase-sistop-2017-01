@@ -12,20 +12,29 @@ MemInfo::MemInfo(QWidget *parent, QPushButton *button) :
     timer = new QTimer(this);
     lockButton = button;
 
-    readFile();
-    connect(timer, SIGNAL(timeout()), this, SLOT(readFile()));
-    timer->start(2000);
+    //  Obtiene el contenido de /proc/meminfo antes de cargar
+    //  la ventana.
+    createThread();
+
+    //  Inicializa un temporizador que crea hilos cada 1.5 segundos
+    //  para obtener el contenido de meminfo.
+    connect(timer, SIGNAL(timeout()), this, SLOT(createThread()));
+    timer->start(1500);
 }
 
-void MemInfo::readFile()
+void MemInfo::createThread()
 {
-    mutex->lock();
+    ReaderThread *newThread = new ReaderThread(this, mutex);
+    newThread->start();
 
-    QFile lector("/proc/meminfo");
-    lector.open(QFile::ReadOnly | QFile::Text);
-    ui->plainTextEdit->setPlainText(lector.readAll());
-    lector.close();
+    connect(newThread, SIGNAL(finishedReading(QString)), this, SLOT(onFinishedReading(QString)));
+}
 
+void MemInfo::onFinishedReading(QString contents)
+{
+    //  Al recibir la señal finishedReading desde cualquier hilo,
+    //  actualiza el contenido del plainText y libera el mutex.
+    ui->plainTextEdit->setPlainText(contents);
     mutex->unlock();
 }
 

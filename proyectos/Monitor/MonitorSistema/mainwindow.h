@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMutex>
 #include <QPushButton>
+#include <QWidget>
 
 #include "information.h"
 #include "meminfo.h"

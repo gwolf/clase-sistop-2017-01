@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     information.cpp \
-    meminfo.cpp
+    meminfo.cpp \
+    readerthread.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
-    meminfo.h
+    meminfo.h \
+    readerthread.h
 
 FORMS    += mainwindow.ui \
     information.ui \
