@@ -49,7 +49,7 @@ Administrador de Tareas
 
 \subsection{Mac OS X}
 
-El Monitor de Sistema por defecto en Mac OS X es el Monitor de Actividad.\\
+\cite{ref:web4} El Monitor de Sistema por defecto en Mac OS X es el Monitor de Actividad.\\
 
 Los procesos que se muestran en Monitor de Actividad pueden ser apps del usuario, apps del sistema utilizadas por OS X o procesos invisibles en segundo plano.\\
 
@@ -176,6 +176,65 @@ La información en la parte inferior del panel Red muestra la actividad total de
 
 \subsection{GNU/Linux}
 
+\subsubsection{Monitor del Sistema}
+
+ \cite{ref:web5} El Monitor del sistema en Linux es el interfaz gráfico de la orden top. Este interfaz viene instalado por defecto en la mayoría de las distribuciones. Si no estuviera, habría que instalarlo a través del paquete gnome-system-monitor, disponible en los repositorios oficiales.
+
+La apariencia de este Monitor es muy similar al Administrador de tareas de Windows. Ofrece las siguientes opciones…
+
+\begin{itemize}
+  \item \textit{Sistema:} proporciona información básica como puede ser la versión del sistema operativo, el procesador integrado o la memoria RAM disponible.
+  \item \textit{Procesos:} contiene un listado con los procesos del sistema, su estado y la carga media de los últimos minutos. También se puede crear un filtro para mostrar sólo determinados procesos, como pueden ser los procesos activos o los procesos del usuario. Sobre los procesos pueden realizarse varias operaciones como, por ejemplo, cambiar su prioridad, ver su mapa de memoria o finalizarlo (también denominado matarlo). Figura~\ref{fig:linuxMonitorSistemaProcesos}
+  \item \textit{Recursos:} informa a través de gráficos dinámicos el uso de los principales recursos del sistema (el procesador, la memoria y la red). Es la forma más directa de monitorización. Esta pestaña permite ser personalizada. Figura~\ref{fig:linuxMonitorSistemaRecursos}
+  \item \textit{Sistemas de archivos:} muestra un listado con los sistemas de archivos montados y sus principales características (espacio libre, punto de montaje, etc…). Figura~\ref{fig:linuxMonitorSistemaArchivos}
+\end{itemize}
+
+A través del Monitor del sistema no sólo se puede ejercer una monitorización de los principales elementos del sistema sino que también se puede modificar su comportamiento. Esto se hace aplicando una configuración directamente sobre el Monitor. La opción de configurar está disponible en el Monitor ejecutando la secuencia Editar -> Preferencias. Las preferencias hacen alusión principalmente a las pestañas de Procesos y Recursos, que son las que manejan los elementos más dinámicos.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{06linuxMonitorSistemaProcesos}
+  \caption{Panel Procesos}
+  \label{fig:linuxMonitorSistemaProcesos}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{07linuxMonitorSistemaRecursos}
+  \caption{Panel Recursos}
+  \label{fig:linuxMonitorSistemaRecursos}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{08linuxMonitorSistemaArchivos}
+  \caption{Panel Archivos}
+  \label{fig:linuxMonitorSistemaArchivos}
+\end{figure}
+
+\subsubsection{Desde Terminal}
+
+ \cite{ref:web6} A continuacion se muestra una lista con algunos de los comandos básicos que podremos utilizar en la terminal de cualquier distribución GNU/Linux para obtener información sobre nuestro sistema.
+
+\begin{itemize}
+  \item \textit{ps:} Imprime los procesos en ejecución y estadísticas asociadas..
+  \item \textit{top:} Porcentaje y tiempo de CPU, así como uso de memoria, de procesos e hilos
+  \item \textit{vmstat:} Utilización de la memoria virtual (VM) del sistema.
+  \item \textit{free:} Consumo global de la VM.
+  \item \textit{pmap:} Detalles de la VM de un proceso.
+  \item \textit{netstat:} Muestra conexiones de red, tablas de enrutamiento, estadisticas sobre interfaces, entre otros.
+  \item \textit{traceroute:} Imprime el trazo de los paquetes a través de los distinos nodos de red hacia un destino específico.
+  \item \textit{ifconfig:} Detalla (también modifica) la configuración de las interfaces de red.
+  \item \textit{df:} Uso del disco.
+  \item \textit{lsof:} Lista archivos abiertos (incluidas las bibliotecas dinámicas) a nivel global o de un proceso determinado.
+  \item \textit{fuser:} Identica los procesos que están usando un archivo o socket de red específico.
+  \item \textit{stat:} Muestra el estado de un archivo, o de un sistema de archivos.
+  \item \textit{who:} Lista quienes están logueados, y en qué terminales.
+  \item \textit{w:} Igual al anterior, pero muestra que procesos están ejecutando.
+  \item \textit{ulimit:} Muestra (o cambiá) los limites (stack, heap, procesos y archivos abiertos) de un usuario.
+\end{itemize}
+
+
 \section{Diseño}
 
 \subsection{Propuesta de Monitor de Sistema}
@@ -214,6 +273,20 @@ La información en la parte inferior del panel Red muestra la actividad total de
   Cómo usar Monitor de Actividad en la Mac. 
   23/09/2016, de Apple 
   Sitio web: \url{https://support.apple.com/es-mx/HT201464}
+
+\bibitem{ref:web5}
+  -. 
+  (-). 
+  Monitor del sistema. 
+  25/09/2016, de Obasoft 
+  Sitio web: \url{http://www.obasoft.es/CF/SIINF/SIINF_05_Contenidos/monitor_del_sistema.html}
+  
+\bibitem{ref:web6}
+  Yúbal FM. 
+  (01/10/2015). 
+  Cómo monitorizar constantemente el rendimiento de tu distro GNU/Linux. 
+  25/09/2016, de Genbeta 
+  Sitio web: \url{http://www.genbeta.com/linux/como-monitorizar-constantemente-el-rendimiento-de-tu-distro-gnu-linux}
 
 \end{thebibliography}
 
