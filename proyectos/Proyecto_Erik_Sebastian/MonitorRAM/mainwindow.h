@@ -34,6 +34,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    //Funcion que actualiza la informacion que se muestra en la GUI
     void updateTree(vector<Process> *data);
 
 private slots:

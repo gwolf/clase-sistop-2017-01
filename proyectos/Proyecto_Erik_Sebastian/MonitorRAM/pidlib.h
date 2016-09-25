@@ -237,10 +237,6 @@ namespace PIDLIB
     //Funcion para encapsular todas las funciones superiores y correrlas en un hilo
     bool getProcessesInfo(vector<Process> *m_vP, vector<string> *m_vsC, size_t *m_line, atomic<bool> *flag, MainWindow *m_w)
     {
-        //vector<Process> *m_vP;
-        //vector<string> *m_vsC;
-        //size_t *m_line;
-
         while(*flag)    //flag es la bandera de si existe la GUI, mientras existe hacer todas las funciones superiores
         {
             if(!parseSysInfo_CPP(m_vsC, m_line))    //ejecutando ps aux y guardandolo en un archivo de texto
@@ -273,7 +269,7 @@ namespace PIDLIB
 
             m_vP->shrink_to_fit();  //asegurandonos de que no haya basura en el vector, que no haya demas informacion
 
-            m_w->updateTree(m_vP);
+            m_w->updateTree(m_vP);      //actualizando la GUI
 
             //limpiando los vectores para el siguiente ciclo
             m_vP->clear();
@@ -281,11 +277,6 @@ namespace PIDLIB
             m_vsC->clear();
             m_vsC->shrink_to_fit();
         }
-
-        //m_vP->clear();
-        //m_vP->shrink_to_fit();
-        //m_vsC->clear();
-       // m_vsC->shrink_to_fit();
 
         cout << endl <<"Finished calculationg on thread..." << endl;
 

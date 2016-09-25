@@ -36,26 +36,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::updateTree(vector<Process> *data)
+void MainWindow::updateTree(vector<Process> *data)      //Funcion que actualiza la informacion que se muestra en la GUI
 {
-    for(size_t i{}; i < data->size(); ++i)
+    for(size_t i{}; i < data->size(); ++i)              //Ciclo que recorre todos los elementos del vector de procesos
     {
-        QTreeWidgetItem *tmp= new QTreeWidgetItem(ui->treeWidget);
+        QTreeWidgetItem *tmp= new QTreeWidgetItem(ui->treeWidget);      //creando un nuevo elemento de árbol de Qt
 
-        QString va1 = QString::fromStdString(data->at(i).get_PID());
+        QString va1 = QString::fromStdString(data->at(i).get_PID());    //convirtiendo informacion a QString
         QString va2 = QString::fromStdString(data->at(i).get_user());
         QString va3 = QString::fromStdString(data->at(i).get_Mem());
         QString va4 = QString::fromStdString(data->at(i).get_Exec());
 
-        tmp->setText(0, va1);
+        tmp->setText(0, va1);                                           //asignando la informacion al elemento
         tmp->setText(1, va2);
         tmp->setText(2, va3);
         tmp->setText(3, va4);
-        ui->treeWidget->addTopLevelItem(tmp);
+        ui->treeWidget->addTopLevelItem(tmp);                           //ahora si mostrando la informacion
     }
 
-    sleep(60);
-    ui->treeWidget->clear();
+    sleep(60);                                                          //dormir este hilo para apreciar la informacion
+    ui->treeWidget->clear();                                            //borrar todos los datos para volver a escribir desde cero. Asi no tenemos que saber las diferencias
 }
 
 void MainWindow::on_actionAcerca_De_triggered()
