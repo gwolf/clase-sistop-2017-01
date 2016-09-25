@@ -7,7 +7,7 @@
 * GCC y G++ mayor o igual al 4.8.4
 * Distros basados en Debian: ``sudo apt-get update && sudo apt-get install gcc g++ libgl1-mesa-dev -y``
 * Distros basados en RedHat: ``sudo yum install mesa-libGL mesa-libGL-devel -y``
-* Este programa ha sido probado en Ubuntu 14.04 y Mint 18.
+* Este programa ha sido probado en Ubuntu 14.04, RedHat 7.2 y Mint 18.
 
 ## Licenciamiento:
 
