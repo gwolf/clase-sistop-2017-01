@@ -131,3 +131,29 @@
 * **Archivo:** [angel5215.pdf](angel5215.pdf)
 * **Calificación:** 10
 * **Comentarios:** Muy bien.
+
+## Yaxkin Sánchez
+* **Archivo:** [DakeDekaane.png](DakeDekaane.png)
+* **Calificación:** 8
+* **Comentarios:** Extemporánea; calificada sobre 0.8
+
+  Me gusta, resulta claro y bien legible. Lástima que no lo entregaste
+  a tiempo :(
+
+# Gerardo Mendoza
+* **Archivo:** [Mapa-Gerardmc95.jpg](Mapa-Gerardmc95.jpg)
+* **Calificación:** 8
+* **Comentarios:** Extemporánea; calificada sobre 0.8
+
+  No me queda del todo claro que comprendieras las puntos importantes
+  del artículo, pero sí mencionas sin duda varios de los puntos
+  fundamentales. Lástima que no entregaras en tiempo!
+
+# Sebastián Aguilar
+* **Archivo:** [Penserbjorne.jpg](Penserbjorne.jpg)
+* **Calificación:** 5
+* **Comentarios:** Extemporánea; calificada sobre 0.5
+
+  Es un buen resumen, lástima que no lo entregaste en tiempo :(
+  La cámara con que tomaste la foto, o el mecanismo de compresión que
+  elegiste, son... Bastante malos!
