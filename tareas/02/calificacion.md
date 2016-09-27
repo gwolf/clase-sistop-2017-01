@@ -102,3 +102,32 @@
     combinaciones. Eso sí, curiosamente parece que balancea bien
     siempre que tiene la posibilidad.
 
+## Gerardo Mendoza
+* **Archivos:** [MendozaColmenaresAsesor.py](Fuente Python)
+* **Problema elegido:** El asesor y los alumnos
+* **Calificación:** 8
+* **Comentarios:** Calificado sobre 8 por entrega extemporánea;
+  lástima que no entregaste a tiempo :-(
+
+  Bonita implementación. Hiciste un poco de truco al sistema, dado que
+  quien llama a la función `asesora()` es el mismo alumno (y no el
+  asesor), pero la paso por buena (puede leerse como que *el alumno se
+  calla mientras recibe la sabiduría del asesor*).
+
+  Me llama la atención la forma de comentar que sigues — y esto es
+  principalmente una crítica a cómo te enseñaron. Documentas con
+  comentarios (¡bien!) lo que hace cada función, incluso si es obvio,
+  como las funciones `asesora()` y `pregunta()`... ¡Pero no explicas
+  tu lógica cuando se pone más densa! Por ejemplo, para tu función
+  `alumno()`, ¿cuál es el papel relativo de `mano` y `mutex`? ¿Por qué
+  van juntos? Tuve que repasarlo un par de veces para comprenderlo.
+
+  Otra cuestión estilística: ¿Por qué funciona así tu `dicAlumnos`?
+  Siempre que te refieres a sus valores, pasas por la transformación
+  del `num` numérico que recibes a un `str(unichr(num+48))`, que es la
+  representación del número como cadena. Si lo necesitas como llave de
+  un diccionario, ¿por qué no hacerlo una sóla vez al principio de la
+  función? Y... Si quieres convertir un valor numérico en la cadena
+  que lo represente, ¿no es más claro usar un `'%d' % num` por
+  ejemplo?
+  
