@@ -38,26 +38,67 @@
 
 * **Archivos:** [AbrahamOrtega_y_BidkarPaez.py](Fuente Python)
 * **Problema elegido:** El cruce del río
-* **Calificación:** 
-* **Comentarios:** 
+* **Calificación:** 10
+* **Comentarios:** Buena implementación. Logró soportar que le metiera
+  el pie varias veces; una vez logré un par de balsas no balanceadas:
+
+		La balsa  4 se ha ido
+		acabo de abordar y soy un hacker mi numero es 23
+		acabo de abordar y soy un hacker mi numero es 11
+		acabo de abordar y soy un serf mi numero es 23
+		acabo de abordar y soy un hacker mi numero es 24
+		La balsa  5 se ha ido
+		acabo de abordar y soy un hacker mi numero es 28
+		acabo de abordar y soy un serf mi numero es 24
+		acabo de abordar y soy un serf mi numero es 25
+		acabo de abordar y soy un serf mi numero es 27
+		La balsa  6 se ha ido
+
+   ...Pero la implementación es claramente correcta :) Debe haber sido
+   alguna de las meneadas que yo le puse.
 
 ## Yaxkin Sánchez
 
 * **Archivos:** [ProblemaSanta_YaxkinSanchez.py](Fuente Python)
 * **Problema elegido:** Santa Claus
-* **Calificación:** 
-* **Comentarios:** 
+* **Calificación:** 10
+* **Comentarios:** ¡Interesante implementación! Creo que nunca lo
+  había visto basado en contadores en vez de multiplexes :-) ¡Da gusto
+  leer ideas frescas!
+
+  Ojo: Receurda incluir tu nombre en los comentarios del fuente, para
+  evitar problemas.
 
 ## Josué Quiñones y Ángel Vázquez
 
 * **Archivos:** [QuiñonesRivera_y_VazquezAlvarez.py](Fuente Python)
 * **Problema elegido:** El cruce del río
-* **Calificación:** 
-* **Comentarios:** 
+* **Calificación:** 8
+* **Comentarios:** La implementación clásica. Les di la resolución
+  como referencia por si se atoraban irremisiblemente, ¡sería mejor
+  ser menos directos en la copia! :)
 
 ## Max Sánchez
 
 * **Archivos:**  [balsasHacker&Windows.py](Fuente Python)
 * **Problema elegido:** El cruce del río
-* **Calificación:** 
-* **Comentarios:** 
+* **Calificación:** 9
+* **Comentarios:** Buena implementación, aunque le falta algo de
+  manejo de errores. Un ejemplo:
+    Si obligo a que haya balsas sin balance, permite zarpar a una
+    balsa desbalanceada. Pude observar lo siguiente de forma repetida:
+
+			$ python balsasHacker\&Windows.py 
+			Cuantos programadores de linux tienes: 3
+			Cuantos programadores de windows tienes: 1
+			Aqui va una balsa: 
+			['linux_2', 'win_0', 'linux_1', 'linux_0']
+			Estos fueron los que quedaron 
+			[]
+			[]
+			[]
+
+	Esto es consistente, siendo 3/1, 1/3, 5/3, y demás
+    combinaciones. Eso sí, curiosamente parece que balancea bien
+    siempre que tiene la posibilidad.
+

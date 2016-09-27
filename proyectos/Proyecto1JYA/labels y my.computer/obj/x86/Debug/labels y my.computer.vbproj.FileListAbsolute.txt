@@ -1,0 +1,28 @@
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.exe.config
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.exe
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.pdb
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.xml
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.Form1.resources
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.Resources.resources
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.exe
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.xml
+C:\Users\Usuario\Documents\PenDrive Control Center\changes\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.pdb
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.exe.config
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.exe
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.pdb
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\bin\Debug\InformationTool.xml
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.Form1.resources
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.Resources.resources
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\labels y my.computer.vbproj.GenerateResource.Cache
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.exe
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.xml
+C:\Users\Jesus G\Downloads\Information Tool\labels y my.computer\labels y my.computer\obj\x86\Debug\InformationTool.pdb
+D:\wolf\labels y my.computer\bin\Debug\InformationTool.exe.config
+D:\wolf\labels y my.computer\obj\x86\Debug\InformationTool.exe
+D:\wolf\labels y my.computer\obj\x86\Debug\InformationTool.xml
+D:\wolf\labels y my.computer\obj\x86\Debug\InformationTool.pdb
