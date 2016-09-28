@@ -106,7 +106,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Monitor RAM", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Monitor de Procesos", 0));
         actionAcerca_De->setText(QApplication::translate("MainWindow", "Acerca De", 0));
         actionAcerca_De->setShortcut(QApplication::translate("MainWindow", "F1", 0));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
