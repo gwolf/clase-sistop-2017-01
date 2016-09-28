@@ -102,8 +102,6 @@
     combinaciones. Eso sí, curiosamente parece que balancea bien
     siempre que tiene la posibilidad.
 
-<<<<<<< HEAD
-=======
 ## Gerardo Mendoza
 * **Archivos:** [MendozaColmenaresAsesor.py](Fuente Python)
 * **Problema elegido:** El asesor y los alumnos
@@ -132,5 +130,4 @@
   función? Y... Si quieres convertir un valor numérico en la cadena
   que lo represente, ¿no es más claro usar un `'%d' % num` por
   ejemplo?
-  
->>>>>>> 94ccd1f377a12c92753502442ff52894bddac855
+
