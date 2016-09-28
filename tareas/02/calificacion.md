@@ -130,4 +130,4 @@
   función? Y... Si quieres convertir un valor numérico en la cadena
   que lo represente, ¿no es más claro usar un `'%d' % num` por
   ejemplo?
-  
+
