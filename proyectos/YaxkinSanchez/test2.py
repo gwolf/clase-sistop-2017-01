@@ -92,7 +92,7 @@ def calculaHora(segundos):
 	segundos = (segundos % 3600) % 60
 	if segundos < 10:
 		segundos = '0' + str(segundos)
-	return str(horas) + ":" + str(horas) + ":" + str(segundos)
+	return str(horas) + ":" + str(minutos) + ":" + str(segundos)
 
 def tiempoFuncionamiento():
 	t_funcionamiento = commands.getoutput("cat /proc/uptime | while read c1 c2; do echo $c1; done")
