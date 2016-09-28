@@ -1,9 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 # -*- Encoding: utf-8 -*-
+#
+#	Mini Monitor.py
+#	Autor: David Yaxkin Sanchez Neri
+#	
+#	Script en Python que implementa un pequeño monitor de sistema.
+#	
+
 import time
+import sys
 from asciimatics.screen import Screen
 
-
+#Variables para el manejo de la interfaz gráfica
 ANCHO = 120
 ALTURA = 40
 COLOUR_BLACK = 0
@@ -18,11 +26,11 @@ A_BOLD = 1
 A_NORMAL = 2
 A_REVERSE = 3
 A_UNDERLINE = 4
-i = 0
 	
-import sys
+#Cambia el tamaño de la terminal para su visualización
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=ALTURA, cols=ANCHO))
 
+#Función que define los márgenes de la interfaz
 def margen(screen):
 	#Margenes verticales:
 	for x in xrange(1,ALTURA-1):
@@ -42,7 +50,7 @@ def margen(screen):
 	screen.print_at(margen_horizontal,0,ALTURA-3,COLOUR_GREEN,A_BOLD)
 	screen.print_at(margen_horizontal,0,ALTURA-1,COLOUR_GREEN,A_BOLD)
 	
-
+#Función que describe el contenido de la interfaz
 def demo(screen):
 	while str(screen.get_event()) != 'KeyboardEvent: 113':
 		margen(screen)
@@ -68,4 +76,5 @@ def demo(screen):
 		screen.print_at('Presione q (minuscula) para salir.',2, ALTURA-2, COLOUR_RED, A_BOLD)
 		screen.refresh()
 
+#Inicialización de la interfaz
 Screen.wrapper(demo)
