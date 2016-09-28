@@ -3,6 +3,9 @@
 import time
 from asciimatics.screen import Screen
 
+
+ANCHO = 120
+ALTURA = 40
 COLOUR_BLACK = 0
 COLOUR_RED = 1
 COLOUR_GREEN = 2
@@ -17,31 +20,52 @@ A_REVERSE = 3
 A_UNDERLINE = 4
 i = 0
 	
+import sys
+sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=ALTURA, cols=ANCHO))
+
+def margen(screen):
+	#Margenes verticales:
+	for x in xrange(1,ALTURA-1):
+		screen.print_at('|',0,x, COLOUR_GREEN, A_BOLD)
+		screen.print_at('|',ANCHO-1,x, COLOUR_GREEN, A_BOLD)
+	#Margenes horizontales:
+	margen_horizontal = '+'
+	for x in range(1,ANCHO-1):
+		margen_horizontal += '-'
+	margen_horizontal += '+'
+	screen.print_at(margen_horizontal,0,0,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,2,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,6,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,9,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,12,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,ALTURA-7,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,ALTURA-3,COLOUR_GREEN,A_BOLD)
+	screen.print_at(margen_horizontal,0,ALTURA-1,COLOUR_GREEN,A_BOLD)
+	
+
 def demo(screen):
-	while True:
-		for x in xrange(1,23):
-			screen.print_at('|                                                                              |',0,x, COLOUR_GREEN, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,0, COLOUR_GREEN, A_BOLD)
-		screen.print_at('Mini Monitor',34,1, COLOUR_RED, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,2, COLOUR_GREEN, A_BOLD)
-		screen.print_at('Uso de CPU:', 2, 3, COLOUR_YELLOW, A_BOLD)
-		screen.print_at('Total procesos', 40, 3, COLOUR_YELLOW, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,4, COLOUR_GREEN, A_BOLD)
-		screen.print_at('Memoria:', 2, 5, COLOUR_BLUE, A_BOLD)
-		screen.print_at('Libre:', 2, 6, COLOUR_BLUE, A_BOLD)
-		screen.print_at('Total:', 22, 6, COLOUR_BLUE, A_BOLD)
-		screen.print_at('En uso:',42, 6, COLOUR_BLUE, A_BOLD)
-		screen.print_at('Swap:',62, 6, COLOUR_BLUE, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,7, COLOUR_GREEN, A_BOLD)
-		screen.print_at('Procesos:', 2, 8, COLOUR_CYAN, A_BOLD)
-		screen.print_at('PID', 2, 9, COLOUR_CYAN, A_BOLD)
-		screen.print_at('Nombre', 22, 9, COLOUR_CYAN, A_BOLD)
-		screen.print_at('Estado', 42, 9, COLOUR_CYAN, A_BOLD)
-		screen.print_at('Algo mas', 62, 9, COLOUR_CYAN, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,20, COLOUR_GREEN, A_BOLD)
-		screen.print_at('Dispositivos externos:', 2, 21, COLOUR_MAGENTA, A_BOLD)
-		screen.print_at('+------------------------------------------------------------------------------+',0,23, COLOUR_GREEN, A_BOLD)
-		screen.print_at(str(i),0,0)
+	while str(screen.get_event()) != 'KeyboardEvent: 113':
+		margen(screen)
+		screen.print_at('Mini Monitor',54,1, COLOUR_RED, A_BOLD)
+		screen.print_at('Procesador:', 2, 3, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Uso de CPU:', 2, 4, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Memoria:', 2, 7, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Libre:', 2, 8, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Total:', 22, 8, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('En uso:',42, 8, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Swap:',62, 8, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Tiempo de funcionamiento:',2, 10, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Tiempo inactivo:',2, 11, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Total de procesos:', 2, 13, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('Procesos activos:', 62, 13, COLOUR_YELLOW, A_BOLD)
+		screen.print_at('PID', 2, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('Nombre', 12, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('Estado', 32, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('PID', 62, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('Nombre', 72, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('Estado', 92, 15, COLOUR_CYAN, A_BOLD)
+		screen.print_at('Dispositivos externos:', 2, 34, COLOUR_MAGENTA, A_BOLD)
+		screen.print_at('Presione q (minuscula) para salir.',2, ALTURA-2, COLOUR_RED, A_BOLD)
 		screen.refresh()
 
 Screen.wrapper(demo)
