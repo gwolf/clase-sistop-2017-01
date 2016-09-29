@@ -17,7 +17,6 @@ public:
 
 signals:
     void finishedReading(QString);
-    void createThread();
 };
 
 #endif // INTERRUPTSTHREAD_H

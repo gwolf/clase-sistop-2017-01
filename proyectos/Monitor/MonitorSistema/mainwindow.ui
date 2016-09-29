@@ -36,7 +36,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -130,6 +130,48 @@
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Dispositivos Montados</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="interruptsDescription_2">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:14pt; font-weight:600; color:#333333;&quot;&gt;/proc/mounts&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;Este archivo proporciona una lista de todos los montajes en uso por el sistema.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;La &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;primera columna&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; especifica el dispositico que está montado, la &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;segunda&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; revela el punto de montaje, la &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;tercera&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; indica el tipo de sistema de archivos y la &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;cuarta&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; si esta montado en modo sólo lectura (&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;ro&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;) o sólo escritura (&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-weight:600; color:#333333;&quot;&gt;rw&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt;). La &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;quinta&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; y &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; text-decoration: underline; color:#333333;&quot;&gt;sexta&lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; color:#333333;&quot;&gt; columna son valores no válidos diseñados para hacer coincidir el formato usado en &lt;/span&gt;&lt;span style=&quot; font-family:'liberation sans,Myriad ,Bitstream Vera Sans,Lucida Grande,verdana,Luxi Sans,Trebuchet MS,helvetica,verdana,arial,sans-serif'; font-size:12px; font-style:italic; color:#333333;&quot;&gt;/etc/mtab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="margin">
+           <number>15</number>
+          </property>
+          <property name="indent">
+           <number>15</number>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="mountsButton">
+          <property name="text">
+           <string>/proc/mounts</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

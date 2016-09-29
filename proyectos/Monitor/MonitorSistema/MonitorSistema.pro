@@ -18,19 +18,24 @@ SOURCES += main.cpp\
     meminfo.cpp \
     readerthread.cpp \
     interruptsthread.cpp \
-    interruptwindow.cpp
+    interruptwindow.cpp \
+    dispositivosthread.cpp \
+    dispositivoswindow.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
     meminfo.h \
     readerthread.h \
     interruptsthread.h \
-    interruptwindow.h
+    interruptwindow.h \
+    dispositivosthread.h \
+    dispositivoswindow.h
 
 FORMS    += mainwindow.ui \
     information.ui \
     meminfo.ui \
-    interruptwindow.ui
+    interruptwindow.ui \
+    dispositivoswindow.ui
 
 RESOURCES += \
     iconos.qrc

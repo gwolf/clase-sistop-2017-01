@@ -9,6 +9,7 @@
 #include "information.h"
 #include "meminfo.h"
 #include "interruptwindow.h"
+#include "dispositivoswindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,10 +30,13 @@ private slots:
 
     void on_interruptsButton_clicked();
 
+    void on_mountsButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     MemInfo *memInfo;
     InterruptWindow *interrupt;
+    DispositivosWindow *mounts;
 };
 
 #endif // MAINWINDOW_H

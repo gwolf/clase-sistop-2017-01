@@ -41,3 +41,11 @@ void MainWindow::on_interruptsButton_clicked()
     interrupt = new InterruptWindow(0, ui->interruptsButton);
     interrupt->show();
 }
+
+
+void MainWindow::on_mountsButton_clicked()
+{
+    ui->mountsButton->setEnabled(false);
+    mounts = new DispositivosWindow(0, ui->mountsButton);
+    mounts->show();
+}
