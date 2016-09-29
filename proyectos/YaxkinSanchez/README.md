@@ -1,6 +1,6 @@
 # Mini Monitor
 
-# #Version
+## Version
 1.0
 
 ## Autor
