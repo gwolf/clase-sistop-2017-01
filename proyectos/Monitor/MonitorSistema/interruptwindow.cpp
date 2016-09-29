@@ -10,7 +10,7 @@ InterruptWindow::InterruptWindow(QWidget *parent, QPushButton *button) :
     lockButton = button;
 
     mutex = new QMutex();
-    timer = new QTimer(this);
+    timer = new QTimer(this);  //Lanza hilos cada 1.5 segundos (actualizacion de datos)
 
     createThread();
 
@@ -21,12 +21,13 @@ InterruptWindow::InterruptWindow(QWidget *parent, QPushButton *button) :
 void InterruptWindow::createThread(){
     InterruptsThread *hilo = new InterruptsThread(this,mutex);
     hilo->start();
-
+    //Se conecta una señal que emite el hilo al terminar, y se cacha en un SLOT (entrada) del metodo mencionado:
     connect(hilo,SIGNAL(finishedReading(QString)),this,SLOT(onFinishedReading(QString)));
 }
-
+//una vez que el SLOT activa el metodo sigueinte, se actualiza el cuadro de texto de la informacion con la cadena que devuelve el hilo:
 void InterruptWindow::onFinishedReading(QString contents){
     ui->plainTextEdit->setPlainText(contents);
+    //el mutex es liberado para que otro hilo pueda actualizar la informacion del cuadro:
     mutex->unlock();
 }
 

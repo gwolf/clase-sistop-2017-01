@@ -27,9 +27,9 @@ void MainWindow::on_actionAcerca_de_triggered()
     acercaDe.setModal(true);
     acercaDe.exec();
 }
-
+//Los tres metodos siguientes son el despliegue de las ventanas emergentes
 void MainWindow::on_memInfoButton_clicked()
-{
+{   //Se desactiva el boton para no poder lanzar mas hilos de la misma ventana
     ui->memInfoButton->setEnabled(false);
     memInfo = new MemInfo(0, ui->memInfoButton);
     memInfo->show();
