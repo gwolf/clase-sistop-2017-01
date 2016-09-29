@@ -102,6 +102,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="creditsButton">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Muestra información sobre los autores del programa.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>Créditos</string>
        </property>
@@ -122,12 +125,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="closeButton">
+       <property name="toolTip">
+        <string>Cierra esta ventana.</string>
+       </property>
        <property name="text">
         <string>Cerrar
 ventana</string>
        </property>
        <property name="default">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="flat">
         <bool>false</bool>

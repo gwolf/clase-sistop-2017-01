@@ -76,10 +76,13 @@
           <item>
            <widget class="QPushButton" name="memInfoButton">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Inicia una nueva ventana que monitorea el archivo &lt;span style=&quot; font-weight:600;&quot;&gt;/proc/meminfo/&lt;/span&gt; cada dos segundos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Inicia una nueva ventana que monitorea el archivo &lt;span style=&quot; font-weight:600;&quot;&gt;/proc/meminfo&lt;/span&gt; cada 1.5 segundos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Observar contenido</string>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -124,8 +127,14 @@
           </item>
           <item>
            <widget class="QPushButton" name="interruptsButton">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inicia una nueva ventana que monitorea el archivo &lt;span style=&quot; font-weight:600;&quot;&gt;/proc/interrupts&lt;/span&gt; cada 1.5 segundos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>/proc/interrupts</string>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -168,8 +177,14 @@
         </item>
         <item>
          <widget class="QPushButton" name="mountsButton">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inicia una nueva ventana que monitorea el archivo &lt;span style=&quot; font-weight:600;&quot;&gt;/proc/mounts&lt;/span&gt; cada 1.5 segundos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>/proc/mounts</string>
+          </property>
+          <property name="autoDefault">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -200,9 +215,18 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_3">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cierra la interfaz principal del programa.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Cerrar
 programa</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+        <property name="default">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -221,7 +245,7 @@ programa</string>
    </property>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
-     <string>Ayuda</string>
+     <string>Información</string>
     </property>
     <addaction name="actionAcerca_de"/>
    </widget>
