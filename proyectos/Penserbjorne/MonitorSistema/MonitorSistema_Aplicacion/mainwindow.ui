@@ -49,7 +49,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_sistema">
      <attribute name="title">
@@ -296,9 +296,9 @@
      <widget class="QPlainTextEdit" name="txt_memoria">
       <property name="geometry">
        <rect>
-        <x>560</x>
+        <x>540</x>
         <y>30</y>
-        <width>201</width>
+        <width>221</width>
         <height>481</height>
        </rect>
       </property>
@@ -373,7 +373,7 @@
      <widget class="QLabel" name="lbl_meminfo">
       <property name="geometry">
        <rect>
-        <x>560</x>
+        <x>540</x>
         <y>10</y>
         <width>71</width>
         <height>16</height>
