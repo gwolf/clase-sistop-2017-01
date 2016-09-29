@@ -40,12 +40,12 @@ A_UNDERLINE = 4
 no_nucleos = int(commands.getoutput("grep processor /proc/cpuinfo | wc -l"))
 no_funciones_monitor = 15
 
-#Mutex que hace de multiplex junto con un contador para el contador de procesos e impresion
+#Mutex que hace de multiplex junto con un contador para el contador de hilos e impresion
 mutex_contador = threading.Semaphore(1)
-global contador_procesos
-contador_procesos = 0
+global contador_hilos
+contador_hilos = 0
 
-#Señal para el proceso principal
+#Señal para el proceso principal 
 senal_padre = threading.Semaphore(0)
 
 #########################
@@ -56,11 +56,14 @@ senal_padre = threading.Semaphore(0)
 #Indicando que todas ya terminaron su función e impresión en pantalla,
 #para evitar que la pantalla se refresque sin haberse impreso.
 def sincronizaProcesos():
-	global contador_procesos
+	global contador_hilos
+	#Al finalizar sus funciones, cada hilo adquiere el mutex para aumentar su contador.
 	mutex_contador.acquire()
-	contador_procesos += 1
-	if contador_procesos == no_funciones_monitor:
+	contador_hilos += 1
+	#Cuando todos los procesos terminan, le mandan una señal al proceso padre para que continue.
+	if contador_hilos == no_funciones_monitor:
 		senal_padre.release()
+	#Y liberan el mutex del contador para que el proceso padre lo pueda reiniciar al finalizar su función.
 	mutex_contador.release()
 
 #Pequeña función para convertir de segundos a formato HH:MM:SS
@@ -96,6 +99,22 @@ def kernel(screen):
 #	Funciones monitor 	#
 #########################
 
+'''
+	El archivo /proc/stat contiene información acerca del uso del CPU de la siguiente forma:
+	 cpu  2524194 11586 528920 5043106 52360 0 5450
+	Dichos números representan cuantas centesimas de segundo se han dedicado a diferentes tipo de trabajo,
+	los números se muestran en el siguiente orden:
+		1. Usuario
+		2. Nice
+		3. Sistema
+		4. Inactivo
+		5. IOWait
+		6. irq
+		7. softirq
+	Para calcular el uso del CPU, se requiere de dos lecturas en un lapso de tiempo,
+	se calcula la diferencia entre el valor de determinada columna entre ambos instantes
+	y se divide entre el tiempo transcurrido y el número de núcleos de la computadora.'''
+
 #Obtiene el uso del CPU por parte del usuario
 def cpuUsuario(screen):
 	cpu_estado_1 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3; do echo $c2; done")
@@ -122,6 +141,10 @@ def cpuInactivo(screen):
 	cpu_uso = (int(cpu_estado_2) - int(cpu_estado_1))/no_nucleos
 	screen.print_at(str(cpu_uso) + "%",72,7)
 	sincronizaProcesos()
+
+'''
+	El archivo /proc/meminfo contiene la información desglosada acerca del uso de memoria.
+	Basta con obtener el dato directamente desde el archivo.'''
 
 #Obtiene la cantidad de memoria principal total
 def memTotal(screen):
@@ -165,6 +188,11 @@ def memSwapUso(screen):
 	screen.print_at(mem_swapuso,71,14)
 	sincronizaProcesos()
 
+'''
+	El archivo /proc/loadavg contiene información sobre la carga promedio del sistema,
+	el número de procesos total y en ejecución, así como el PID del último proceso generado.
+	Al igual que con la memoria, basta con obtener el dato directamente.'''
+
 #Obtiene el numero total de procesos
 def numProcesos(screen):
 	num_procesos = commands.getoutput("cat /proc/loadavg | grep -o '/[0-9]*'")
@@ -178,6 +206,11 @@ def numProcesosEjecucion(screen):
 	num_procesos = num_procesos[:-1]
 	screen.print_at(num_procesos,80,16)
 	sincronizaProcesos()
+
+'''
+	El archivo /proc/uptime contiene información acerca del tiempo de funcionamiento (uptime)
+	del sistema y el tiempo inactivo, la información está mostrada en segundos,
+	así que solo basta hacer la conversión a un formato más amigable para el humano.'''
 
 #Obtiene el tiempo de funcionamiento (uptime) del sistema
 def tiempoFuncionamiento(screen):
@@ -195,7 +228,14 @@ def tiempoInactivo(screen):
 	screen.print_at(t_inactivo,19,10)
 	sincronizaProcesos()
 
-#Obtiene una lista de unos cuantos procesos
+''' 
+	Para determinar los procesos, se utiliza la biblioteca psutil y sus funcion
+	get_pid_list(), que devuelve una lista de todos los procesos. Para contabilizarlos, se
+	crear un objeto por cada uno encontrado gracias aun ciclo for. Dichos objetos contienen
+	atributos tales como nombre, PID, PPID, estado, %uso del CPU, etc. lo cual es útil para 
+	poder se selectivo en la creación de los objetos.'''
+
+#Obtiene una lista de unos cuantos procesos (51) y las imprime en columnas
 def procesos(screen):
 	i = 0
 	for item in psutil.get_pid_list():
@@ -299,7 +339,7 @@ def lanzaHilos(screen):
 
 #Función que crea la estructura de la interfaz
 def interfaz(screen):
-	global contador_procesos
+	global contador_hilos
 	while str(screen.get_event()) != 'KeyboardEvent: 113':
 		margen(screen)
 		screen.print_at('Mini Monitor',54,1, COLOUR_RED, A_BOLD)
@@ -330,10 +370,12 @@ def interfaz(screen):
 		cpuModelo(screen)
 		kernel(screen)
 		lanzaHilos(screen)
-		
+		#El proceso padre lanza a sus hilos hijos y espera a que terminen.
 		senal_padre.acquire()
+		#Adquiere el mutex para reiniciar el contador de hilos
 		mutex_contador.acquire()
-		contador_procesos -= no_funciones_monitor
+		contador_hilos -= no_funciones_monitor
+		#Lo libera y continúa con su tarea (limpiar la interfaz para una nueva impresión)
 		mutex_contador.release()
 		screen.refresh()
 
