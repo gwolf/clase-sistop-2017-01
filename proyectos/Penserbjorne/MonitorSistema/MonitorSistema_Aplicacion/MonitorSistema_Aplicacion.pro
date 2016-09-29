@@ -13,9 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    consultar_info.cpp \
+    struct_cpuinfo.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    consultar_info.h \
+    struct_cpuinfo.h
 
 FORMS    += mainwindow.ui
 
