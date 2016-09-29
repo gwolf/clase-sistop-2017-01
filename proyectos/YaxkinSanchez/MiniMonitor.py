@@ -99,7 +99,7 @@ def kernel(screen):
 #Obtiene el uso del CPU por parte del usuario
 def cpuUsuario(screen):
 	cpu_estado_1 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3; do echo $c2; done")
-	time.sleep(0.0)
+	time.sleep(1)
 	cpu_estado_2 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3; do echo $c2; done")
 	cpu_uso = (int(cpu_estado_2) - int(cpu_estado_1))/no_nucleos
 	screen.print_at(str(cpu_uso) + "%",11,7)
@@ -108,7 +108,7 @@ def cpuUsuario(screen):
 #Obtiene el uso del CPU por parte del sistema
 def cpuSistema(screen):
 	cpu_estado_1 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5; do echo $c4; done")
-	time.sleep(0.0)
+	time.sleep(1)
 	cpu_estado_2 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5; do echo $c4; done")
 	cpu_uso = (int(cpu_estado_2) - int(cpu_estado_1))/no_nucleos
 	screen.print_at(str(cpu_uso) + "%",41,7)
@@ -117,7 +117,7 @@ def cpuSistema(screen):
 #Obtiene el porcentaje de inactividad del CPU
 def cpuInactivo(screen):
 	cpu_estado_1 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
-	time.sleep(0.0)
+	time.sleep(1)
 	cpu_estado_2 = commands.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
 	cpu_uso = (int(cpu_estado_2) - int(cpu_estado_1))/no_nucleos
 	screen.print_at(str(cpu_uso) + "%",72,7)
