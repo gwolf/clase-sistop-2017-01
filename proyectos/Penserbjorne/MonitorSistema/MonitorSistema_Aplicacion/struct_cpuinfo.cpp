@@ -1,5 +1,6 @@
 #include "struct_cpuinfo.h"
 
+// setter general para la estructura basado en indices
 void struct_CPUINFO::asignarValor(int index, string valor){
     switch (index) {
     case 0:
@@ -43,6 +44,7 @@ void struct_CPUINFO::asignarValor(int index, string valor){
     }
 }
 
+// getter general para la estructura basado en indices
 string struct_CPUINFO::obtenerValor(int index){
     switch (index) {
     case 0:

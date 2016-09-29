@@ -10,9 +10,10 @@ public:
     explicit monitor_sistema(QObject *parent = 0);
 
 signals:
-    void solicito_informacion_del_sistema();
+    void solicito_informacion_del_sistema();    // Señal para solicitar informacion del sistema
 
 public slots:
+    // "Request" que emite la señal para solicitar informacion al sistema
     void quiero_informacion_del_sistema(){ emit solicito_informacion_del_sistema(); }
 
 private:

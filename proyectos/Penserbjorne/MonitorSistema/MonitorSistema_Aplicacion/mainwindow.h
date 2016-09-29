@@ -28,9 +28,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    string comando;
-    consultar_info *consultador_info;
-    monitor_sistema *monitor;
+    string comando;                     //  Usada para enviar comandos al sistema
+    consultar_info *consultador_info;   //  Objeto que consulta informacion al sistema
+    monitor_sistema *monitor;           //  Objeto que monitorea el sistema
 };
 
 #endif // MAINWINDOW_H

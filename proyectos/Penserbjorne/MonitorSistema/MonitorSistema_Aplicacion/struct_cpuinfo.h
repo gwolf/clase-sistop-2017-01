@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// Estructura que simula "cpuinfo"
 struct struct_CPUINFO{
     string processor;
     string vendor_id;
