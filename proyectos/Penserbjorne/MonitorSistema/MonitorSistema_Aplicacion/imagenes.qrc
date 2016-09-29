@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/recursosImagenes">
+    <file alias="escudoUNAM.png">Imagenes/escudoUNAM.png</file>
+    <file alias="escudoUNAM_FI.png">Imagenes/escudoUNAM_FI.png</file>
+</qresource>
+</RCC>

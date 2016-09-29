@@ -18,3 +18,11 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    Imagenes/3.jpg \
+    Imagenes/4.jpeg \
+    Imagenes/2.png
+
+RESOURCES += \
+    imagenes.qrc
