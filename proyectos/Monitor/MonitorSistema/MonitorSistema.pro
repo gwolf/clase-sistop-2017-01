@@ -16,16 +16,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     information.cpp \
     meminfo.cpp \
-    readerthread.cpp
+    readerthread.cpp \
+    interruptsthread.cpp \
+    interruptwindow.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
     meminfo.h \
-    readerthread.h
+    readerthread.h \
+    interruptsthread.h \
+    interruptwindow.h
 
 FORMS    += mainwindow.ui \
     information.ui \
-    meminfo.ui
+    meminfo.ui \
+    interruptwindow.ui
 
 RESOURCES += \
     iconos.qrc

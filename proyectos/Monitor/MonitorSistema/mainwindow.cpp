@@ -34,3 +34,10 @@ void MainWindow::on_memInfoButton_clicked()
     memInfo = new MemInfo(0, ui->memInfoButton);
     memInfo->show();
 }
+
+void MainWindow::on_interruptsButton_clicked()
+{
+    ui->interruptsButton->setEnabled(false);
+    interrupt = new InterruptWindow(0, ui->interruptsButton);
+    interrupt->show();
+}

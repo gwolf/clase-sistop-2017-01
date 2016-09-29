@@ -8,6 +8,7 @@
 
 #include "information.h"
 #include "meminfo.h"
+#include "interruptwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,9 +27,12 @@ private slots:
 
     void on_memInfoButton_clicked();
 
+    void on_interruptsButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     MemInfo *memInfo;
+    InterruptWindow *interrupt;
 };
 
 #endif // MAINWINDOW_H
