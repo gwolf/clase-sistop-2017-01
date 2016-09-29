@@ -259,7 +259,7 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView">
+     <widget class="QTableView" name="table_cpuinfo">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -269,7 +269,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="lbl_versionKernel_2">
+     <widget class="QLabel" name="lbl_cpuinfo">
       <property name="geometry">
        <rect>
         <x>20</x>

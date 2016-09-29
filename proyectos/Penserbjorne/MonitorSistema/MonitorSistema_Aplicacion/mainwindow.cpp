@@ -13,9 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     consultador_info = new consultar_info();
-    informacionSistema = new QThread();
+    monitor = new monitor_sistema();
 
-    cargar_informacion_sistema();
+    QThread *thread = new QThread();
+    monitor->moveToThread(thread);
+    connect(monitor, SIGNAL(solicito_informacion_del_sistema()),this, SLOT(cargar_informacion_sistema()) );
+    connect(thread, SIGNAL(destroyed()), monitor, SLOT(deleteLater()));
+    thread->start();
+    monitor->quiero_informacion_del_sistema();
 }
 
 void MainWindow::cargar_informacion_sistema(){
@@ -32,7 +37,7 @@ void MainWindow::cargar_informacion_sistema(){
         model->setHorizontalHeaderItem(contador, new QStandardItem(QString(consultador_info->propiedades_cpuinfo[contador].c_str())));
     }
 
-    ui->tableView->setModel(model);
+    ui->table_cpuinfo->setModel(model);
 
     vector<struct_CPUINFO> cores = consultador_info->consultar_cpuinfo(resultado_comando);
 

@@ -8,6 +8,7 @@
 
 #include "string.h"
 #include "consultar_info.h"
+#include "monitor_sistema.h"
 
 using namespace std;
 
@@ -22,14 +23,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+public slots:
+    void cargar_informacion_sistema();
 
 private:
     Ui::MainWindow *ui;
     string comando;
     consultar_info *consultador_info;
-    QThread *informacionSistema;
-
-    void cargar_informacion_sistema();
+    monitor_sistema *monitor;
 };
 
 #endif // MAINWINDOW_H
