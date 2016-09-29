@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     consultar_info.cpp \
     struct_cpuinfo.cpp \
-    monitor_sistema.cpp
+    monitor_sistema.cpp \
+    struct_meminfo.cpp
 
 HEADERS  += mainwindow.h \
     consultar_info.h \
     struct_cpuinfo.h \
-    monitor_sistema.h
+    monitor_sistema.h \
+    struct_meminfo.h
 
 FORMS    += mainwindow.ui
 

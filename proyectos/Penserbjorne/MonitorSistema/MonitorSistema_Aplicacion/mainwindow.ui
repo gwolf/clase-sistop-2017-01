@@ -289,129 +289,104 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_dev">
+    <widget class="QWidget" name="tab_memoria">
      <attribute name="title">
-      <string>/dev</string>
+      <string>Memoria</string>
      </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditDev">
+     <widget class="QPlainTextEdit" name="txt_memoria">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
+        <x>560</x>
+        <y>30</y>
+        <width>201</width>
+        <height>481</height>
        </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
       </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_etc">
-     <attribute name="title">
-      <string>/etc</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditEtc">
+     <widget class="QLabel" name="lbl_meminfo">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
+        <x>560</x>
+        <y>10</y>
+        <width>71</width>
+        <height>16</height>
        </rect>
       </property>
-      <property name="readOnly">
-       <bool>true</bool>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_media">
-     <attribute name="title">
-      <string>/media</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditMedia">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_proc">
-     <attribute name="title">
-      <string>/proc</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditProc">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_sys">
-     <attribute name="title">
-      <string>/sys</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditSys">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_usr">
-     <attribute name="title">
-      <string>/usr</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditUsr">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_var">
-     <attribute name="title">
-      <string>/var</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEditVar">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>501</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
+      <property name="text">
+       <string>meminfo</string>
       </property>
      </widget>
     </widget>

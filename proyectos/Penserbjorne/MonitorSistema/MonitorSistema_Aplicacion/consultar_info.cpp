@@ -2,7 +2,6 @@
 
 #include "string"
 #include "consultar_info.h"
-#include "struct_cpuinfo.h"
 
 consultar_info::consultar_info()
 {
@@ -19,6 +18,30 @@ consultar_info::consultar_info()
     propiedades_cpuinfo[9] = "siblings";
     propiedades_cpuinfo[10] = "core id";
     propiedades_cpuinfo[11] = "cpu cores";
+
+    propiedades_meminfo[0] = "MemTotal";
+    propiedades_meminfo[1] = "MemFree";
+    propiedades_meminfo[2] = "Cached";
+    propiedades_meminfo[3] = "SwapCached";
+    propiedades_meminfo[4] = "Active";
+    propiedades_meminfo[5] = "Inactive";
+    propiedades_meminfo[6] = "Active(anon)";
+    propiedades_meminfo[7] = "Inactive(anon)";
+    propiedades_meminfo[8] = "Active(file)";
+    propiedades_meminfo[9] = "Inactive(file)";
+    propiedades_meminfo[10] = "SwapTotal";
+    propiedades_meminfo[11] = "SwapFree";
+    propiedades_meminfo[12] = "Dirty";
+    propiedades_meminfo[13] = "Writeback";
+    propiedades_meminfo[14] = "Mapped";
+    propiedades_meminfo[15] = "Shmem";
+    propiedades_meminfo[16] = "KernelStack";
+    propiedades_meminfo[17] = "WritebackTmp";
+    propiedades_meminfo[18] = "CommitLimit";
+    propiedades_meminfo[19] = "Committed_AS";
+    propiedades_meminfo[20] = "VmallocTotal";
+    propiedades_meminfo[21] = "VmallocUsed";
+    propiedades_meminfo[22] = "VmallocChunk";
 
 }
 
@@ -43,7 +66,7 @@ vector<struct_CPUINFO> consultar_info::procesar_cpuinfo(QByteArray info){
     int contador;
     struct_CPUINFO cpuinfo;         // Entidad individual para almacenar temporalmente los datos de un solo core
     vector<struct_CPUINFO> cores;   // Aqui almacenaremos todos los datos de los cores que hay
-    QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propieda
+    QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propiedad
 
     contador = 0;
     // Para cada propiedad que tenemos disponibles, verificamos si es una propiedad de las que
@@ -67,4 +90,28 @@ vector<struct_CPUINFO> consultar_info::procesar_cpuinfo(QByteArray info){
         }
     }
     return cores;   // retornamos toda la info deseada
+}
+
+// Nos permite procesar la informacion obtenida de leer /proc/meminfo
+struct_MEMINFO consultar_info::procesar_meminfo(QByteArray info){
+    int contador;
+    struct_MEMINFO meminfo;         // Entidad individual para almacenar temporalmente los datos de la memoria
+    QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propiedad
+
+    contador = 0;
+    // Para cada propiedad que tenemos disponibles, verificamos si es una propiedad de las que
+    // queremos consultar
+    foreach( const QByteArray &propiedad, propiedades)
+    {
+        // verificamos si la propiedad actual esta en la lista de propiedades que queremos
+        if(propiedad.toStdString().find(propiedades_meminfo[contador]) != string::npos){
+            // Aqui asignamos el valor obtenido a una estructura que simula "meminfo"
+            meminfo.asignarValor(contador,propiedad.toStdString());
+            contador++;
+            if(contador >= num_props_meminfo){
+                return meminfo;   // retornamos toda la info deseada
+            }
+        }
+    }
+    return meminfo;   // retornamos toda la info deseada
 }

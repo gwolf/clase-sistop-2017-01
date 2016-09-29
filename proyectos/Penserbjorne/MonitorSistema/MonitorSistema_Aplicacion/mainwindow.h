@@ -5,6 +5,7 @@
 #include <QtCore>
 #include <QtGui>
 #include <QThread>
+#include <QMutex>
 
 #include "string.h"
 #include "consultar_info.h"
@@ -25,12 +26,13 @@ public:
     ~MainWindow();
 public slots:
     void cargar_informacion_sistema();
+    void cargar_informacion_memoria();
 
 private:
     Ui::MainWindow *ui;
     string comando;                     //  Usada para enviar comandos al sistema
     consultar_info *consultador_info;   //  Objeto que consulta informacion al sistema
-    monitor_sistema *monitor;           //  Objeto que monitorea el sistema
+    QMutex mutex;
 };
 
 #endif // MAINWINDOW_H
