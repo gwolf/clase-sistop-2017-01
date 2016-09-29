@@ -1,0 +1,18 @@
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.exe.config
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.csprojResolveAssemblyReference.cache
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.Form1.resources
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.Properties.Resources.resources
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.csproj.GenerateResource.Cache
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.exe
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.pdb
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.exe
+e:\bibliotecas\documentos\visual studio 2013\Projects\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.pdb
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.exe.config
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.exe
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\bin\Debug\ProcessKiller.pdb
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.csprojResolveAssemblyReference.cache
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.Form1.resources
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.Properties.Resources.resources
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.csproj.GenerateResource.Cache
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.exe
+C:\Users\Jesus G\Downloads\Administrador de procesos c# - By Edark -\ProcessKiller\ProcessKiller\obj\Debug\ProcessKiller.pdb
