@@ -1,0 +1,45 @@
+PROYECTOR POR:
+Mendoza Colmenares Gerardo
+
+
+LENGUJAE:
+Python 2.7
+
+
+INTERFAZ GRAFICA:
+wxpython 2.8
+
+La interfaz grafica se hizo mediante 'wxPython', dicha libreria se debe instalar previamente (en algunos S.O. ya viene instalada) para
+poder ejecutar el programa, si no se cuenta con ella se puede instalar desde terminal con:
+  apt-get install python-wxgtk2.8
+
+Y para instalar python 2.7 desde terminal...
+  wget --no-check-certificate https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz
+  tar -xzf Python-2.7.11.tgz  
+  cd Python-2.7.11
+  ./configure  
+  make
+  sudo make install
+
+  
+PROBLEMA A RESOLVER:
+Se busca hacer la implementacion de hilos dentro de un monitor de sistema
+
+
+SOLUCION:
+Para resolver este problema, fue necesario  crear funciones con los nombre de ciertos elementos de la computadora, en las cuales
+se pidiera "prestado" algun comando para ejecutar en una terminal y asi poder mostrar la informacion. Dicho prestamo se logro
+mediante la libreria "os"; cuandi se tenian definidas dichas funciones, se hacia uso de una funcion controladora de hilos que recibia
+como parametro un diccionario que guarda los valores booleanos de aquello que se solicitaba. Si la bandera era 'True' se lanzaba un
+hilo para esa funcion en especifico. Para evitar que la informacion se cruze entre si se hizo uso de un "semaphore" y asi tener controlado
+quien puede escribir en pantalla.
+
+
+FORMA DE USO DEL PRROGRAMA
+Para poder ejecutar el programa:
+Abra una terminal, dentro de ella dirigirse  al directorio donde se encuentra, esto se logra con el comando 'cd Directorio';
+una vez dentro de dicha carpeta contenedora se debera escribir 'python MonitorDeSistema.py' y listo, aparecera una ventana nueva.
+La ventana esta compuesta por casillas de seleccion y 3 botones, puede presionar el boton ayuda para que entienda el funcionamiento
+de dicha ventana. Recuerde seleccionar la casilla que contenga aquello que desee monitorear y dando click en 'Ejecutar' vera una tarea,
+ésta se mostrara en la terminal donde usted ejecuto el .py
+NOTA: No se debe cerrar la terminal hasta que se cierre la ventana o de otra manera, no vera la informacion solicitada.
