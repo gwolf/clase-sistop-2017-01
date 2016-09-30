@@ -6,10 +6,10 @@ Clase de hilo encargado de la lectura del archivo meminfo, ubicado de /proc/ el 
 Lector: Hilo único que leerá un archivo y lo transformará en una lista de strings para su posterior utilización
 Escritor: Hilo que se encarga unica y exlusivamente de envair los items par aingresar a la GUI
 '''
-class IThread(QtCore.QThread):
+class InterruptThread(QtCore.QThread):
     let=[]#lista declarada para uso "global" de esta clase únicamente
-    mutex=threading.Semaphore(1)#mutex para asegurar la lectura del archivo y la conversion a lista
-    lock = threading.Semaphore(0)#este semaforo se utilizara como señal para asegurar la lectura antes de la escritura
+    mutexx=threading.Semaphore(1)#mutex para asegurar la lectura del archivo y la conversion a lista
+    locks = threading.Semaphore(0)#este semaforo se utilizara como señal para asegurar la lectura antes de la escritura
 
     def __init__(self,parent=None,):
         QtCore.QThread.__init__(self,parent)
@@ -21,7 +21,7 @@ class IThread(QtCore.QThread):
     Método encargado de la lectura del archivo meminfo, alojado en /proc/, y transformacion a una lista de strings
     '''
     def lector(self):
-        self.mutex.acquire()#adqueire el mutex para no permitir que otro hilo entre
+        self.mutexx.acquire()#adqueire el mutex para no permitir que otro hilo entre
         try:#intenta abrir el archivo y llerlo
             self.f = open('/proc/interrupts', mode='rt', encoding='utf-8')
             self.let = self.f.readlines()#lectura y transformacion a lista
@@ -29,8 +29,8 @@ class IThread(QtCore.QThread):
         except (OSError, IOError):
             print("no se pudo abrir archivo")
         finally:
-            self.mutex.release()#libera el mutex
-            self.lock.release()#envia una señal al hilo escritor para que proceda. así aseguramos que primero se haga la lectura
+            self.mutexx.release()#libera el mutex
+            self.locks.release()#envia una señal al hilo escritor para que proceda. así aseguramos que primero se haga la lectura
 
     '''
     Método que se encarga de pasar los datos a la Gui para que esta los muestre en las listas y apartado de información
@@ -38,7 +38,7 @@ class IThread(QtCore.QThread):
     El hilo encargado de realizar esta tarea, recibirá una señal del hilo de lectura para proceder.
     '''
     def escritor(self):
-        self.lock.acquire()#recibe la señal de lector
+        self.locks.acquire()#recibe la señal de lector
         self.emit(QtCore.SIGNAL('ListINT'))
         for cad in self.let[21:]:
             la = cad.rstrip()

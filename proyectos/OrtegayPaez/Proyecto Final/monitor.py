@@ -3,13 +3,11 @@
 # Form implementation generated from reading ui file 'monitor.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
-'''
-El siguiente código es autogenerado por la API PyQt el cual en realidad es una especie de "plantilla"
-para implementar la intefaz gráfica del monitor
-'''
+
 from PyQt4 import QtCore, QtGui
+
 #Estas sentencias tienen que ver con el tipo de codificado utilizado por la GUI y los llamados Qstrings
-#--------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -23,11 +21,12 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 '''
-El siguiente código es autogenerado por la API PyQt el cual en realidad es una especie de "plantilla"
-para implementar la intefaz gráfica del monitor
+Declaracion de la clase Ui_TabWidget. Esta clase representa un objeto, ventana, que contiene todos los demas objetos como:
+pestañas, barras y listas entre otras qeu añadimos el diseñador proporcionado por la API
 '''
+
 class Ui_TabWidget(object):
     def setupUi(self, TabWidget):
         TabWidget.setObjectName(_fromUtf8("TabWidget"))
@@ -73,6 +72,17 @@ class Ui_TabWidget(object):
         self.listMem3.setObjectName(_fromUtf8("listMem3"))
         self.gridLayout_3.addWidget(self.listMem3, 1, 2, 1, 1)
         TabWidget.addTab(self.tab, _fromUtf8(""))
+        self.tab_2 = QtGui.QWidget()
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.gridLayout_4 = QtGui.QGridLayout(self.tab_2)
+        self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
+        self.ListProc = QtGui.QListWidget(self.tab_2)
+        self.ListProc.setObjectName(_fromUtf8("ListProc"))
+        self.gridLayout_4.addWidget(self.ListProc, 1, 0, 1, 1)
+        self.label_2 = QtGui.QLabel(self.tab_2)
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout_4.addWidget(self.label_2, 0, 0, 1, 1)
+        TabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.tabProc = QtGui.QWidget()
         self.tabProc.setObjectName(_fromUtf8("tabProc"))
         self.gridLayout = QtGui.QGridLayout(self.tabProc)
@@ -90,9 +100,7 @@ class Ui_TabWidget(object):
         QtCore.QMetaObject.connectSlotsByName(TabWidget)
 
     '''
-        Método que permite la asignacón de Texto visible en la GUI
-        se puede observar como las cadenas de abajo corresponden al objeto y el segundo elemento es
-        el texto que mostrara.
+    Método que permite la asignacón de Texto visible en la
     '''
     def retranslateUi(self, TabWidget):
         TabWidget.setWindowTitle(_translate("TabWidget", "Monitor", None))
@@ -101,6 +109,8 @@ class Ui_TabWidget(object):
         TabWidget.setTabText(TabWidget.indexOf(self.tabCPU), _translate("TabWidget", "&CPU y Ram", None))
         self.label.setText(_translate("TabWidget", "Información de Memoria", None))
         TabWidget.setTabText(TabWidget.indexOf(self.tab), _translate("TabWidget", "Mem. info", None))
+        self.label_2.setText(_translate("TabWidget", "Procesos", None))
+        TabWidget.setTabText(TabWidget.indexOf(self.tab_2), _translate("TabWidget", "&Procesos", None))
         self.labelProc.setText(_translate("TabWidget", "Interrupciones del sistema", None))
         TabWidget.setTabText(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "&Interrupciones", None))
         TabWidget.setTabToolTip(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "Procesos", None))
