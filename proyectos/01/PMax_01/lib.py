@@ -72,7 +72,7 @@ def cerrarPr(noid):
 		print("\n\nAlgunos procesos estan protegidos por el sistema,")
 		print("estos proces suelen ser importantes,  si  quieres")
 		print("asegurarte de que cierren, presiona 'a'  (esto,")
-		print("funcionara pidiendote la contraseña para privile-")
+		print("funcionara pidiendote la contrasenia para privile-")
 		print("gios de superusuario (sudo), si no quieres otogar")
 		print("estos privilegios presiona cualquier tecla)(para ") 
 		opcion=input("cancelar presiona q): ")
@@ -136,8 +136,8 @@ def infoEsp():
 	else:
 		print("Ocurrio un error, no existe ese proceso")
 	opcion=input("\nPresiona enter para continuar: ")
-
-def actualizar():
+##apartir de aqui es probable que sea dificil de entender
+def actualizar():#se encarga de buscar los procesos y de lanzar los hilos hijos que buscaran informacion
 	os.system("ls /proc > temp.txt")
 	arch1=open("temp.txt","r")
 
@@ -161,7 +161,7 @@ def actualizar():
 	padre.join()
 	os.system("cat TR.txt")
 
-def obtenerDatos(pid):
+def obtenerDatos(pid):#como el mismo dice obtiene datos de pid el identificador de proceso
 	cond=True
 	while cond:
 		semp.acquire()
@@ -175,7 +175,7 @@ def obtenerDatos(pid):
 		semp.release()
 
 
-def lanzarHilos():
+def lanzarHilos():#lanza los hilos hijos para  buscar los datos
 	t=[]
 	for i in lista:
 		t.append(threading.Thread(target=obtenerDatos, args=[i]))
@@ -183,7 +183,7 @@ def lanzarHilos():
 		i.start()
 		i.join()
 
-def info(pid):
+def info(pid):#se encarga de obtener y filtar los datos que se desean
 	ret=str(pid)
 	while (len(ret)<5):
 		ret+=" "
@@ -195,6 +195,7 @@ def info(pid):
 		aux+=" "
 	ret=ret+"  "+aux
 	arch.close()	
+	#se obtienen datos especificos de pid en el proc
 	os.system("(cat /proc/"+str(pid)+"/status | grep State; cat /proc/"+str(pid)+"/status | grep 'volunta'; cat /proc/"+str(pid)+"/status | grep VmS) > temp.txt")
 	arch=open("temp.txt","r")
 	aux=arch.readline()
@@ -222,13 +223,13 @@ def info(pid):
 	arch.close()
 	return ret
 
-def refresh():
+def refresh():#sirve para se actualicen los datos en tiempo real
 	while opcion:
 		os.system("clear")
 		actualizar()
 		print("presiona f para salir (puede tardar en salir)")
 		sleep(15)
-def infoTR():
+def infoTR():#funcion de inicio para la visualizacion en tiempo real
 	global opcion
 	opcion=True
 	hilo=threading.Thread(target=refresh)
