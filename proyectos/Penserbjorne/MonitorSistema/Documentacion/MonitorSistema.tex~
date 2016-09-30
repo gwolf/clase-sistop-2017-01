@@ -1,0 +1,44 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+
+\title{Monitor de Sistema}
+\author{Aguilar Enriquez, Paul Sebastian a.k.a Penserbjorne}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+\textbf{Planteamiento del profesor:} Programar un monitor de recursos del sistema operativo (de los recursos que juzguen útiles, interesantes, o que decidan por la razón que sea), pero con la particularidad o requisito de que
+debe trabajar de forma concurrente, sincronizando multihilos, multiprocesos o ambos. Empleen los mecanismos de sincronización que consideren adecuados.
+
+\textbf{Propuesta del alumno:} Diseñar e implementar un monitor de (algún/algunos) recurso/recursos del sistema, en este caso se pretende realizar para la plataforma GNU/Linux ...
+\end{abstract}
+
+\section{Monitor de Sistema}
+
+\subsection{Definicion}
+
+\subsection{Caracteristicas}
+
+\section{Ejemplos de Monitores de Sistema}
+
+\subsection{GNU/Linux}
+
+\subsection{Mac OS}
+
+\subsection{Windows}
+
+\section{Diseño}
+
+\subsection{Propuesta de Monitor de Sistema}
+
+\subsection{Diseño}
+
+\section{Implementación}
+
+\end{document}

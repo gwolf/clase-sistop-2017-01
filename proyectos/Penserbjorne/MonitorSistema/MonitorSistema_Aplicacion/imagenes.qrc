@@ -1,0 +1,16 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/recursosImagenes">
+    <file alias="escudoUNAM.png">Imagenes/escudoUNAM.png</file>
+    <file alias="escudoUNAM_FI.png">Imagenes/escudoUNAM_FI.png</file>
+</qresource>
+<qresource prefix="/recursosIconos">
+    <file alias="icon_128.png">Imagenes/icon_128.png</file>
+    <file alias="icon_96.png">Imagenes/icon_96.png</file>
+    <file alias="icon_72.png">Imagenes/icon_72.png</file>
+    <file alias="icon_64.png">Imagenes/icon_64.png</file>
+    <file alias="icon_48.png">Imagenes/icon_48.png</file>
+    <file alias="icon_32.png">Imagenes/icon_32.png</file>
+    <file alias="icon_24.png">Imagenes/icon_24.png</file>
+    <file alias="icon_16.png">Imagenes/icon_16.png</file>
+</qresource>
+</RCC>
