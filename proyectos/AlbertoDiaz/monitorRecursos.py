@@ -4,7 +4,7 @@ import time
 import commands
 import os
 
-evento = threading.Semaphore(0)
+evento = threading.Semaphore(0) #Semaforo para señalizacion
 
 def obtMem():
 	threading.Thread(target=watchMem,args=[]).start()
@@ -16,7 +16,7 @@ def hiloMem():
 	temp = 0
 	while contador <= 10:
 		os.system("clear")
-		#os.system("cat /proc/meminfo")
+		#os.system("cat /proc/meminfo") Obtienes un resultado similar. Opte por cachar en resultado en una variable en lugar de solo mostrarlo
 		swapTotal=commands.getoutput('cat /proc/meminfo|grep "SwapTotal:"|tr -s "'" "'"|cut -d "'" "'" -f 2')
 		swapFree=commands.getoutput('cat /proc/meminfo|grep "SwapFree:"|tr -s "'" "'"|cut -d "'" "'" -f 2')
 		memTotal=commands.getoutput('cat /proc/meminfo|grep "MemTotal:"|tr -s "'" "'"|cut -d "'" "'" -f 2')
@@ -37,7 +37,7 @@ def hiloMem():
 		print "Swap Libre: " + swapFree + " MB \n"
 		time.sleep(1)
 		contador+=1
-	evento.release()
+	evento.release() #Devuelves el control al Hilo Principal
 	return 0
 
 def hiloVersion():
@@ -79,12 +79,12 @@ def Menu():
 	while seleccion != '4':
 		os.system("clear")
 		opciones = {'1':hiloMem,'2':hiloVersion,'3':hiloProc}
-		print "Escoge una de las siguientes opciones:\n1.- Obtener informacion sobre RAM Y SWAP\n2.- Obtener informacion sobre la version de linux."
+		print "Cada opción muestra la información elegida un lapso de 10 segundos antes de volver al hilo principal.\n\nEscoge una de las siguientes opciones:\n1.- Obtener informacion sobre RAM Y SWAP\n2.- Obtener informacion sobre la version de linux."
 		print "3.- Informacion sobre el procesador(Numero de Procesadores, Numero de Nucleos, Modelo del Procesador)\n4.Salir"
 		seleccion = raw_input('\nEscribe tu opcion: \n')
 		try:
 			resultado = opciones[seleccion]()
-			evento.acquire()
+			evento.acquire() #Duermes hilo principal mientras dura la ejecucion del hilo secundario.
 		except:
 			if seleccion != '4':
 				print("Respuesta no valida")
