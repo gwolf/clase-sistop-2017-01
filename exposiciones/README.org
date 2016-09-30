@@ -12,4 +12,5 @@ al grupo)
 | Fecha  | Tema                                 | Integrantes                  | Documentos     | Evaluación |
 |--------+--------------------------------------+------------------------------+----------------+------------|
 | 21/sep | Primitivas de sincronización en Java | Bidkar Páez y Abraham Ortega | [[./Primitivas_JAVA/Primitivas_JAVA.docx][Documento DOCX]] | [[./Primitivas_JAVA/evaluacion.org][Evaluación]] |
+| 6/oct  | Planificación en Linux               | Max Sánchez y Eduardo Valdez |                |            |
 |--------+--------------------------------------+------------------------------+----------------+------------|

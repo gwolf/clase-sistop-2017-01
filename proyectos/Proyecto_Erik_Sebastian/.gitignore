@@ -1,0 +1,4 @@
+build-MonitorRAM-Desktop_Qt_5_7_0_GCC_64bit-Debug/
+*.md~
+*.o
+*.txt

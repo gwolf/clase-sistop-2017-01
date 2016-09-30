@@ -3,11 +3,11 @@
 # Form implementation generated from reading ui file 'monitor.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+#Estas sentencias tienen que ver con el tipo de codificado utilizado por la GUI y los llamados Qstrings
+#----------------------------------------------------------------------------
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -21,9 +21,14 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+#--------------------------------------------------------------------------
+'''
+Declaracion de la clase Ui_TabWidget. Esta clase representa un objeto, ventana, que contiene todos los demas objetos como:
+pestañas, barras y listas entre otras qeu añadimos el diseñador proporcionado por la API
+'''
 
 class Ui_TabWidget(object):
-    def setupUi(self, TabWidget):#metodo de preparacion de la GUI
+    def setupUi(self, TabWidget):
         TabWidget.setObjectName(_fromUtf8("TabWidget"))
         TabWidget.resize(705, 433)
         TabWidget.setTabPosition(QtGui.QTabWidget.North)
@@ -31,17 +36,6 @@ class Ui_TabWidget(object):
         TabWidget.setElideMode(QtCore.Qt.ElideLeft)
         TabWidget.setTabsClosable(False)
         TabWidget.setMovable(False)
-        self.tabProc = QtGui.QWidget()
-        self.tabProc.setObjectName(_fromUtf8("tabProc"))
-        self.gridLayout = QtGui.QGridLayout(self.tabProc)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.labelProc = QtGui.QLabel(self.tabProc)
-        self.labelProc.setObjectName(_fromUtf8("labelProc"))
-        self.gridLayout.addWidget(self.labelProc, 0, 0, 1, 1)
-        self.ListaMem = QtGui.QListWidget(self.tabProc)
-        self.ListaMem.setObjectName(_fromUtf8("ListaMem"))
-        self.gridLayout.addWidget(self.ListaMem, 1, 0, 1, 1)
-        TabWidget.addTab(self.tabProc, _fromUtf8(""))
         self.tabCPU = QtGui.QWidget()
         self.tabCPU.setObjectName(_fromUtf8("tabCPU"))
         self.gridLayout_2 = QtGui.QGridLayout(self.tabCPU)
@@ -78,19 +72,46 @@ class Ui_TabWidget(object):
         self.listMem3.setObjectName(_fromUtf8("listMem3"))
         self.gridLayout_3.addWidget(self.listMem3, 1, 2, 1, 1)
         TabWidget.addTab(self.tab, _fromUtf8(""))
+        self.tab_2 = QtGui.QWidget()
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.gridLayout_4 = QtGui.QGridLayout(self.tab_2)
+        self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
+        self.ListProc = QtGui.QListWidget(self.tab_2)
+        self.ListProc.setObjectName(_fromUtf8("ListProc"))
+        self.gridLayout_4.addWidget(self.ListProc, 1, 0, 1, 1)
+        self.label_2 = QtGui.QLabel(self.tab_2)
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout_4.addWidget(self.label_2, 0, 0, 1, 1)
+        TabWidget.addTab(self.tab_2, _fromUtf8(""))
+        self.tabProc = QtGui.QWidget()
+        self.tabProc.setObjectName(_fromUtf8("tabProc"))
+        self.gridLayout = QtGui.QGridLayout(self.tabProc)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.labelProc = QtGui.QLabel(self.tabProc)
+        self.labelProc.setObjectName(_fromUtf8("labelProc"))
+        self.gridLayout.addWidget(self.labelProc, 0, 0, 1, 1)
+        self.ListaInter = QtGui.QListWidget(self.tabProc)
+        self.ListaInter.setObjectName(_fromUtf8("ListaInter"))
+        self.gridLayout.addWidget(self.ListaInter, 1, 0, 1, 1)
+        TabWidget.addTab(self.tabProc, _fromUtf8(""))
 
         self.retranslateUi(TabWidget)
-        TabWidget.setCurrentIndex(2)
+        TabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(TabWidget)
 
+    '''
+    Método que permite la asignacón de Texto visible en la
+    '''
     def retranslateUi(self, TabWidget):
         TabWidget.setWindowTitle(_translate("TabWidget", "Monitor", None))
-        self.labelProc.setText(_translate("TabWidget", "Procesos", None))
-        TabWidget.setTabText(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "&Procesos", None))
-        TabWidget.setTabToolTip(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "Procesos", None))
         self.labelCPU.setText(_translate("TabWidget", "Promedio de uso CPU", None))
         self.labelMem.setText(_translate("TabWidget", "Uso de Memoria", None))
         TabWidget.setTabText(TabWidget.indexOf(self.tabCPU), _translate("TabWidget", "&CPU y Ram", None))
         self.label.setText(_translate("TabWidget", "Información de Memoria", None))
         TabWidget.setTabText(TabWidget.indexOf(self.tab), _translate("TabWidget", "Mem. info", None))
+        self.label_2.setText(_translate("TabWidget", "Procesos", None))
+        TabWidget.setTabText(TabWidget.indexOf(self.tab_2), _translate("TabWidget", "&Procesos", None))
+        self.labelProc.setText(_translate("TabWidget", "Interrupciones del sistema", None))
+        TabWidget.setTabText(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "&Interrupciones", None))
+        TabWidget.setTabToolTip(TabWidget.indexOf(self.tabProc), _translate("TabWidget", "Procesos", None))
 
