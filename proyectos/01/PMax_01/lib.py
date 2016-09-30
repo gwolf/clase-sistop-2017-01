@@ -2,7 +2,9 @@
 #realizar un monitor que despliegue la informacion que le corresponde a cada proceso
 import os
 import threading
-
+from time import *
+global mutex
+import sys
 #primero se buscan todos los procesos existentes y sus nombres
 def monH():
 	os.system("cat /proc/sched_debug > ./proc.txt")
@@ -78,7 +80,7 @@ def cerrarPr(noid):
 		if noid=='n':
 			k="p"+k
 		if opcion=='a':
-			exito=os.system("sudo "+k+" "+pid)
+			exito=os.system("su -c '"+k+" "+pid+"'")
 		elif opcion!='q':
 			exito=os.system(k+" "+pid)
 		if exito==0:
@@ -121,16 +123,119 @@ def infoEsp():
 			arch2=open("info.txt","a")
 			arch2.write("\nEntorno: ")
 			arch2.close()
-			os.system("sudo cat /proc/"+pid+"/environ >> info.txt")
+			os.system("su -c 'cat /proc/'"+pid+"/environ >> info.txt")
 		opcion=input("Deseas informacion sobre la entrada y salida del programa?(su)(s/n): ")
 		if opcion=='s':
 			arch2=open("info.txt","a")
 			arch2.write("\n\nIO: ")
 			arch2.close()
-			os.system("sudo cat /proc/"+pid+"/io >> info.txt")
+			os.system("su -c 'cat /proc/'"+pid+"/io >> info.txt")
 		arch2.close()
 		print("\nINFO DEL PROCESO "+pid+"\n")
 		os.system("cat info.txt")	
 	else:
 		print("Ocurrio un error, no existe ese proceso")
 	opcion=input("\nPresiona enter para continuar: ")
+
+def actualizar():
+	os.system("ls /proc > temp.txt")
+	arch1=open("temp.txt","r")
+
+	global lista
+	lista=[]
+	aux=arch1.readline()
+
+	while ord(aux[0])>47 and ord(aux[0])<58:
+		lista.append(int(aux[0:len(aux)-1]))
+		aux=arch1.readline()
+	lista.sort()
+	t=[]#hilos
+	# print (lista)
+	global semp
+	os.system("rm TR.txt")
+	os.system("touch TR.txt")
+	os.system("echo 'pid    nombre\t\t\testado   cambios voluntarios   cambios involuntarios  cantidad de memoria en uso  VmSwap' >TR.txt ")
+	semp=threading.Semaphore(1)
+	padre=threading.Thread(target=lanzarHilos)
+	padre.start()
+	padre.join()
+	os.system("cat TR.txt")
+
+def obtenerDatos(pid):
+	cond=True
+	while cond:
+		semp.acquire()
+		if pid==lista[0]:
+			aux=info(lista.pop(0))
+			# os.system("echo '"+aux+"' >> TR.txt")
+			sys.stdout.write(aux)
+			if (len(lista)%2==0):
+				sys.stdout.write("\n")
+			cond=False
+		semp.release()
+
+
+def lanzarHilos():
+	t=[]
+	for i in lista:
+		t.append(threading.Thread(target=obtenerDatos, args=[i]))
+	for i in t:
+		i.start()
+		i.join()
+
+def info(pid):
+	ret=str(pid)
+	while (len(ret)<5):
+		ret+=" "
+	os.system("cat /proc/"+str(pid)+"/comm > temp.txt")
+	arch=open("temp.txt","r")
+	aux=arch.readline()
+	aux=aux[0:len(aux)-1]
+	while (len(aux)<15):
+		aux+=" "
+	ret=ret+"  "+aux
+	arch.close()	
+	os.system("(cat /proc/"+str(pid)+"/status | grep State; cat /proc/"+str(pid)+"/status | grep 'volunta'; cat /proc/"+str(pid)+"/status | grep VmS) > temp.txt")
+	arch=open("temp.txt","r")
+	aux=arch.readline()
+	
+	ret+=aux[9:len(aux)-1]
+	while (len(ret)<35):
+		ret +=" "
+	aux=arch.readline()
+	ret+=aux[25:len(aux)-1]
+	while (len(ret)<48):
+		ret +=" "
+	aux=arch.readline()
+	ret+=aux[28:len(aux)-1]
+	while (len(ret)<58):
+		ret +=" "
+	aux=arch.readline()
+	ret+=aux[8:len(aux)-1]
+	while (len(ret)<68):
+		ret +=" "
+	aux=arch.readline()
+	aux=arch.readline()
+	ret+=aux[8:len(aux)-1]+" "
+	while (len(ret)<84):
+		ret +=" "
+	arch.close()
+	return ret
+
+def refresh():
+	while opcion:
+		os.system("clear")
+		actualizar()
+		print("presiona f para salir (puede tardar en salir)")
+		sleep(15)
+def infoTR():
+	global opcion
+	opcion=True
+	hilo=threading.Thread(target=refresh)
+	hilo.start()
+	while opcion:
+		opcion=input("")
+		if opcion=='f':	
+			opcion=False
+	hilo.join()
+
