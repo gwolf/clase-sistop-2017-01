@@ -1,0 +1,36 @@
+#nombre: Sánchez Hernández Max Armando
+#materia: Sistemas operativos
+#fecha: 29 de Septiembre del 2019
+#semestre: 2017-1
+
+##Documentación##
+
+$ Esta documentación tiene el proposito de dar un panorama general y particular del presente
+software con el fin de en un futuro, entender mejor cual era su propósito y en que podría
+mejorarse.
+
+$ Descripción general del problema:
+	Realizar un monitor del sistema que permita la visualización de los diferentes aspectos
+	de los procesos en un sistema operativo GNU-LINUX.
+
+$ Ambiciones:
+	Realizar un programa que monitoreé los procesos que estan activos en el sistema y pueda
+	cerrar cualquiera que se deseé.
+
+$ Lista de objetivos:
+	1- Menú principal.
+	2- Rutina que cierra un proceso.
+	3- Rutina que muestre los procesos activos actualmente.
+	4- Rutina que monitoreé los aspectos importantes de los procesos vivos.
+	5- Ver el historial de los procesos
+
+$ Complicaciones:
+	Durante el desarrollo del programa me vi con dificultades para resolver la concurrencia de
+	los hilos. Además me parecio interesante la observación del profesor de hacer que el programa
+	solo recibiera los parametros, creo que al fin de cuentas como se mencionó en el artículo
+	con el que empezamos el semestre, sigo siendo desarrollador de Windows, esperó que con el
+	tiempo y la práctica esa maña se pueda quitar.
+	La complicación de último momento fue la dificultad para manejar la concurrencia en el 
+	monitoreo en tiempo real, de ante mano una disculpa por ese codigo tan revuelto y falta de
+	documentación
+
