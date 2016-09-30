@@ -11,6 +11,8 @@
 //---------- Memoria ----------
 #define MEMINFO "cat /proc/meminfo"
 #define STAT "cat /proc/stat"
+//---------- Disco ----------
+#define DISKSTATS "cat /proc/diskstats"
 
 using namespace std;
 
@@ -76,7 +78,27 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_stat->start();
     temporizador_stat->setInterval(1000);
     temporizador_stat->start();
-    //---------- Memoria ----------
+    //---------- Stat ----------
+
+    //---------- DiskStats ----------
+    //  Creamos hilo para carga la informacion de la pestaña memoria stta
+    QThread *thread_diskstats = new QThread(this);    //  Hilo principal de la memoria diskstats
+    QTimer *temporizador_diskstats = new QTimer();    // Temporizador para cargar info de la diskstats
+    monitor_sistema *monitor_diskstats = new monitor_sistema();      //  Objeto que se encargara de disparar la señal para inciar el hilo
+
+    //  Conectamos el temporizador, hilo, el objeto, y las señales
+    connect(temporizador_diskstats, SIGNAL(timeout()), monitor_diskstats, SLOT(quiero_informacion_de_diskstats()));
+    connect(monitor_diskstats, SIGNAL(solicito_informacion_de_diskstats()),this, SLOT(cargar_informacion_diskstats()) );
+    connect(thread_diskstats, SIGNAL(destroyed()), monitor_diskstats, SLOT(deleteLater()));
+
+    // Movemos el monitor al hilo
+    monitor_diskstats->moveToThread(thread_diskstats);
+
+    // Iniciamos el hilo y activamos la señal
+    thread_diskstats->start();
+    temporizador_diskstats->setInterval(1000);
+    temporizador_diskstats->start();
+    //---------- DiskStats ----------
 }
 
 //  Funcion que carga la informacion del sistema
@@ -147,10 +169,25 @@ void MainWindow::cargar_informacion_stat(){
     // Leemos "/proc/stat" y lo imprimimos en una caja de texto
     resultado_comando = consultador_info->ejecutar_comando(STAT);
 
-    // Procesamos la informacion obtenida al leer "/proc/meminfo"
+    // Procesamos la informacion obtenida al leer "/proc/stat"
     string stat = consultador_info->procesar_stat(resultado_comando);
     mutex.lock();
     ui->txt_stat->setPlainText(QString::fromStdString(stat.c_str()));
+    mutex.unlock();
+}
+
+void MainWindow::cargar_informacion_diskstats(){
+    // Esta funcion no implementa bloqueos ya que nadie mas accede a estos objetos
+
+    QByteArray resultado_comando;   // Aqui se almacenaran los resultados de los comandos
+
+    // Leemos "/proc/diskstats" y lo imprimimos en una caja de texto
+    resultado_comando = consultador_info->ejecutar_comando(DISKSTATS);
+
+    // Procesamos la informacion obtenida al leer "/proc/diskstats"
+    string diskstats = consultador_info->procesar_diskstats(resultado_comando);
+    mutex.lock();
+    ui->txt_disktstats->setPlainText(QString::fromStdString(diskstats.c_str()));
     mutex.unlock();
 }
 

@@ -31,6 +31,9 @@ public:
 
     // Nos permite procesar la informacion obtenida de leer /proc/stat
     string procesar_stat(QByteArray info);
+
+    // Nos permite procesar la informacion obtenida de leer /proc/diskstats
+    string procesar_diskstats(QByteArray info);
 };
 
 #endif // CONSULTAR_INFO_H

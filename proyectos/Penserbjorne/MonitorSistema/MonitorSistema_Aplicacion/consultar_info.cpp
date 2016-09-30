@@ -4,6 +4,7 @@
 #include "consultar_info.h"
 
 #define STAT_PROPS 7
+#define DISKSTATS_PROPS 14
 
 consultar_info::consultar_info()
 {
@@ -120,12 +121,10 @@ struct_MEMINFO consultar_info::procesar_meminfo(QByteArray info){
 
 // Nos permite procesar la informacion obtenida de leer /proc/stat
 string consultar_info::procesar_stat(QByteArray info){
-    int contador;
-    string stat;         // Entidad individual para almacenar temporalmente los datos del stat
+    string stat;         // Entidad individual para almacenar temporalmente los datos de memoria stat
     QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propiedad
 
     stat.append("cpu\tuser\tnice\tsystem\tidle\tiowait\tirq\n\n");
-    contador = 0;
     // Para cada propiedad que tenemos disponibles, verificamos si es una propiedad de las que
     // queremos consultar
     foreach( const QByteArray &propiedad, propiedades)
@@ -141,4 +140,29 @@ string consultar_info::procesar_stat(QByteArray info){
         }
     }
     return stat;   // retornamos toda la info deseada
+}
+
+// Nos permite procesar la informacion obtenida de leer /proc/diskstats
+string consultar_info::procesar_diskstats(QByteArray info){
+    string diskstats;         // Entidad individual para almacenar temporalmente los datos del diskstats
+    string temp;
+    QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propiedad
+
+    // Para cada propiedad que tenemos disponibles, verificamos si es una propiedad de las que
+    // queremos consultar
+    foreach( const QByteArray &propiedad, propiedades)
+    {
+        // verificamos si la propiedad actual esta en la lista de propiedades que queremos
+        if(propiedad.toStdString().find("sda") != string::npos){
+            temp = propiedad.toStdString().substr(11,propiedad.toStdString().size());
+            for(int i = 0; i < temp.size(); i++){
+                if(temp[i] == ' '){
+                    temp[i] = '\t';
+                }
+            }
+            diskstats.append(temp);
+            diskstats.append("\n\n");
+        }
+    }
+    return diskstats;   // retornamos toda la info deseada
 }

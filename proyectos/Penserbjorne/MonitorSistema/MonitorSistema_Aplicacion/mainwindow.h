@@ -28,6 +28,7 @@ public slots:
     void cargar_informacion_sistema();
     void cargar_informacion_memoria();
     void cargar_informacion_stat();
+    void cargar_informacion_diskstats();
 
 private:
     Ui::MainWindow *ui;
