@@ -3,6 +3,8 @@
 #include "string"
 #include "consultar_info.h"
 
+#define STAT_PROPS 7
+
 consultar_info::consultar_info()
 {
     // Aqui definimos que propiedades de /proc/cpuinfo queremos leer
@@ -114,4 +116,29 @@ struct_MEMINFO consultar_info::procesar_meminfo(QByteArray info){
         }
     }
     return meminfo;   // retornamos toda la info deseada
+}
+
+// Nos permite procesar la informacion obtenida de leer /proc/stat
+string consultar_info::procesar_stat(QByteArray info){
+    int contador;
+    string stat;         // Entidad individual para almacenar temporalmente los datos del stat
+    QList<QByteArray> propiedades = info.split('\n');   // Separamos la informacion por lineas, una linea es una propiedad
+
+    stat.append("cpu\tuser\tnice\tsystem\tidle\tiowait\tirq\n\n");
+    contador = 0;
+    // Para cada propiedad que tenemos disponibles, verificamos si es una propiedad de las que
+    // queremos consultar
+    foreach( const QByteArray &propiedad, propiedades)
+    {
+        // verificamos si la propiedad actual esta en la lista de propiedades que queremos
+        if(propiedad.toStdString().find("cpu") != string::npos){
+            QList<QByteArray> valor_propiedad = propiedad.split(' ');
+            for(int i = 0; i < STAT_PROPS; i++){
+                stat.append(valor_propiedad[i].toStdString());
+                stat.append("\t");
+            }
+            stat.append("\n");
+        }
+    }
+    return stat;   // retornamos toda la info deseada
 }

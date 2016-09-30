@@ -28,6 +28,9 @@ public:
 
     // Nos permite procesar la informacion obtenida de leer /proc/meminfo
     struct_MEMINFO procesar_meminfo(QByteArray info);
+
+    // Nos permite procesar la informacion obtenida de leer /proc/stat
+    string procesar_stat(QByteArray info);
 };
 
 #endif // CONSULTAR_INFO_H

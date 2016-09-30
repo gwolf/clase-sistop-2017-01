@@ -1,5 +1,16 @@
+
+
+
+
+
+
 #include "mainwindow.h"
 #include <QApplication>
+
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QtCore/QDebug>
 
 using namespace std;
 

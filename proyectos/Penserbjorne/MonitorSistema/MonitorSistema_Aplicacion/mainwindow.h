@@ -27,6 +27,7 @@ public:
 public slots:
     void cargar_informacion_sistema();
     void cargar_informacion_memoria();
+    void cargar_informacion_stat();
 
 private:
     Ui::MainWindow *ui;

@@ -291,12 +291,12 @@
     </widget>
     <widget class="QWidget" name="tab_memoria">
      <attribute name="title">
-      <string>Memoria</string>
+      <string>Stat / Memoria</string>
      </attribute>
      <widget class="QPlainTextEdit" name="txt_memoria">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>550</x>
         <y>30</y>
         <width>221</width>
         <height>481</height>
@@ -373,7 +373,7 @@
      <widget class="QLabel" name="lbl_meminfo">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>560</x>
         <y>10</y>
         <width>71</width>
         <height>16</height>
@@ -387,6 +387,102 @@
       </property>
       <property name="text">
        <string>meminfo</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="txt_stat">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>531</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>239</red>
+            <green>235</green>
+            <blue>231</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_stat">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>stat</string>
       </property>
      </widget>
     </widget>

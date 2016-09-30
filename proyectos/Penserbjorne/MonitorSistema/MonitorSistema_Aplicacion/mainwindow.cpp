@@ -10,6 +10,7 @@
 #define CPUINFO "cat /proc/cpuinfo"
 //---------- Memoria ----------
 #define MEMINFO "cat /proc/meminfo"
+#define STAT "cat /proc/stat"
 
 using namespace std;
 
@@ -55,6 +56,26 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_memoria->start();
     temporizador_memoria->setInterval(1000);
     temporizador_memoria->start();
+    //---------- Memoria ----------
+
+    //---------- Stat ----------
+    //  Creamos hilo para carga la informacion de la pestaña memoria stta
+    QThread *thread_stat = new QThread(this);    //  Hilo principal de la memoria stat
+    QTimer *temporizador_stat = new QTimer();    // Temporizador para cargar info de la memoria stat
+    monitor_sistema *monitor_stat = new monitor_sistema();      //  Objeto que se encargara de disparar la señal para inciar el hilo
+
+    //  Conectamos el temporizador, hilo, el objeto, y las señales
+    connect(temporizador_stat, SIGNAL(timeout()), monitor_stat, SLOT(quiero_informacion_de_stat()));
+    connect(monitor_stat, SIGNAL(solicito_informacion_de_stat()),this, SLOT(cargar_informacion_stat()) );
+    connect(thread_stat, SIGNAL(destroyed()), monitor_stat, SLOT(deleteLater()));
+
+    // Movemos el monitor al hilo
+    monitor_stat->moveToThread(thread_stat);
+
+    // Iniciamos el hilo y activamos la señal
+    thread_stat->start();
+    temporizador_stat->setInterval(1000);
+    temporizador_stat->start();
     //---------- Memoria ----------
 }
 
@@ -115,6 +136,21 @@ void MainWindow::cargar_informacion_memoria(){
     struct_MEMINFO meminfo = consultador_info->procesar_meminfo(resultado_comando);
     mutex.lock();
     ui->txt_memoria->setPlainText(QString::fromStdString(meminfo.toStdString()));
+    mutex.unlock();
+}
+
+void MainWindow::cargar_informacion_stat(){
+    // Esta funcion no implementa bloqueos ya que nadie mas accede a estos objetos
+
+    QByteArray resultado_comando;   // Aqui se almacenaran los resultados de los comandos
+
+    // Leemos "/proc/stat" y lo imprimimos en una caja de texto
+    resultado_comando = consultador_info->ejecutar_comando(STAT);
+
+    // Procesamos la informacion obtenida al leer "/proc/meminfo"
+    string stat = consultador_info->procesar_stat(resultado_comando);
+    mutex.lock();
+    ui->txt_stat->setPlainText(QString::fromStdString(stat.c_str()));
     mutex.unlock();
 }
 
