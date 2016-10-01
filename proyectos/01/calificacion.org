@@ -1,0 +1,290 @@
+#+title: Evaluación del primer proyecto (monitor de sistema)
+#+author: Gunnar Wolf
+
+* Alberto Díaz
+
+- Directorio de entrega :: [[./AlbertoDiaz/]]
+- Documentación :: [[./AlbertoDiaz/readme.md]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: Señalización
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Gerardo Mendoza
+
+- Directorio de entrega :: [[./Gerardmc95/Monitor]]
+- Documentación :: [[./Gerardmc95/Monitor/Documentacion.txt]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: 
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Josué Quiñones y Ángel Vázquez
+
+- Directorio de entrega :: [[./Monitor/]]
+- Documentación :: [[/.Monitor/README.md]]
+- Lenguaje de desarrollo :: C++
+- Uso primario de sincronización :: 
+- Observaciones ::
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Jesús García y Andrés López
+
+- Directorio de entrega :: [[./Monitordesistema]]
+- Documentación :: [[./Monitordesistema/Escrito.docx]]
+- Lenguaje de desarrollo :: Visual BASIC
+- Uso primario de sincronización :: 
+- Observaciones ::
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Abraham Ortega y Bidkar Páez
+
+- Directorio de entrega :: [[./OrtegayPaez]]
+- Documentación ::  [[./OrtegayPaez/DOCUMENTACION.pdf]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: 
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Max Sánchez
+
+- Directorio de entrega :: [[./PMax_01]]
+- Documentación :: [[./PMax_01/documentacion.txt]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: 
+- Observaciones ::
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Sebastián Aguilar
+
+- Directorio de entrega :: [[./Penserbjorne/MonitorSistema]]
+- Documentación :: [[./Penserbjorne/MonitorSistema/Readme.md]], [[./Penserbjorne/MonitorSistema/Documentacion/MonitorSistema.pdf]]
+- Lenguaje de desarrollo :: C++
+- Uso primario de sincronización :: 
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Erik Sanabria
+
+- Directorio de entrega :: [[./Proyecto_Erik_Sebastian]]
+- Documentación :: [[./Proyecto_Erik_Sebastian/Readme.md]]
+- Lenguaje de desarrollo :: C++
+- Uso primario de sincronización :: 
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
+
+* Yaxkin Sánchez
+
+- Directorio de entrega :: [[./YaxkinSanchez]]
+- Documentación :: [[./YaxkinSanchez/MiniMonitor.py]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: 
+- Observaciones :: 
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |                |
+| Cumplimiento           |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            |                |        |                |
+| Complejidad            |                |        |                |
+| Interfaz usuario       |                |        |                |
+| *Documentación*        |                |    0.2 |                |
+| Documentación externa  |                |        |                |
+| Entorno y dependencias |                |        |                |
+| Comentarios            |                |        |                |
+| *Entrega*              |                |    0.2 |                |
+| Historia en Git        |                |        |                |
+| Directorio de proyecto |                |        |                |
+| Código Válido          |                |        |                |
+| *Legibilidad*          |                |    0.2 |                |
+| Estructura             |                |        |                |
+| Nomenclatura           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |                |
+|------------------------+----------------+--------+----------------|
+
