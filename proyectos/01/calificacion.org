@@ -7,29 +7,55 @@
 - Documentación :: [[./AlbertoDiaz/readme.md]]
 - Lenguaje de desarrollo :: Python
 - Uso primario de sincronización :: Señalización
-- Observaciones :: 
+- Observaciones ::
+  - Hay información de la que tienes /garantía/ que será estable, a
+    pesar de lo cual lees repetidamente. Por ejemplo, la información
+    que entrega tu función =watchProc()= no puede casi que por
+    definición cambiar sin que apagues la computadora, al igual que no
+    lo hará =watchVersion()=. ¿Por qué pasar diez veces por el ciclo
+    sobre =contador=, con diez =sleep= de un segundo?
+  - Desde un programa, llamar a =cat= como programa para averiguar el
+    contenido de un archivo (como lo haces en varias ocasiones) es un
+    desperdicio burocrático de recursos... E incluso puede verse, en
+    la circunstancia correcta, como un agujero de seguridad.
+
+    ¿Por qué no mejor leer el archivo directamente desde Python? Por
+    ejemplo, en =hiloMem()=
+    #+BEGIN_SRC python
+    while contaro <= 10:
+        f = open('/proc/meminfo', 'r')
+        meminfo = f.read() # Tendrías que manejar en caso de ser >800bytes.
+    #+END_SRC
+    Eso te ahorraría bastante complejidad, procesos nuevos creados,
+    cambios de contexto, comunicación entre procesos, y todas esas
+    cosas lindas... Y si le agregamos que es un patrón que se repite
+    en todo tu programa, ¡habría mucho por ganar!
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Requisitos*           |                |    0.2 |            1.5 |
+| Cumplimiento           | Bueno (7.5)    |        |            1.5 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Proyecto*             |                |    0.2 |           1.66 |
+| Creatividad            | Bueno (7.5)    |        |            0.5 |
+| Complejidad            | Bueno (7.5)    |        |            0.5 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |           1.66 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Suficiente (5) |        |           0.33 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |              2 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Excelente (10) |        |           0.66 |
+| Código Válido          | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |    0.2 |           1.75 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Bueno (7.5)    |        |           0.75 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |         *8.57* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -38,30 +64,88 @@
 - Directorio de entrega :: [[./Gerardmc95/Monitor]]
 - Documentación :: [[./Gerardmc95/Monitor/Documentacion.txt]]
 - Lenguaje de desarrollo :: Python
-- Uso primario de sincronización :: 
-- Observaciones :: 
+- Uso primario de sincronización :: Mutex para proteger de escritura
+     concurrente la terminal
+- Observaciones ::
+  - Tu directorio incluye tres archivos que superponen su
+    funcionalidad, =MonitorBeta1.py=, =MonitorBeta.py= y
+    =MonitorDeSistema.py=. Si estás usando un sistema de control de
+    versiones (Git), no tiene sentido tener más de una versión; en
+    caso de que lo requirieras, podrías /volver en el tiempo/ a
+    cualquier commit previo. Tengo que considerarlo dentro de los
+    supuestos de la segunda columna del /directorio de proyecto/.
+
+    Abordo únicamente el último de estos tres archivos.
+  - Interesante y hasta cierto punto impresionante que especificaras
+    las secuencias de escape para que se viera mejor presentado en
+    terminal. ¡Muy bien! Como sugerencia, te habría resultado mucho
+    más simple si separaras el manejo de salida en una clase
+    independiente, tal vez algo como:
+    #+BEGIN_SRC python
+    class Mensaje:
+      def esc: return chr(27)
+      def rojo: return esc + "[1;31m"
+      def amarillo: return esc + "[3;33m"
+      def blanco: return esc + "[3;32m"
+      # (...)
+      def encabezado(subsistema, descripcion):
+        return rojo() + "===>" + amarillo() + subsistema + rojo() + "<===\n" + amarillo() + descripcion + blanco()
+    #+END_SRC
+    Con eso, en cualquiera de tus funciones podrías reemplazar las
+    partes más repetitivas de tu código:
+    #+BEGIN_SRC python
+    m = Mensaje()
+    # (...)
+    def HDD():
+      global semaforo
+      semaforo.acquire()
+      print m.encabezado("DISK", "Ficheros y carpetas en forma de árbol comenzando por la raiz")
+      os.system("tree")
+      semaforo.release()
+    #+END_SRC
+  - Dependes de la existencia de varios comandos externos, pero no
+    verificas su existencia. En mi sistema:
+    #+BEGIN_SRC text
+    ===> DISK <===
+
+    Ficheros y carpetas en forma de arbol comenzando por la raiz
+
+    sh: 1: tree: not found
+    ===> DISK <===
+
+    Ficheros y carpetas en forma de arbol comenzando por la raiz
+
+    sh: 1: tree: not found
+    #+END_SRC
+  - Interfaz bonita y amigable, ¡felicidades! La usabilidad es
+    mejorable, pero se ve que le invertiste un buen trabajo en lograrla.
+
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Requisitos*           |                |    0.2 |              2 |
+| Cumplimiento           | Excelente (10) |        |              2 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Proyecto*             |                |    0.2 |            1.5 |
+| Creatividad            | Bueno (7.5)    |        |            0.5 |
+| Complejidad            | Suficiente (5) |        |           0.33 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |              2 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Excleente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |           1.66 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Bueno (7.5)    |        |            0.5 |
+| Código Válido          | Bueno (7.5)    |        |            0.5 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |    0.2 |           1.75 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Bueno (75)     |        |           0.75 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |         *8.91* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -77,19 +161,23 @@
 |------------------------+----------------+--------+----------------|
 | *Requisitos*           |                |    0.2 |                |
 | Cumplimiento           |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Proyecto*             |                |    0.2 |                |
 | Creatividad            |                |        |                |
 | Complejidad            |                |        |                |
 | Interfaz usuario       |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Documentación*        |                |    0.2 |                |
 | Documentación externa  |                |        |                |
 | Entorno y dependencias |                |        |                |
 | Comentarios            |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Entrega*              |                |    0.2 |                |
 | Historia en Git        |                |        |                |
 | Directorio de proyecto |                |        |                |
 | Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |        |                |
 | Estructura             |                |        |                |
 | Nomenclatura           |                |        |                |
 |------------------------+----------------+--------+----------------|
@@ -109,19 +197,23 @@
 |------------------------+----------------+--------+----------------|
 | *Requisitos*           |                |    0.2 |                |
 | Cumplimiento           |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Proyecto*             |                |    0.2 |                |
 | Creatividad            |                |        |                |
 | Complejidad            |                |        |                |
 | Interfaz usuario       |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Documentación*        |                |    0.2 |                |
 | Documentación externa  |                |        |                |
 | Entorno y dependencias |                |        |                |
 | Comentarios            |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Entrega*              |                |    0.2 |                |
 | Historia en Git        |                |        |                |
 | Directorio de proyecto |                |        |                |
 | Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |        |                |
 | Estructura             |                |        |                |
 | Nomenclatura           |                |        |                |
 |------------------------+----------------+--------+----------------|
@@ -134,30 +226,51 @@
 - Directorio de entrega :: [[./OrtegayPaez]]
 - Documentación ::  [[./OrtegayPaez/DOCUMENTACION.pdf]]
 - Lenguaje de desarrollo :: Python
-- Uso primario de sincronización :: 
-- Observaciones :: 
+- Uso primario de sincronización :: Manejo de mutexes, =QtCore.SIGNAL=
+     para notificación de eventos; notificación de progreso por
+     indicadores GUI
+- Observaciones ::
+  - ¡Excelente proyecto! Verdaderamente, ¡felicidades! Se nota que
+    trabajaron con dedicación
+  - El polimorfismo no es particular de Java, es parte del
+    planteamiento básico de la orientación a objetos — ¡y es una pena
+    que no estemos más acostumbrados a usarlo!
+  - Obviamente, hay espacio para refinaciones posteriores. Por
+    ejemplo, resulta incómodo que si estás consultando la lista de
+    proceso (particularmente esa por ser la de mayor frecuencia de
+    cambios) se redibuje completa. Podrían estructurarlo alrededor de
+    un diccionario por PID, y actualizar campos específicos. Pero es
+    simplemente cosa de querer buscar detalles...
+  - ¡Ah! Falta algo importante desde el punto de vista de interfaz
+    usuario: ¿Cómo me salgo del programa? ¡Únicamente matándolo a
+    traición!
+
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Requisitos*           |                |    0.2 |              2 |
+| Cumplimiento           | Excelente (10) |        |              2 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Proyecto*             |                |    0.2 |                |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |              2 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |              2 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Excelente (10) |        |           0.66 |
+| Código Válido          | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |    0.2 |              2 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Excelente (10) |        |              1 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |           *10* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -166,30 +279,98 @@
 - Directorio de entrega :: [[./PMax_01]]
 - Documentación :: [[./PMax_01/documentacion.txt]]
 - Lenguaje de desarrollo :: Python
-- Uso primario de sincronización :: 
+- Uso primario de sincronización :: Mutex protegiendo la lógica
+     interna de =obtenerDatos()=; esperar a la finalización de hilos
+     derivados mediante =join()=
 - Observaciones ::
+  - Cumples formalmente con que el programa sea multi-hilos, pero
+    mantienes la ejecución plenamente secuencial, sin aprovechar en
+    ningún momento el paralelismo. Llegas a emplear un mutex, pero
+    resulta innecesario porque es en un único punto, no hay
+    concurrencia que controlar.
+  - Logras un muy buen conjunto de información de varias fuentes
+    distintas, y lo presentas de forma muy coherente. ¡Bien!
+  - Documentación externa: No incluye lógica de operación ni ejemplos
+    de invocación; no mencionas entorno o dependencias (quedó a mi
+    interpretación darme cuenta que no funcionaba por ser Python3,
+    falla silenciosamente en Python2).
+  - Tip: Tu uso de archivos temporales (=cheat.txt=, =li.txt=,
+    =procAc.txt=, etc.) resulta peligroso, puede llevarte a
+    importantes agujeros de seguridad relacionados particularmente con
+    la concurrencia: Si alguien sabe qué archivos vas a emplear, puede
+    medir el tiempo, y sobreescribirlos a medio camino entre su
+    escritura y lectura. Además, como ejecutas con privilegios
+    elevados (y no verificas preexistencia), puede atacarse por medio
+    de la creación de ligas simbólicas para sobreescribir archivos
+    arbitrarios en el sistema.
+
+    Te sugiero asomarte a la [[https://docs.python.org/3.5/library/tempfile.html][documentación del módulo tempfile]] para
+    mayores detalles.
+  - ¡Tu programa elimina archivos de más! ¡Qué bueno que no lo ejecuté
+    en otro lugar! Al salir, pregunta:
+    #+BEGIN_SRC text
+    Es probable que durante la ejecucion de este programa
+    se crearan archivos extra, quieres eliminarlos?(s/n): s
+    #+END_SRC
+    Acto seguido, se había eliminado tu =documentacion.txt=.
+  - Incluyes como parte del proyecto subido a Git un archivo compilado
+    a bytecode de python, =__pycache__/lib.cpython-35.pyc=. Cuando yo
+    ejecuto tu programa, éste se vuelve a compilar y se modifica,
+    "ensuciando" mi árbol Git. ¡Deberías haberlo excluído con
+    =.gitignore=! (y, ya que estamos, incluir también todos tus
+    =*.txt= generados)
+  - Un error muy común que observo es que ven como separados el paso
+    de escribir el código del de comentarlo. ¡Debe ser realizado en
+    conjunto! Sólo eso explica comentarios que indican que olvidaste
+    ya lo que pensabas al desarrollar:
+    #+BEGIN_SRC python
+    ##apartir de aqui es probable que sea dificil de entender
+    #+END_SRC
+  - Mismo comentario que el que le hice a Alberto: Desde un programa,
+    llamar a =cat= como programa para averiguar el contenido de un
+    archivo (como lo haces en varias ocasiones) es un desperdicio
+    burocrático de recursos... E incluso puede verse, en la
+    circunstancia correcta, como un agujero de seguridad.
+
+    ¿Por qué no mejor leer el archivo directamente desde Python? Por
+    ejemplo, en =monH()=, podrías hacer:
+    #+BEGIN_SRC python
+    arch = open('/proc/sched_debug', 'r')
+    #+END_SRC
+    Eso te ahorraría bastante complejidad, procesos nuevos creados,
+    cambios de contexto, comunicación entre procesos, y todas esas
+    cosas lindas... Y si le agregamos que es un patrón que se repite
+    en todo tu programa, ¡habría mucho por ganar!
+  - El significado de /tiempo real/ es muy preciso, y es absoluamente
+    distinto de lo que implementas como tu opción #4. Claro, no te lo
+    puedo juzgar, porque no lo hemos visto aún ;-) Pero no puedo
+    dejarlo de anotar.
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Requisitos*           |                |    0.2 |            1.5 |
+| Cumplimiento           | Bueno (7.5)    |        |            1.5 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Proyecto*             |                |    0.2 |              2 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |              1 |
+| Documentación externa  | Suficiente (5) |        |           0.33 |
+| Entorno y dependencias | Suficiente (5) |        |           0.33 |
+| Comentarios            | Suficiente (5) |        |           0.33 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |           1.66 |
+| Historia en Git        | Bueno (7.5)    |        |            0.5 |
+| Directorio de proyecto | Bueno (7.5)    |        |            0.5 |
+| Código Válido          | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |    0.2 |           1.75 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Bueno (7.5)    |        |           0.75 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |         *7.94* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -205,19 +386,23 @@
 |------------------------+----------------+--------+----------------|
 | *Requisitos*           |                |    0.2 |                |
 | Cumplimiento           |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Proyecto*             |                |    0.2 |                |
 | Creatividad            |                |        |                |
 | Complejidad            |                |        |                |
 | Interfaz usuario       |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Documentación*        |                |    0.2 |                |
 | Documentación externa  |                |        |                |
 | Entorno y dependencias |                |        |                |
 | Comentarios            |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Entrega*              |                |    0.2 |                |
 | Historia en Git        |                |        |                |
 | Directorio de proyecto |                |        |                |
 | Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |        |                |
 | Estructura             |                |        |                |
 | Nomenclatura           |                |        |                |
 |------------------------+----------------+--------+----------------|
@@ -237,19 +422,23 @@
 |------------------------+----------------+--------+----------------|
 | *Requisitos*           |                |    0.2 |                |
 | Cumplimiento           |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Proyecto*             |                |    0.2 |                |
 | Creatividad            |                |        |                |
 | Complejidad            |                |        |                |
 | Interfaz usuario       |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Documentación*        |                |    0.2 |                |
 | Documentación externa  |                |        |                |
 | Entorno y dependencias |                |        |                |
 | Comentarios            |                |        |                |
+|------------------------+----------------+--------+----------------|
 | *Entrega*              |                |    0.2 |                |
 | Historia en Git        |                |        |                |
 | Directorio de proyecto |                |        |                |
 | Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |        |                |
 | Estructura             |                |        |                |
 | Nomenclatura           |                |        |                |
 |------------------------+----------------+--------+----------------|
@@ -262,29 +451,113 @@
 - Directorio de entrega :: [[./YaxkinSanchez]]
 - Documentación :: [[./YaxkinSanchez/MiniMonitor.py]]
 - Lenguaje de desarrollo :: Python
-- Uso primario de sincronización :: 
-- Observaciones :: 
+- Uso primario de sincronización :: Señalización para actualizar la
+     interfaz una vez que los hijos están listos; mutex protegiendo
+     contador global de hilos listos
+- Observaciones ::
+  - ¡Excelente proyecto! Felicidades por un muy buen desarrollo, y por
+    un excelente uso de Git para llevarlo.
+  - En varios puntos, estás empleando estructuras demasiado rígidas,
+    que dificultarían extender tu programa a futuro. Pongo un ejemplos
+    que me pareció particularmente revelador, aunque hay más. Bien al
+    principio:
+    #+BEGIN_SRC python
+    #Variables útiles para algunas funciones
+    no_funciones_monitor = 15
+    #+END_SRC
+    Y unas 300 líneas más abajo:
+    #+BEGIN_SRC python
+    #Hilos que colocan los datos en la interfaz
+    def lanzaHilos(screen):
+	threading.Thread(target=cpuUsuario, args=[screen]).start()
+	threading.Thread(target=cpuSistema, args=[screen]).start()
+	threading.Thread(target=cpuInactivo, args=[screen]).start()
+	threading.Thread(target=memTotal, args=[screen]).start()
+	threading.Thread(target=memLibre, args=[screen]).start()
+	threading.Thread(target=memDisponible, args=[screen]).start()
+	threading.Thread(target=memUso, args=[screen]).start()
+	threading.Thread(target=memSwapTotal, args=[screen]).start()
+	threading.Thread(target=memSwapLibre, args=[screen]).start()
+	threading.Thread(target=memSwapUso, args=[screen]).start()
+	threading.Thread(target=tiempoFuncionamiento, args=[screen]).start()
+	threading.Thread(target=tiempoInactivo, args=[screen]).start()
+	threading.Thread(target=numProcesos, args=[screen]).start()
+	threading.Thread(target=numProcesosEjecucion, args=[screen]).start()
+	threading.Thread(target=procesos, args=[screen]).start()
+    #+END_SRC
+    De entrada... ¿Cómo sabe el lector que ese =15= de
+    =no_funciones_monitor= tiene algo que ver con el número de hilos,
+    como no sea entendiendo tu manejo de =contador_hilos=? ¿Cómo te
+    vas a acordar de actualizarlo siempre que haga falta?
+
+    Tal vez sería mejor (en este caso en particular y sin pensarle
+    mucho) hacer una variable global =hilos=:
+    #+BEGIN_SRC python
+    hilos = [cpuUsuario, cpuSistema, cpuInactivo, memTotal] # mas lo que falte
+    no_funciones_monitor = len(hilos)
+    # (...)
+    def lanzaHilos(screen):
+      for h in hilos:
+        threading.Thread(target=h, args=[screen]).start()
+    #+END_SRC
+  - Caes en el mismo patrón de abuso de procesos cuando podrías usar
+    simple acceso a archivo que algunos de tus compañeros: Desde un
+    programa, llamar a =cat= (o =grep= directamente) como programa
+    para averiguar el contenido de un archivo (como lo haces en varias
+    ocasiones) es un desperdicio burocrático de recursos... E incluso
+    puede verse, en la circunstancia correcta, como un agujero de
+    seguridad.
+
+    ¿Por qué no mejor leer el archivo directamente desde Python? En tu
+    programa llamas 20 veces a =commands.getoutput()= siguiendo la
+    misma lógica. Por ejemplo,
+    #+BEGIN_SRC python
+    modelo = commands.getoutput("cat /proc/cpuinfo | grep -e 'model\ name*'")
+    #+END_SRC
+
+    Esto podrías reemplazarlo por:
+    #+BEGIN_SRC python
+    import re # Expresiones regulares – Todo lo que hacen grep + sed
+    modelo = []
+    f.open('/proc/cpuinfo', 'r')
+    for line in f.readlines():
+      if p.match(line):
+        modelo.append( re.sub('model.name.*: ', '', i) )
+    #+END_SRC
+
+    Eso te ahorraría bastante complejidad, procesos nuevos creados,
+    cambios de contexto, comunicación entre procesos, y todas esas
+    cosas lindas... Y si le agregamos que es un patrón que se repite
+    en todo tu programa, ¡habría mucho por ganar!
+
+    Ojo, en este último ejemplo mantengo un bug que tienes, que
+    concatena a todas las repeticiones del modelo del CPU, una por
+    núcleo. ¡Deberías tomar la primera únicamente! :-)
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
-| *Legibilidad*          |                |    0.2 |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Requisitos*           |                |    0.2 |              2 |
+| Cumplimiento           | Excelente (10) |        |              2 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Proyecto*             |                |    0.2 |              2 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |              2 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |              2 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Excelente (10) |        |           0.66 |
+| Código Válido          | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |        |              2 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Excelente (10) |        |              1 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |           *10* |
 |------------------------+----------------+--------+----------------|
 
