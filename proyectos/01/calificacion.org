@@ -154,34 +154,64 @@
 - Directorio de entrega :: [[./Monitor/]]
 - Documentación :: [[/.Monitor/README.md]]
 - Lenguaje de desarrollo :: C++
-- Uso primario de sincronización :: 
+- Uso primario de sincronización :: Mutex para los buffers con la
+     información recabada; señalización vía =emit= / =connect= de señal
 - Observaciones ::
+  - La documentación (el README.md) no incluye una descripción de la
+    funcionalidad del programa (lógica de operación)
+  - La biblioteca gráfica que manejan es Qt, cierto. Sin embargo, el
+    entorno que describen para poder compilar y lanzar el programa es
+    el Qt Creator; me tomó un poco comprender a lo que se
+    referían. Mencionan como requisito "duro" la versión 5.7.0 de Qt,
+    pero funciona perfectamente con una versión menor (tengo instalado
+    Qt Creator 4.1.0, la biblioteca Qt en un estado un poco mixto
+    entre 5.5.0 y 5.6.0)
+  - Algunos de los archivos (=interruptwindow=, =interruptsthread=,
+    =mainwindow=, =meminfo=, =readerthread=) llevan comentarios, otros
+    no (=dispositivosthread=, =dispositivoswindow=, =information=,
+    =main=). Y si bien la lógica de varios de estos es bastante
+    similar a la de los primeros (y =main= es francamente trivial),
+    más que saltarse el comentario, correspondería pensar si podemos
+    ahorrar la duplicación: ¿Podrían haber hecho una clase =window=,
+    que generalizara el comportamiento de las tres ventanas,
+    parametrizando qué información mostraría?
+  - ¡Muy bueno que describan lo que debe mostrar cada uno de los
+    archivos que presentan!
+  - Podrían ganar un poco en usabilidad si utilizaran un tipo de letra
+    =monoespaciado=, dado que en caso contrario se rompe la alineación
+    tabular, o que en todo caso (con conocimiento del formato que
+    reciben) lo separaran y presentaran en una tabla de Qt
+  - Tras construir el proyecto, QtCreator arroja un directorio
+    =build-MonitorSistema-Desktop-Debug=. Como interesado en el
+    proyecto, me conviene mantenerlo para ahorrar tiempo en mis
+    compilaciones posteriores, pero me /ensucia/ el Git. ¡Deberían
+    listarlo en un =.gitignore=!
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
+| *Requisitos*           |                |    0.2 |              2 |
+| Cumplimiento           | Excelente (10) |        |              2 |
 |------------------------+----------------+--------+----------------|
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
+| *Proyecto*             |                |    0.2 |              2 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
+| *Documentación*        |                |    0.2 |            1.5 |
+| Documentación externa  | Bueno (7.5)    |        |            0.5 |
+| Entorno y dependencias | Bueno (7.5)    |        |            0.5 |
+| Comentarios            | Bueno (7.5)    |        |            0.5 |
 |------------------------+----------------+--------+----------------|
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
+| *Entrega*              |                |    0.2 |           1.82 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Bueno (7.5)    |        |            0.5 |
+| Código Válido          | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Legibilidad*          |                |        |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Legibilidad*          |                |    0.2 |              2 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Excelente (10) |        |              1 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Total*                |                |        |         *9.32* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -189,35 +219,91 @@
 
 - Directorio de entrega :: [[./Monitordesistema]]
 - Documentación :: [[./Monitordesistema/Escrito.docx]]
-- Lenguaje de desarrollo :: Visual BASIC
-- Uso primario de sincronización :: 
+- Lenguaje de desarrollo :: Visual BASIC / C#
+- Uso primario de sincronización :: No encontrado
 - Observaciones ::
+  - Uff... ¡Me hicieron sudar para instalar el entorno de
+    construcción! Y tengo que admitir mi derrota: Conseguí montar una
+    máquina virtual con Windows 7 y Visual Studio 2010... ¡Pero ni
+    siquiera se molestó en abrir el proyecto por haberse desarrollado
+    en una versión más nueva!
+  - Uso de Git: Una de las principales razones de manejar un sistema
+    de seguimiento de cambios (como lo es Git) es que con él ya no
+    requieren los directorios por versión, como ustedes lo
+    enviaron. Es mucho más fácil (para el desarrollo y para la
+    evaluación) tener un único directorio, con la historia completa de
+    cambios contenida.
+    - Limito mi evaluación al directorio =VERSION4=, los demás los omito
+      por completo.
+  - Incluyen muchos archivos autogenerados. ¿Son todos ellos
+    necesarios?
+    - Incluyen subdirectorios derivados de la construcción,
+      como =bin= y =obj=, incluyendo archivos objeto ya compilados (como
+      =WindowsApplication4.exe=.
+  - No veo ningún manejo de mecanismos de sincronización. Posiblemente
+    (no estoy seguro) sí de manejo de más de un hilo de ejecución,
+    pero no de sincronización. Si efectivamente los manejan, ¡por
+    favor háganmelo saber! (repercute bastante en su calificación)
+  - Si entiendo correctamente, todo el "andamiaje" en VisualBASIC es
+    generado por el entorno de desarrollo, y únicamente el archivo
+    fuente =proce.cs= es de ustedes, ¿correcto? (de no ser así,
+    comuníquenmelo y reviso la calificación).
+    - No, no creo que sea únicamente así :-( ¿La lógica de obtención
+      de datos es lo que tienen en =labels.vb=, al reaccionar a
+      =Button2.Click()=?
+  - Claro... Sería mucho mejor si esto estuviera propiamente
+    documentado. No hay prácticamente nada de documentación relativa
+    al entorno y dependencias :-(
+    - Y ya hablando de documentación, tampoco incluyen nada respecto a
+      la lógica que siguan para resolver el problema
+    - No incluyen instrucciones de construcción, y yo fui incapaz de
+      compilar o ejecutar el proyecto. Confío en que es por impericia
+      mía — Les doy 75% en ese rubro, pero les pido que me lo muestren
+      funcionando en su equipo.
+  - Hicieron un muy buen trabajo de buscar fuentes de datos del
+    sistema vía API dentro de los espacios de nombres =My.Computer=,
+    =Mu.User=, =System=, etc. ¡Interesante!
+  - Llama mi atención que si bien este proyecto fue creado y
+    gestionado por un entorno de desarrollo integrado (IDE) no maneja
+    en automático indentación y algunos detalles similares. Ejemplo:
+
+    #+BEGIN_SRC C
+      namespace ProcessKiller
+      { 
+          public partial class proce : Form 
+      {
+          public proce() 
+          { 
+    #+END_SRC
+
+    La lógica me indicaría que todo el contenido del proyecto debería
+    estar indentada un nivel más...
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
+| *Requisitos*           |                |    0.2 |              1 |
+| Cumplimiento           | Suficiente (5) |        |              1 |
 |------------------------+----------------+--------+----------------|
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
+| *Proyecto*             |                |    0.2 |              2 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
+| *Documentación*        |                |    0.2 |           1.16 |
+| Documentación externa  | Bueno (7.5)    |        |            0.5 |
+| Entorno y dependencias | Suficiente (5) |        |           0.33 |
+| Comentarios            | Suficiente (5) |        |           0.33 |
 |------------------------+----------------+--------+----------------|
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
+| *Entrega*              |                |    0.2 |           1.33 |
+| Historia en Git        | Bueno (7.5)    |        |            0.5 |
+| Directorio de proyecto | Suficiente (5) |        |           0.33 |
+| Código Válido          | Bueno (7.5)    |        |            0.5 |
 |------------------------+----------------+--------+----------------|
-| *Legibilidad*          |                |        |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Legibilidad*          |                |    0.2 |            1.5 |
+| Estructura             | Bueno (7.5)    |        |           0.75 |
+| Nomenclatura           | Bueno (7.5)    |        |           0.75 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Total*                |                |        |            *7* |
 |------------------------+----------------+--------+----------------|
 
 
@@ -415,8 +501,18 @@
 - Directorio de entrega :: [[./Proyecto_Erik_Sebastian]]
 - Documentación :: [[./Proyecto_Erik_Sebastian/Readme.md]]
 - Lenguaje de desarrollo :: C++
-- Uso primario de sincronización :: 
-- Observaciones :: 
+- Uso primario de sincronización :: Maneja una variable de tipo
+     =atomic<bool>= para señalizar si ya no hace falta continuar con
+     el monitoreo (esto es, si el GUI terminó) para que el recolector
+     de datos también termine.
+- Observaciones ::
+  - Me tuviste un buen rato rascándome la cabeza, sin entender dónde
+    estaba la lógica de la aplicación... ¡Hasta que la encontré dentro
+    de los encabezados! La convención en C y los lenguajes derivados
+    de él es que toda la lógica va en los archivos =*.c=, y en los
+    archivos =*.h= únicamente van las declaraciones necesarias para
+    que terceros liguen contra éste.
+  - Un uso muy limitado de sincronización. 
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
