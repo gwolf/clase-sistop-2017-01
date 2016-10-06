@@ -512,33 +512,61 @@
     de él es que toda la lógica va en los archivos =*.c=, y en los
     archivos =*.h= únicamente van las declaraciones necesarias para
     que terceros liguen contra éste.
-  - Un uso muy limitado de sincronización. 
+  - Hacer el /parseo/ de la salida textual de un comando en C++ es
+    bastante doloroso... ¿No crees que te hubiera resultado mucho más
+    sencillo (y tal vez hasta más rápido y confiable) leer los
+    parámetros de =/proc/*= que de =ps aux=?
+  - Tip: Tu uso de archivos temporales (=procesos.txt=, =procesos2.txt=,
+    =procAc.txt=, etc.) resulta peligroso, puede llevarte a
+    importantes agujeros de seguridad relacionados particularmente con
+    la concurrencia: Si alguien sabe qué archivos vas a emplear, puede
+    medir el tiempo, y sobreescribirlos a medio camino entre su
+    escritura y lectura. Además, como ejecutas con privilegios
+    elevados (y no verificas preexistencia), puede atacarse por medio
+    de la creación de ligas simbólicas para sobreescribir archivos
+    arbitrarios en el sistema.
+
+    Es muy recomendable seguir una práctica como la siguiente:
+    #+BEGIN_SRC C++
+    char *tmpname = strdup("/tmp/tmpfileXXXXXX");
+    mkstemp(tmpname);
+    ofstream f(tmpname);
+    #+END_SRC
+
+    - Ahora que... Para el uso que das, sería mejor todavía (en vez de
+      manejar archivos temporales) el manejar a tu =ps aux= leyendo
+      directamente de él, sin crear archivos temporales innecesarios.
+
+  - Un uso muy limitado de sincronización. El manejo de =atomic<bool>=
+    es ingenioso, y valdría la pena presentárselo al grupo,
+    pero... ¿Sólo pudiste meter sincronización de una bandera para
+    resolver el proyecto? ¡Se antojaba mucho más!
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
+| *Requisitos*           |                |    0.2 |            1.5 |
+| Cumplimiento           | Bueno (7.5)    |        |            1.5 |
 |------------------------+----------------+--------+----------------|
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
+| *Proyecto*             |                |    0.2 |            1.5 |
+| Creatividad            | Bueno (7.5)    |        |            0.5 |
+| Complejidad            | Suficiente (5) |        |           0.33 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
+| *Documentación*        |                |    0.2 |           1.82 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Bueno (7.5)    |        |            0.5 |
 |------------------------+----------------+--------+----------------|
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
+| *Entrega*              |                |    0.2 |           1.82 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Bueno (7.5)    |        |            0.5 |
+| Código Válido          | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Legibilidad*          |                |        |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Legibilidad*          |                |        |            1.5 |
+| Estructura             | Suficiente (5) |        |            0.5 |
+| Nomenclatura           | Excelente (10) |        |              1 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Total*                |                |        |         *8.14* |
 |------------------------+----------------+--------+----------------|
 
 
