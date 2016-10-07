@@ -1,0 +1,58 @@
+#+title: Evaluación de evaluación: Primitivas de sincronización en Java
+#+author: Gunnar Wolf
+
+Tema presentado por Bidkar Páez y Abraham Ortega.
+
+La calificación global es de *8.66*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|          7.5 |        7.5 |      7.5 |         5 |  6.88 |
+|          7.5 |         10 |      7.5 |       7.5 |  8.13 |
+|          7.5 |        7.5 |      7.5 |       7.5 |  7.50 |
+|          7.5 |         10 |      7.5 |         5 |  7.50 |
+|           10 |         10 |      7.5 |         5 |  8.13 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |        7.5 |      7.5 |       7.5 |  7.50 |
+|          7.5 |         10 |      7.5 |        10 |  8.75 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|          7.5 |        7.5 |      7.5 |        10 |  8.13 |
+|          7.5 |         10 |       10 |        10 |  9.38 |
+|           10 |        7.5 |       10 |        10 |  9.38 |
+|          7.5 |        7.5 |        5 |       7.5 |  6.88 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|           10 |          5 |      7.5 |       7.5 |  7.50 |
+|--------------+------------+----------+-----------+-------|
+|         8.75 |       8.89 |     8.33 |      8.33 |  8.58 |
+#+TBLFM: @II$5..@III-1$5=vmean($1..$4); f-2::@>$1..@>$4=vmean(@II..@III-1); f-2::@>$>=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Excelente (*10*)
+- Material desarrollado :: Bueno (*7.5*). Entregaron el texto con
+     dos días de anticipación, no me fue posible revisarlo a detalle
+     (aunque no hay mucho que agregar, el planteamiento es completo y
+     adecuado). No entregaron la presentación ni los programas ejemplo
+     antes de presentarlos ante la clase.
+- Contenido :: Excelente (*10*)
+- Fuentes bibliográficas :: Bueno (*7.5*). Presentan como una de sus
+     fuentes a la documentación formal de Java (los URLs dentro de
+     /oracle.com/) y el libro de texto de la materia, aunque la mayor
+     parte consiste de fuentes informales. Hubiera sido deseable que
+     presentaran título, autores, año de las fuentes (en la medida de
+     lo posible), no únicamente su dirección Web.
+- Uso del tiempo :: Suficiente (*5*). La exposición fue de casi 40
+                    minutos (incluyendo las preguntas de los
+                    compañeros, repartidas a lo largo de la misma.
+- Dominio del tema :: Excelente (*10*). Hicieron una muy buena
+     exposición del tema, respondieron muy adecuadamente a las
+     preguntas planteadas por sus compañeros
+- Presencia :: Excelente (*10*)
+- Global :: *8.75*
+
