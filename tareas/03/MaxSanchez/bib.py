@@ -70,6 +70,7 @@ class colaProc:
 		clk=-1
 		aux=""
 		cond=True
+		t=[]
 		while not(self.zero(duracion)) and clk <1000:
 			cont=0
 			# print("sale")
@@ -80,38 +81,27 @@ class colaProc:
 				if clk>9:
 					aux+=" "
 				cont+=1
-				
 				duracion[i]-=1
 				if duracion[i]==0:
 					cont=q
+					t.append(clk-tiempo[i]+1)
 			cond=False
-			if (i+1)<len(duracion):
+			cont=0
+			while not(cond) and (len(duracion)*2)>cont:
 				i+=1
-				if (duracion[i]>0 and tiempo[i]<=clk):
+				i=i%len(duracion)
+				if (duracion[i]>0 and tiempo[i]<=clk+1):
 					cond=True
-				elif tiempo[i]>=clk:
-					clk+=1
-					sys.stdout.write(str(clk)+" ")
-					aux+="Z"+" "
-					if clk>9:
-						aux+=" "
-			elif len(duracion) !=0:
-				i=0
-				if (duracion[i]>0 and tiempo[i]<=clk):
-					cond=True
-				elif tiempo[i]>=clk:
-					clk+=1
-					sys.stdout.write(str(clk)+" ")
-					aux+="Z"+" "
-					if clk>9:
-						aux+=" "
-			# print(i)
-			
+				cont+=1
+			if not(cond):
+				clk+=1
+				sys.stdout.write(str(clk)+" ")
+				aux+="Z"+" "
+				if clk>9:
+					aux+=" "
 		print("\n")
 		print(aux)
-
-
-
+		print(t)
 
 n= colaProc(3)
 print(n.duracion)
