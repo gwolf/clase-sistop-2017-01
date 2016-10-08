@@ -61,6 +61,12 @@ class colaProc:
 				return False
 		return True
 
+	def sumPen(self,lista,clk,index,f):
+		for i in range(self.num):
+			if self.tiempo[i]<=clk and i !=index and not(f[i]):
+				lista[i]+=1
+		return lista
+
 	def RoundRobin(self):
 		
 		duracion=self.duracion
@@ -70,13 +76,18 @@ class colaProc:
 		clk=-1
 		aux=""
 		cond=True
-		t=[]
+		p=[]
+		f=[]
+		for m in range(self.num):
+			p.append(0)
+			f.append(False)
 		while not(self.zero(duracion)) and clk <1000:
 			cont=0
 			# print("sale")
 			while(cont<q and cond):
 				clk+=1
 				sys.stdout.write(str(clk)+" ")
+				p=self.sumPen(p,clk,i,f)
 				aux+=chr(i+65)+" "
 				if clk>9:
 					aux+=" "
@@ -84,7 +95,7 @@ class colaProc:
 				duracion[i]-=1
 				if duracion[i]==0:
 					cont=q
-					t.append(clk-tiempo[i]+1)
+					f[i]=True
 			cond=False
 			cont=0
 			while not(cond) and (len(duracion)*2)>cont:
@@ -101,7 +112,7 @@ class colaProc:
 					aux+=" "
 		print("\n")
 		print(aux)
-		print(t)
+		print(p)
 
 n= colaProc(3)
 print(n.duracion)
