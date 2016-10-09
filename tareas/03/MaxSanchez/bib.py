@@ -3,10 +3,11 @@
 import random
 import sys
 class colaProc:
-	tiempo=[]
-	tot=0
-	duracion=[]
+	
 	def __init__(self,num):
+		self.tiempo=[]
+		self.tot=0
+		self.duracion=[]
 		self.num=num
 		self.duracion.append(random.choice(range(10))+1)
 		self.tiempo.append(self.tot)
@@ -53,7 +54,7 @@ class colaProc:
 				if cont>9:
 					aux+=" "	
 				cont+=1
-		sys.stdout.write("\n"+"FCFS "+aux+ "--> T = "+str(float(t+esp)/len(tiempo))+" E ="+str(float(esp)/len(tiempo))+" P= "+str(totP/len(tiempo))+"\n" )
+		sys.stdout.write("\n"+"FCFS "+aux+ "--> T = "+str(float(t+esp)/len(tiempo))+" E ="+str(float(esp)/len(tiempo))+" P= "+str(totP/len(tiempo)))
 
 	def zero(self,list):
 		for i in list:
@@ -67,55 +68,59 @@ class colaProc:
 				lista[i]+=1
 		return lista
 
-	def RoundRobin(self):
-		
-		duracion=self.duracion
+	def RoundRobin(self,res):
+		dr=[]
+		for i in res:
+			dr.append(i)
 		tiempo=self.tiempo
 		q=self.q
 		i=0
 		clk=-1
-		aux=""
+		aux="\t\t"
 		cond=True
 		p=[]
 		f=[]
+		t=[]
 		for m in range(self.num):
 			p.append(0)
 			f.append(False)
-		while not(self.zero(duracion)) and clk <1000:
+		while not(self.zero(dr)) and clk <1000:
 			cont=0
 			# print("sale")
 			while(cont<q and cond):
 				clk+=1
-				sys.stdout.write(str(clk)+" ")
 				p=self.sumPen(p,clk,i,f)
 				aux+=chr(i+65)+" "
 				if clk>9:
 					aux+=" "
 				cont+=1
-				duracion[i]-=1
-				if duracion[i]==0:
+				dr[i]-=1
+				if dr[i]==0:
 					cont=q
 					f[i]=True
 			cond=False
 			cont=0
-			while not(cond) and (len(duracion)*2)>cont:
+			while not(cond) and (len(dr)*2)>cont:
 				i+=1
-				i=i%len(duracion)
-				if (duracion[i]>0 and tiempo[i]<=clk+1):
+				i=i%len(dr)
+				if (dr[i]>0 and tiempo[i]<=clk+1):
 					cond=True
 				cont+=1
 			if not(cond):
 				clk+=1
-				sys.stdout.write(str(clk)+" ")
 				aux+="Z"+" "
 				if clk>9:
 					aux+=" "
-		print("\n")
-		print(aux)
+		aux=aux[:-3]
+		print("\nRR"+str(aux))
 		print(p)
-
+		t=[]
+		for m in range(3):
+			t.append(p[m]+self.duracion[m])
+		print(t)
 n= colaProc(3)
-print(n.duracion)
+axu=n.duracion
+print(axu)
 print(n.tiempo)
-# n.FCFS()
-n.RoundRobin()
+n.FCFS()
+n.RoundRobin(axu)
