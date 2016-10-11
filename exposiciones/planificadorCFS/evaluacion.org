@@ -1,0 +1,42 @@
+#+title: Evaluación de evaluación: Planificador 
+#+author: Gunnar Wolf
+
+Tema presentado por Max Sánchez.
+
+La calificación global es de *8.32*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|           10 |         10 |      7.5 |       7.5 |  8.75 |
+|          7.5 |        7.5 |      7.5 |       7.5 |  7.50 |
+|           10 |         10 |      7.5 |       7.5 |  8.75 |
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|            5 |        7.5 |      7.5 |         0 |  5.00 |
+|           10 |         10 |      7.5 |       7.5 |  8.75 |
+|          7.5 |         10 |        5 |         5 |  6.88 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |        7.5 |      7.5 |        10 |  8.75 |
+|           10 |        7.5 |      7.5 |        10 |  8.75 |
+|          7.5 |         10 |        5 |       7.5 |  7.50 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |         10 |        5 |        10 |  8.75 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|--------------+------------+----------+-----------+-------|
+|         9.17 |       9.33 |     7.33 |      8.00 |  8.46 |
+#+TBLFM: @II$5..@III-1$5=vmean($1..$4); f-2::@>$1..@>$4=vmean(@II..@III-1); f-2::@>$>=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Bueno (7.5)
+- Material desarrollado :: Bueno (7.5)
+- Contenido :: Excelente (10)
+- Fuentes bibliográficas :: Excelente (10)
+- Uso del tiempo :: Suficiente (5)
+- Dominio del tema :: Bueno (7.5)
+- Presencia :: Bueno (7.5)
+- Global :: *8*
+

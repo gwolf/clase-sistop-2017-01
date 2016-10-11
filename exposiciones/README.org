@@ -8,9 +8,10 @@ La evaluación de las exposiciones sigue los criterios descritos en las
 al grupo)
 
 
-|--------+--------------------------------------+------------------------------+----------------+------------|
-| Fecha  | Tema                                 | Integrantes                  | Documentos     | Evaluación |
-|--------+--------------------------------------+------------------------------+----------------+------------|
-| 21/sep | Primitivas de sincronización en Java | Bidkar Páez y Abraham Ortega | [[./Primitivas_JAVA/Primitivas_JAVA.docx][Documento DOCX]] | [[./Primitivas_JAVA/evaluacion.org][Evaluación]] |
-| 6/oct  | Planificación en Linux               | Max Sánchez y Eduardo Valdez |                |            |
-|--------+--------------------------------------+------------------------------+----------------+------------|
+|--------+---------------------------------------------+------------------------------+-----------------------------------------------------------------------------------+------------|
+| Fecha  | Tema                                        | Integrantes                  | Documentos                                                                        | Evaluación |
+|--------+---------------------------------------------+------------------------------+-----------------------------------------------------------------------------------+------------|
+| 21/sep | Primitivas de sincronización en Java        | Bidkar Páez y Abraham Ortega | [[./Primitivas_JAVA/Primitivas_JAVA.docx][Documento DOCX]]                                                                    | [[./Primitivas_JAVA/evaluacion.org][Evaluación]] |
+| 6/oct  | Planificación en Linux                      | Max Sánchez                  | [[./planificadorCFS/planificadorCFS.pptx][Presentación PPTX]], [[./planificadorCFS/scheduling.pdf][Presentación de referencia (PDF)]], [[./planificadorCFS/linux_scheduler_notes_final.pdf][artículo de referencia (PDF)]] |            |
+| 20/oct | Sistemas operativos para sistemas embebidos | Mike Vargas                  |                                                                                   |            |
+|--------+---------------------------------------------+------------------------------+-----------------------------------------------------------------------------------+------------|
