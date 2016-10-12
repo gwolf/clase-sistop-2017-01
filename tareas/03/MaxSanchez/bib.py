@@ -9,11 +9,26 @@ def sumLista(lista):
 		acum+=i
 	return acum
 
-def zero(lista):
+def zero(lista):#verifica que todos los miembros de la lista sean cero
 	for i in lista:
 		if i !=0:
 			return False
 	return True
+
+def pminPos(dr,ti,clk):#regresa el proceso minimo posible
+	#este el algoritmo de decision SPN
+	if zero(dr):
+		return -1#no hay mas procesos
+	dr_pos=[]#aqui vamos a ver cuales son posibles
+	in_pos=[]
+	for i in range(len(dr)):
+		if clk>=ti[i] and dr[i]!=0:#si es posible
+			dr_pos.append(dr[i])#se apendiza la duracion
+			in_pos.append(i)#se apendiza el indice
+	if len(dr_pos)==0:
+		return -2#hay procesos pero falta tiempo para ejecutarlos
+	else:
+		return in_pos[dr_pos.index(min(dr_pos))]#la funcion regresa el indice del minimo posible de una lista
 
 class colaProc:
 
@@ -30,8 +45,18 @@ class colaProc:
 				self.duracion.append(random.choice(range(10))+1)
 				self.tiempo.append(self.tot)
 			self.tot+=1
-		self.q=2
-		# self.q=int(input("La medida de q para Round Robin: "))
+		cond=True
+		while cond:
+			try:
+				self.q=int(input("La medida de q para Round Robin: "))
+				cond=False
+			except:
+				print("Error ese no es un numero")
+		print("\nDuración de cada proceso\t\t"+str(self.duracion))
+		print("Tiempo de entrada por cada proceso\t"+str(self.tiempo),end="\n\n")
+		self.FCFS()
+		self.RoundRobin()
+		self.SPN()
 
 	def FCFS(self):
 		duracion=self.duracion
@@ -92,9 +117,8 @@ class colaProc:
 		for m in range(self.num):
 			p.append(0)
 			f.append(False)
-		while not(zero(dr)) and clk <1000:
+		while not(zero(dr)):
 			cont=0
-			# print("sale")
 			while(cont<q and cond):
 				clk+=1
 				p=self.sumPen(p,clk,i,f)
@@ -123,17 +147,39 @@ class colaProc:
 		t=[]
 		for m in range(3):
 			t.append(p[m]+self.duracion[m])
-		print("RR%s--> T=%.2f\tE=%.2f\tP=%.2f"%(aux,sumLista(t),sumLista(p),sumLista(t)/sumLista(tiempo)))#agregar opcion para modificar el quantum
+		pena=0
+		for i in range(len(p)):
+			pena+=1+(p[i]/self.duracion[i])
+		print("RR%s--> T=%.2f\tE=%.2f\tP=%.2f"%(aux,sumLista(t)/self.num,sumLista(p)/self.num,pena/self.num))#agregar opcion para modificar el quantum
 
-	def SPN():
+	def SPN(self):
 		dr=[]
+		num=self.num
 		for i in self.duracion:
 			dr.append(i)
 		ti=self.tiempo
-
-n= colaProc(3)
-print("\nDuración de cada proceso\t\t"+str(n.duracion))
-print("Tiempo de entrada por cada proceso\t"+str(n.tiempo),end="\n\n")
-n.FCFS()
-n.RoundRobin()
-n
+		aux="SPN\t\t"
+		clk=0#reloj igual a 0
+		indice=0
+		indicesdeFin=[]
+		for i in dr:
+			indicesdeFin.append(0)
+		while indice!=-1:
+			if indice==-2:
+				aux+="Z "
+			else:
+				aux+=chr(indice+65)+" "
+				dr[indice]-=1
+			if clk>9:
+				aux+=" "
+			#fin de algoritmo SPN considerando solo duracion
+			clk+=1
+			if dr[indice]==0:
+				indicesdeFin[indice]=clk
+			indice=pminPos(dr,ti,clk)#inicio de algoritmo SPN considerando solo duracion
+		tiempo=(sumLista(indicesdeFin)-sumLista(ti))
+		esp=(tiempo-clk)
+		pena=0
+		for i in range(len(indicesdeFin)):
+			pena+=1+((indicesdeFin[i]-ti[i])/self.duracion[i])
+		print("%s--> T=%.2f\tE=%.2f\tP=%.2f"%(aux,tiempo/num,esp/num,pena/num))
