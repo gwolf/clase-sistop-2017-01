@@ -2,8 +2,21 @@
 #algoritmo FCFS
 import random
 import sys
+
+def sumLista(lista):
+	acum=0
+	for i in lista:
+		acum+=i
+	return acum
+
+def zero(lista):
+	for i in lista:
+		if i !=0:
+			return False
+	return True
+
 class colaProc:
-	
+
 	def __init__(self,num):
 		self.tiempo=[]
 		self.tot=0
@@ -19,11 +32,12 @@ class colaProc:
 			self.tot+=1
 		self.q=2
 		# self.q=int(input("La medida de q para Round Robin: "))
+
 	def FCFS(self):
 		duracion=self.duracion
 		tiempo=self.tiempo
-		sys.stdout.write("\t\t")
-		aux="\t"
+		sys.stdout.write("Guia de tiempo\t")
+		aux="\t\t"
 		cont=0
 		t=0
 		i=0
@@ -43,7 +57,7 @@ class colaProc:
 					sys.stdout.write(str(cont)+" ")
 					aux+=chr(i+65)+" "
 					if cont>9:
-						aux+=" "	
+						aux+=" "
 					cont+=1
 				t+=duracion[i]
 				i+=1
@@ -52,15 +66,9 @@ class colaProc:
 				sys.stdout.write(str(cont)+" ")
 				aux+="Z"+" "
 				if cont>9:
-					aux+=" "	
+					aux+=" "
 				cont+=1
-		sys.stdout.write("\n"+"FCFS "+aux+ "--> T = "+str(float(t+esp)/len(tiempo))+" E ="+str(float(esp)/len(tiempo))+" P= "+str(totP/len(tiempo)))
-
-	def zero(self,list):
-		for i in list:
-			if i !=0:
-				return False
-		return True
+		print("\nFCFS%s--> T=%.2f\tE=%.2f\tP=%.2f"%(aux,float(t+esp)/len(tiempo),float(esp)/len(tiempo),totP/len(tiempo)))
 
 	def sumPen(self,lista,clk,index,f):
 		for i in range(self.num):
@@ -68,9 +76,9 @@ class colaProc:
 				lista[i]+=1
 		return lista
 
-	def RoundRobin(self,res):
+	def RoundRobin(self):
 		dr=[]
-		for i in res:
+		for i in self.duracion:
 			dr.append(i)
 		tiempo=self.tiempo
 		q=self.q
@@ -84,7 +92,7 @@ class colaProc:
 		for m in range(self.num):
 			p.append(0)
 			f.append(False)
-		while not(self.zero(dr)) and clk <1000:
+		while not(zero(dr)) and clk <1000:
 			cont=0
 			# print("sale")
 			while(cont<q and cond):
@@ -112,16 +120,20 @@ class colaProc:
 				if clk>9:
 					aux+=" "
 		aux=aux[:-3]
-		print("\nRR"+str(aux))
-		print(p)
 		t=[]
 		for m in range(3):
 			t.append(p[m]+self.duracion[m])
-		print(t)
+		print("RR%s--> T=%.2f\tE=%.2f\tP=%.2f"%(aux,sumLista(t),sumLista(p),sumLista(t)/sumLista(tiempo)))#agregar opcion para modificar el quantum
+
+	def SPN():
+		dr=[]
+		for i in self.duracion:
+			dr.append(i)
+		ti=self.tiempo
+
 n= colaProc(3)
-axu=n.duracion
-print(axu)
-print(n.tiempo)
+print("\nDuración de cada proceso\t\t"+str(n.duracion))
+print("Tiempo de entrada por cada proceso\t"+str(n.tiempo),end="\n\n")
 n.FCFS()
-n.RoundRobin(axu)
-print("hola que pedo")
+n.RoundRobin()
+n
