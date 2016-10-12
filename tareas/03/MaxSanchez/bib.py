@@ -145,7 +145,7 @@ class colaProc:
 					aux+=" "
 		aux=aux[:-3]
 		t=[]
-		for m in range(3):
+		for m in range(len(p)):
 			t.append(p[m]+self.duracion[m])
 		pena=0
 		for i in range(len(p)):
