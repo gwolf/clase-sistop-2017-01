@@ -1,5 +1,5 @@
-#tarea2 de sistemas operativos
-#algoritmo FCFS
+#tarea3 de sistemas operativos
+
 import random
 import sys
 
