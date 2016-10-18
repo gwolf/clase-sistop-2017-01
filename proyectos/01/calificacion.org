@@ -465,34 +465,154 @@
 - Directorio de entrega :: [[./Penserbjorne/MonitorSistema]]
 - Documentación :: [[./Penserbjorne/MonitorSistema/Readme.md]], [[./Penserbjorne/MonitorSistema/Documentacion/MonitorSistema.pdf]]
 - Lenguaje de desarrollo :: C++
-- Uso primario de sincronización :: 
-- Observaciones :: 
+- Uso primario de sincronización :: Los hilos =monitor_memoria=,
+     =monitor_stat= y =monitor_diskstats= son despertados por un
+     temporizador cada segundo
+- Observaciones ::
+  - El programa no compilaba, por una dependencia no documentada sobre
+    QtCharts en el =main.cpp=; hizo falta realizar la siguiente
+    modificación para que compilara.
+    #+BEGIN_SRC diff
+
+      --- a/proyectos/01/Penserbjorne/MonitorSistema/MonitorSistema_Aplicacion/main.cpp
+      +++ b/proyectos/01/Penserbjorne/MonitorSistema/MonitorSistema_Aplicacion/main.cpp
+      @@ -7,9 +7,6 @@
+       #include "mainwindow.h"
+       #include <QApplication>
+ 
+      -#include <QtCharts/QChartView>
+      -#include <QtCharts/QPieSeries>
+      -#include <QtCharts/QPieSlice>
+       #include <QtCore/QDebug>
+ 
+       using namespace std;
+    #+END_SRC
+    Cabe mencionar que es una dependencia... Que no se usa en el
+    programa :-/
+
+  - El programa es multihilos, sin embargo, el uso de la
+    sincronización es apenas rudimentario: Una notificación una vez
+    por segundo para tres de los monitores (los que atienden a
+    información cambiante). En términos de lo estudiado, manejas
+    paralelismo, pero no concurrencia.
+
+  - ¡Me gusta cómo presentas la información! Muy buena interfaz de
+    usuario. Ahora... Para que fuera más útil:
+
+    - La tabla donde presentas la información de =cpuinfo= es muy
+      ancha, y prácticamente toda la información es repetida entre los
+      renglones. ¿No sería mejor presentar en forma tabular únicamente
+      la información que difiera?
+
+    - Y en la página de =stat / meminfo=, presentas dos listados. El de
+      =stat= se ve bien, pero el de =meminfo= se beneficiaría mucho de
+      estar alineado de forma tabular, como el de =cpuinfo=. Sí,
+      requiere hacer un procesamiento del archivo, pero... Nada del otro
+      mundo :)
+
+      - Detalle de implementación: En =struct_cpuinfo.cpp= listas cada
+        uno de los renglones que te entrega =/proc/cpuinfo= en
+        arquitectura x86. Ahora... ¿Cómo se comportaría el programa
+        en, digamos, una máquina ARM? Una de las máquinas que tengo me
+        entrega esta información, bastante distinta de lo que tu
+        programa espera:
+
+	#+BEGIN_SRC text
+          $ cat /proc/cpuinfo 
+          processor       : 0
+          model name      : ARMv7 Processor rev 2 (v7l)
+          BogoMIPS        : 1587.20
+          Features        : swp half thumb fastmult vfp edsp thumbee vfpv3 tls idiva idivt vfpd32 lpae 
+          CPU implementer : 0x56
+          CPU architecture: 7
+          CPU variant     : 0x2
+          CPU part        : 0x584
+          CPU revision    : 2
+
+          processor       : 1
+          model name      : ARMv7 Processor rev 2 (v7l)
+          BogoMIPS        : 1594.36
+          Features        : swp half thumb fastmult vfp edsp thumbee vfpv3 tls idiva idivt vfpd32 lpae 
+          CPU implementer : 0x56
+          CPU architecture: 7
+          CPU variant     : 0x2
+          CPU part        : 0x584
+          CPU revision    : 2
+
+          processor       : 2
+          model name      : ARMv7 Processor rev 2 (v7l)
+          BogoMIPS        : 1594.36
+          Features        : swp half thumb fastmult vfp edsp thumbee vfpv3 tls idiva idivt vfpd32 lpae 
+          CPU implementer : 0x56
+          CPU architecture: 7
+          CPU variant     : 0x2
+          CPU part        : 0x584
+          CPU revision    : 2
+
+          processor       : 3
+          model name      : ARMv7 Processor rev 2 (v7l)
+          BogoMIPS        : 1594.36
+          Features        : swp half thumb fastmult vfp edsp thumbee vfpv3 tls idiva idivt vfpd32 lpae 
+          CPU implementer : 0x56
+          CPU architecture: 7
+          CPU variant     : 0x2
+          CPU part        : 0x584
+          CPU revision    : 2
+
+          Hardware        : Marvell Armada 370/XP (Device Tree)
+          Revision        : 0000
+          Serial          : 0000000000000000
+	#+END_SRC
+	Corriendo en esta máquina, la tabla =CPU_INFO= aparece
+        completamente en blanco.
+
+    - En la pestaña disco, ¿de dónde obtienes la lista de registros a
+      mostrar? ¿Por qué lo limitas a las partciones del primer disco?
+      (lo corrí en una computadora con tres discos... Claro, puede que
+      no se te ocurriera porque se sale del uso común)
+
+  - Respecto a tu documentación:
+
+    - En el README mencionas que es un /monitor en tiempo real/. No
+      habíamos visto aún el tema, pero en este momento espero que
+      reconozcas que /no es/ tiempo real — simplemente se actualiza
+      periódicamente.
+
+    - No mencionas la /lógica de operación/ en la documentación
+      (requisito explícito)
+
+  - Respecto a la entrega:
+
+    - Construir el proyecto genera el directorio de depuración
+      =build-MonitorSistema_Aplicacion-Desktop-Debug/=. Debería estar
+      en un =.gitignore=.
+
 
 | *Rubro*                | *Calificación* | *Peso* | *Calificación* |
 |------------------------+----------------+--------+----------------|
-| *Requisitos*           |                |    0.2 |                |
-| Cumplimiento           |                |        |                |
+| *Requisitos*           |                |    0.2 |            1.5 |
+| Cumplimiento           | Bueno (7.5)    |        |            1.5 |
 |------------------------+----------------+--------+----------------|
-| *Proyecto*             |                |    0.2 |                |
-| Creatividad            |                |        |                |
-| Complejidad            |                |        |                |
-| Interfaz usuario       |                |        |                |
+| *Proyecto*             |                |    0.2 |              2 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Documentación*        |                |    0.2 |                |
-| Documentación externa  |                |        |                |
-| Entorno y dependencias |                |        |                |
-| Comentarios            |                |        |                |
+| *Documentación*        |                |    0.2 |           1.82 |
+| Documentación externa  | Bueno (7.5)    |        |            0.5 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Excelente (10) |        |           0.66 |
 |------------------------+----------------+--------+----------------|
-| *Entrega*              |                |    0.2 |                |
-| Historia en Git        |                |        |                |
-| Directorio de proyecto |                |        |                |
-| Código Válido          |                |        |                |
+| *Entrega*              |                |    0.2 |           1.66 |
+| Historia en Git        | Excelente (10) |        |           0.66 |
+| Directorio de proyecto | Bueno (7.5)    |        |            0.5 |
+| Código Válido          | Bueno (7.5)    |        |            0.5 |
 |------------------------+----------------+--------+----------------|
-| *Legibilidad*          |                |        |                |
-| Estructura             |                |        |                |
-| Nomenclatura           |                |        |                |
+| *Legibilidad*          |                |    0.2 |              2 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Excelente (10) |        |              1 |
 |------------------------+----------------+--------+----------------|
-| *Total*                |                |        |                |
+| *Total*                |                |        |              9 |
 |------------------------+----------------+--------+----------------|
 
 
@@ -684,4 +804,112 @@
 |------------------------+----------------+--------+----------------|
 | *Total*                |                |        |           *10* |
 |------------------------+----------------+--------+----------------|
+
+
+* David Pérez
+
+- Directorio de entrega :: [[./PerezMartinez]]
+- Documentación :: [[./PerezMartinez/README.md]]
+- Lenguaje de desarrollo :: Python
+- Uso primario de sincronización :: Señalización entre los tres hilos;
+     temporizador sobre la ventana principal para su constante
+     actualización
+- Observaciones ::
+  - Interfaz usuario: Este es un caso claro de cuándo una interfaz de
+    línea de comando puede ser superior a una interfaz gráfica: Dado
+    que estás presentando información tabular (las magnitudes
+    correspondientas a I/O de discos), el tener un tipo de letra de
+    ancho variable entorpece la comprensión. Para hacerlo en un
+    entorno gráfico, te convendría cambiar de tipo de letra, o
+    utilizar una tabla; para Python con =tkinter=, podrías haber usado
+    [[http://tkinter.unpythonic.net/wiki/TkTable][TkTable]].
+  - Comentarios excesivos. Debes comentar lo que no es obvio. Comentar
+    de más obscurece el panorama más que aclararlo.
+  - Hubo menos de cinco commits, pero creo que por el detalle que tuve
+    que rescatar del /pull request/ errado.
+
+| *Rubro*                | *Calificación* | *Peso* | *Calificación* |
+|------------------------+----------------+--------+----------------|
+| *Requisitos*           |                |    0.2 |              2 |
+| Cumplimiento           |                |        |                |
+|------------------------+----------------+--------+----------------|
+| *Proyecto*             |                |    0.2 |           1.82 |
+| Creatividad            | Excelente (10) |        |           0.66 |
+| Complejidad            | Excelente (10) |        |           0.66 |
+| Interfaz usuario       | Bueno (7.5)    |        |            0.5 |
+|------------------------+----------------+--------+----------------|
+| *Documentación*        |                |    0.2 |           1.82 |
+| Documentación externa  | Excelente (10) |        |           0.66 |
+| Entorno y dependencias | Excelente (10) |        |           0.66 |
+| Comentarios            | Bueno (7.5)    |        |            0.5 |
+|------------------------+----------------+--------+----------------|
+| *Entrega*              |                |    0.2 |           1.82 |
+| Historia en Git        | Bueno (7.5)    |        |            0.5 |
+| Directorio de proyecto | Excelente (10) |        |           0.66 |
+| Código Válido          | Excelente (10) |        |           0.66 |
+|------------------------+----------------+--------+----------------|
+| *Legibilidad*          |                |    0.2 |            1.5 |
+| Estructura             | Excelente (10) |        |              1 |
+| Nomenclatura           | Bueno (7.5)    |        |           0.75 |
+|------------------------+----------------+--------+----------------|
+| *Total*                |                |        |              9 |
+|------------------------+----------------+--------+----------------|
+
+
+* Miguel Vargas
+
+- Directorio de entrega :: [[./Miguel_Vargas/]]
+- Documentación :: [[./Miguel_Vargas/documento.pdf]]
+- Lenguaje de desarrollo :: C
+- Uso primario de sincronización :: No es utilizada
+- Observaciones :: 
+  - Entrega extemporánea: El /commit/ de entrega fue realizado el 8 de
+    octubre, 10 días después de la fecha de entrega; se califica sobre
+    0.5.
+  - Documentación:
+    - Es muy bueno que emplees /doxygen/, pero la documentación
+      generada no cumple con los criterios de calificación que
+      describe la rúbrica. Doxygen debe verse como /parte/ de tu
+      documentación, en ningún momento reemplaza a tu documentación
+      para el usuario (es documentación para el programador).
+    - Incluyes un comprimido =documentos.rar=, con los fuentes del
+      documento en /doxygen/ para HTML y LaTeX que entregas. Cuando
+      trabajas en Git, evita usar archivos comprimidos, que no ganas
+      nada, sólo trae inconveniencia. Además, estos fuentes
+      intermedios son irrelevantes para el proyecto — podrías haberlos
+      omitido.
+  - El código no es válido. Al agregar las cadenas de /doxygen/
+    agregaste la apertura de bloque (las llaves) para las funciones
+    =listarProc()= y =elMasGrande()=.
+  - Manejas procesos simultáneos (lanzados vía =fork()=), pero no hay
+    sincronización entre ellos; únicamente "te encomiendas" a que las
+    funciones que llamas como proceso en paralelo terminen antes de
+    que el usuario haga algo más.
+
+| *Rubro*                | *Calificación*   | *Peso* | *Calificación* |
+|------------------------+------------------+--------+----------------|
+| *Requisitos*           |                  |    0.2 |              1 |
+| Cumplimiento           | Suficiente (5)   |        |              1 |
+|------------------------+------------------+--------+----------------|
+| *Proyecto*             |                  |    0.2 |           1.82 |
+| Creatividad            | Bueno (7.5)      |        |            0.5 |
+| Complejidad            | Excelente (10)   |        |           0.66 |
+| Interfaz usuario       | Excelente (10)   |        |           0.66 |
+|------------------------+------------------+--------+----------------|
+| *Documentación*        |                  |    0.2 |              1 |
+| Documentación externa  | Insuficiente (0) |        |              0 |
+| Entorno y dependencias | Suficiente (5)   |        |           0.33 |
+| Comentarios            | Excelente (10)   |        |           0.66 |
+|------------------------+------------------+--------+----------------|
+| *Entrega*              |                  |    0.2 |           1.33 |
+| Historia en Git        | Suficiente (5)   |        |           0.33 |
+| Directorio de proyecto | Bueno (7.5)      |        |            0.5 |
+| Código Válido          | Bueno (7.5)      |        |            0.5 |
+|------------------------+------------------+--------+----------------|
+| *Legibilidad*          |                  |    0.2 |           1.75 |
+| Estructura             | Bueno (7.5)      |        |           0.75 |
+| Nomenclatura           | Excelente (10)   |        |              1 |
+|------------------------+------------------+--------+----------------|
+| *Total*                | 6.9 × 0.5        |        |            3.5 |
+|------------------------+------------------+--------+----------------|
 
