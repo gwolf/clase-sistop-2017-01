@@ -105,7 +105,7 @@
 ## Gerardo Mendoza
 * **Archivos:** [MendozaColmenaresAsesor.py](Fuente Python)
 * **Problema elegido:** El asesor y los alumnos
-* **Calificación:** 8
+* **Calificación:** 10 × 0.8 = 8
 * **Comentarios:** Calificado sobre 8 por entrega extemporánea;
   lástima que no entregaste a tiempo :-(
 
@@ -131,3 +131,73 @@
   que lo represente, ¿no es más claro usar un `'%d' % num` por
   ejemplo?
 
+## Jesús García y Andrés López
+* **Archivos:** [Tarea2.py](Fuente Python)
+* **Problema elegido:** Santa Claus
+* **Calificación:** 7 × 0.5 = 3.5
+* **Comentarios:** Calificado sobre 5 por entrega *muy* extemporánea
+  ¡No funciona correctamente!
+
+        $ python Tarea2.py
+		***El reno 1 ha regresado***.
+		***El reno 2 ha regresado***.
+		***El reno 1 ha regresado***.
+		***El reno 3 ha regresado***.
+		***El reno 4 ha regresado***.
+		***El reno 5 ha regresado***.
+		***El reno 6 ha regresado***.
+		***El reno 7 ha regresado***.
+		***El reno 8 ha regresado***.
+		***El reno 9 ha regresado***.
+		
+		***El elfo 0 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 1 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 2 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 3 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 4 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 5 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 6 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 7 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 8 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 9 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 10 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		***El elfo 11 pacientemente espera a que se junten mas elfos para  pedir ayuda a Santa***
+		Terminated
+
+	A ojo, la lógica se ve correcta... ¡Pero Santa nunca se despierta!
+    ¿Qué le dieron al pobre viejo?
+
+	En la función `santa()`, esperamos dos señales, tanto por
+    `senasanta` como `contamux`. Esto significa que ambas tienen que
+    llegar para que Santa se despierte. A Santa no debería importarle
+    *por qué* lo están despertando, sino que tiene que despertar a
+    hacer *algo* — Bastaría con tener un sólo semáforo
+    *despiertaSanta*, que fuera señalizado ya sea por el tercer elfo
+    o por el noveno reno en llegar.
+
+
+## Sebastián Aguilar
+* **Archivos:** [Penserbjorne.c](Fuente C)
+* **Problema elegido:** El elevador
+* **Calificación:** 0
+* **Comentarios:** Sin calificación por entrega *muy* extemporánea
+
+   A primera vista, tu implementación se ve completa y bonita... Pero
+   no me compiló. Te faltó un `#include <string.h>`
+
+   La ejecución parece ser correcta... Pero dado que no puedo ya darte
+   calificación, únicamente anoto la tarea como entregada, y no entro
+   a hacer una revisión a detalle.
+
+## Alberto Díaz
+* **Archivos:** [Santa_Alberto_Diaz.py](Fuente Python)
+* **Problema elegido:** Santa Claus
+* **Calificación:** 0
+* **Comentarios:** Sin calificación por entrega *muy* extemporánea
+
+   Código bonito, claro, fácil de entender... ¡Me gustó! ¿Por qué no
+   entregaste hace un mes? :-(
+
+   La ejecución parece ser correcta... Pero dado que no puedo ya darte
+   calificación, únicamente anoto la tarea como entregada, y no entro
+   a hacer una revisión a detalle.
