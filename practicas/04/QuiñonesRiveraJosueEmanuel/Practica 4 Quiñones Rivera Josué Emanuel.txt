@@ -1,0 +1,14 @@
+Practica 4 Quiñones Rivera Josué Emanuel
+
+. Sistema operativo: Ubuntu 16.04 LTS.
+
+- Compilador: gcc (Ubuntu 5.4.1-2ubuntu1~16.04) 5.4.1 20160904
+
+- Num. de iteraciones antes del 'segmentation fault' = 33787
+
+Al ir en decremento, el segmento se rompe en -4.
+
+En incremento, todas las localidades estan en 0, incluso las inicializadas con malloc, en decremento, la -2 contiene informacion.
+
+Al cambiar el tipo de dato a caracter, el numero de iteraciones aumenta, lo cual tiene sentido debido a que el caracter en C ocupa solo 1 byte, mientras que el 'int' ocupa 4 bytes por los 16 espacios que se reservan en este caso, son 64 bytes (64 localidades).
+ Las unicas ocasiones donde hay algo diferente en memoria, es cuando la cuenta esta en decremento.
