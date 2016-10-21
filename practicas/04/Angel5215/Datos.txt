@@ -1,0 +1,41 @@
+
+
+Sistema Operativo: macOS Sierra 10.12
+Compilador: Apple LLVM version 8.0.0 (clang-800.0.38)
+
+
+-------------------------------------------------------
+CON ENTEROS
+
+datos = malloc(16 * sizeof(int))
+
+	* Iteraciones antes de segmentation fault (hacia delante): 259643 
+	* Tamaño de datos: 64 bytes
+	* Imágenes: Int001, Int002
+
+	Encontré que al comenzar las iteraciones hacia delante, los valores desde datos[0] hasta datos[15] están llenos con valores no inicializados. Pero aproximadamente 10 iteraciones después empiezan a aparecer ceros en la memoria. Hay pocas excepciones en donde aparecen valores, como en la iteración 259620 donde aparece el número -256.
+
+	* Iteraciones antes de segmentation fault (hacia atrás): 2500 
+	* Tamaño de datos: 64 bytes
+	* Imágenes: Int003, Int004, Int005, Int006
+
+	Al recorrer desde datos[15] hacia atrás, el segmentation fault ocurre más rápido, y la gran mayoría de los valores impresos no fueron inicializados.
+
+-------------------------------------------------------
+CON DOUBLES
+
+datos = malloc(16 * sizeof(double)) ; Tamaño = 128 bytes.
+
+	* Iteraciones antes de segmentation fault (hacia delante): 260893 
+	* Tamaño de datos: 128 bytes
+	* Imágenes: Dob001, Dob002
+
+	Por alguna razón, al cambiar de tipo de dato a double, se realizaron más iteraciones antes de que ocurriera el segmentation fault. Otra diferencia interesante es que ahora todo el contenido se inicializó en 0.
+
+	* Iteraciones antes de segmentation fault (hacia atrás): 1250 
+	* Tamaño de datos: 128 bytes
+	* Imágenes: Dob003, Dob004
+
+	La primer diferencia aquí es que el segmentation fault ocurrió exactamente en la mitad de iteraciones que al realizarlo con enteros (podría ser porque el tamaño de 'datos' con doubles es dos veces el tamaño de 'datos' con enteros). Además, los valores impresos no fueron inicializados y en algunos casos los datos impresos no eran números (nan).
+
+
