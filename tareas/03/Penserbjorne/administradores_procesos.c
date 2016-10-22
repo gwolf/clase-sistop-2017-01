@@ -1,3 +1,9 @@
+/**
+*   Autor: Paul Aguilar a.k.a Penserbjorne
+*   Tarea: Administracion de procesos: Algoritmos de planificacion
+*   Algoritmo implementados: FCFS
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +18,7 @@
 #define nProcesos 5
 #define MaxTiempoProcesoDuracion 10
 #define MaxTiempoProcesoInicio 10
-#define TiempoEntreProcesos 0.0
+#define TiempoEntreProcesos 0.5
 
 //  Estructura que simula ser un proceso
 struct proceso{
@@ -32,6 +38,7 @@ struct proceso procesos[nProcesos];
 struct proceso procesosFCFS[nProcesos];
 
 char* s_FCFS;  //  Resultado de como se corrieron los procesos
+char verSimulacion;
 
 void imprimirProcesos();
 void* FCFS();
@@ -40,7 +47,6 @@ void resultadosFCFS();
 int main()
 {
     int i;
-    int err;
 
     srand(time(NULL));
 
@@ -68,9 +74,14 @@ int main()
         procesosFCFS[i].tiempo_transcurrido = procesos[i].tiempo_transcurrido;
     }
 
+    printf("Desea ver \"simulados\" los procesamientos de las colas? [y\\n]: ");
+    scanf("%c",&verSimulacion);
+    //while(getchar() != '\n');
+
     // Procesamos la cola de procesos
     FCFS();
 
+    imprimirProcesos();
     resultadosFCFS();
     return 0;
 }
@@ -102,7 +113,7 @@ void* FCFS(){
         time(&tiempo_actual);
         diferencia_tiempo = difftime(tiempo_actual, tiempo_referencia);
         // HUBO UN QUANTUM!
-        if(diferencia_tiempo >= TiempoEntreProcesos){
+        if(diferencia_tiempo >= TiempoEntreProcesos || (verSimulacion != 'y' && verSimulacion != 'Y')){
             // Actualizamos las referencias de tiempo para el quantum
             time(&tiempo_referencia);
             diferencia_tiempo = 0.0;
