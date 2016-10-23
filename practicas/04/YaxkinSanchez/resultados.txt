@@ -6,7 +6,7 @@ Acerca del contenido, mostró un comportamiento muy similar al de en la clase. H
 
 Sistema operativo: Windows 7
 Compilador: mingw32-gcc-3.4.2
-Número de iteraciones logrado antes del `segmentation fault`: 4414 incrementando i, -968 decrementando i. Aunque en estos casos no mostró el mensaje de "segmentation fault", pero el programa "dejó de funcionar".
+Número de iteraciones logrado antes del `segmentation fault`: 4414 incrementando i, -968 decrementando i. Aunque en estos casos no mostró el mensaje de "segmentation fault", pero el programa "dejó de funcionar" (win3.png). 
 En este caso pude observar que había muchos más datos diferentes de cero (en ambas direcciones), especialmente los primeros 900 (en el caso negativo hubo más ceros), pero por el tamaño limitado de la terminal de Windows, no se pudo apreciar muy bien este detalle. Sin embargo, hubo algo que me llamó mucho la atención, y fue que en ciertas localidades no había datos tan al azar, sino que los datos mostraban un contenido con cierta relación entre sí (win2.png).
 
 En ambos casos:
