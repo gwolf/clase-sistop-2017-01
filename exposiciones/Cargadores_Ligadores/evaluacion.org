@@ -1,0 +1,43 @@
+#+title: Evaluación de evaluación: Cargadores y ligadores
+#+author: Gunnar Wolf
+
+Tema presentado por Sebastián Aguilar
+
+La calificación global es de *9.03*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |        7.5 |       10 |       7.5 |  8.13 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |         10 |       10 |        10 |  9.38 |
+|          7.5 |         10 |       10 |        10 |  9.38 |
+|--------------+------------+----------+-----------+-------|
+|         9.38 |       9.79 |     9.79 |      9.79 |  9.69 |
+#+TBLFM: @>$>=vmean($1..$4); f-2::@>$1..@>$4=vmean(@II..@III-1); f-2::@2$5..@13$5=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Excelente (10)
+- Material desarrollado :: Bueno (7.5)
+- Contenido :: Excelente (10)
+- Fuentes bibliográficas :: Suficiente (5)
+- Uso del tiempo :: Bueno (7.5)
+- Dominio del tema :: Excelente (10)
+- Presencia :: Excelente (10)
+- Global :: *8.75*
+
+- Comentarios ::
+  - Material enviado con muy poca antelación
+  - El material desarrollado es muy bueno, pero mencionas apenas dos
+    recursos en línea como referencia. ¡Faltan citas!
