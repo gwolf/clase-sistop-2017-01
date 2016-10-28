@@ -14,3 +14,5 @@ conceptual ilustrando los principales puntos que tocan. Tal como
 hicimos en la [tarea 01](../01/README.md), entréguenlo en formato
 electrónico, sea directamente hecho en la computadora, o fotografiando
 el mapa.
+
+La fecha de entrega es el *jueves 3 de noviembre*.
