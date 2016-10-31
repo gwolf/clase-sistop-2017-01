@@ -131,6 +131,123 @@
   que lo represente, ¿no es más claro usar un `'%d' % num` por
   ejemplo?
 
+## Miguel Vargas
+* **Archivos:** [linux_windows.py](Fuente Python)
+* **Problema elegido:** El cruce del río
+* **Calificación:** 8 × 0.8 = 6.4
+* **Comentarios:** Calificado sobre 8 por entrega extemporánea
+
+  Tu programa parte del supuesto que el número programadores de un
+  sistema es igual al de programadores del otro, pero si metes un
+  poquito de indeterminismo (o lo forzas para que haya un número
+  "legal", múltiplo de 4, pero no exactamente un L por cada W) tu
+  programa se queda detenido. Por ejemplo, yo le hice este cambio:
+
+
+        diff --git a/tareas/02/linux_windows.py b/tareas/02/linux_windows.py
+		index 5b30152..a244320 100644
+		--- a/tareas/02/linux_windows.py
+		+++ b/tareas/02/linux_windows.py
+		@@ -2,6 +2,7 @@
+		 import threading
+		 import queue
+		 import time
+		+from random import random
+		
+		 Llegaron = threading.Semaphore(0)
+		 Subir = threading.Semaphore(0)
+		@@ -54,10 +55,12 @@ if (num_programadores % 2 == 0):
+		     for i in range(num_programadores):
+				 L = programadores("TeamLinux",i)
+				 M = programadores("TeamWindos",i)
+		-        cola_linux.put(L)
+		-        cola_microsoft.put(M)
+		-        threading.Thread(target=L.run).start()
+		-        threading.Thread(target=M.run).start()
+		+        if (random() < 0.5):
+		+            cola_linux.put(L)
+		+            threading.Thread(target=L.run).start()
+		+        if (random() < 0.5):
+		+            cola_microsoft.put(M)
+		+            threading.Thread(target=M.run).start()
+		 if (num_programadores % 2 != 0):       
+			 print ("Intente con un número par de programadores para no volcar el barco")
+
+  Y la ejecución se queda detenida en algún punto intermedio:
+
+        (...)
+		El barco llega al evento, descargando...
+		Regresando a la orilla...
+		Han cruzado 12 programadores hasta ahora...
+		
+		 El barco llega y Abordan 4 programadores
+
+  Incluso ocasionalmente se detiene donde parecería que va a terminar:
+
+		El programador del TeamWindos Numero 0 espera en la fila
+		El programador del TeamWindos Numero 4 espera en la fila
+		El programador del TeamWindos Numero 5 espera en la fila
+		El programador del TeamLinux Numero 7 espera en la fila
+		El programador del TeamWindos Numero 8 espera en la fila
+		El programador del TeamLinux Numero 9 espera en la fila
+		El programador del TeamWindos Numero 9 espera en la fila
+		El programador del TeamWindos Numero 13 espera en la fila
+		El programador del TeamLinux Numero 14 espera en la fila
+		El programador del TeamWindos Numero 14 espera en la fila
+		El programador del TeamLinux Numero 15 espera en la fila
+		El programador del TeamWindos Numero 15 espera en la fila
+		El programador del TeamLinux Numero 16 espera en la fila
+		El programador del TeamWindos Numero 16 espera en la fila
+		El programador del TeamWindos Numero 17 espera en la fila
+		El programador del TeamLinux Numero 18 espera en la fila
+		El programador del TeamWindos Numero 18 espera en la fila
+		El programador del TeamWindos Numero 19 espera en la fila
+
+		 El barco llega y Abordan 4 programadores
+		El barco llega al evento, descargando...
+		Regresando a la orilla...
+
+		 Eleven Anclas 
+
+		Han cruzado 4 programadores hasta ahora...
+
+		 El barco llega y Abordan 4 programadores
+		El barco llega al evento, descargando...
+		Regresando a la orilla...
+		Han cruzado 8 programadores hasta ahora...
+
+		 El barco llega y Abordan 4 programadores
+		El barco llega al evento, descargando...
+		Regresando a la orilla...
+		Han cruzado 12 programadores hasta ahora...
+		Han pasado todos los programadores sin peleas ni arañazos
+
+  Hiciste correctamente la sincronización de las colas, esperando a su
+  respuesta empleando `cola.get()`, pero esto significa que si faltan
+  en alguna cola, se va a quedar esperando indefinidamente. Ahora,
+  ¿por qué parece terminar exitosamente? Por la siguiente validación:
+
+	    def run(self):
+        while not cola_linux.empty() and not cola_microsoft.empty():
+            self.abordar()
+            print('Han cruzado %i programadores hasta ahora...' % int(loop*2))
+        print("Han pasado todos los programadores sin peleas ni arañazos")
+
+  En el último caso, corrimos con seis en `TeamLinux` y doce en
+  `TeamWindos`. Cuando `cola_linux` quedó vacío, las condiciones de tu
+  `while` resultaban:
+
+		while not True and not False:
+
+  O lo que es lo mismo:
+
+		while False and True:
+
+  ...Dado que en una afirmación booleana, `False and` cualquier cosa
+  es falso, salió del ciclo asumiendo que había terminado... ¡Y
+  dejando varados a seis pobres windowseros, viendo a la triste balsa
+  de las pantallas azules!
+
 ## Jesús García y Andrés López
 * **Archivos:** [Tarea2.py](Fuente Python)
 * **Problema elegido:** Santa Claus
