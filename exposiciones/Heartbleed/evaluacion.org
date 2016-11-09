@@ -3,7 +3,7 @@
 
 Tema presentado por Josué Quiñones y Ángel Vázquez.
 
-La calificación global es de *8.44*
+La calificación global es de *8.79*
 
 * Evaluación grupal
 
@@ -28,11 +28,11 @@ La calificación global es de *8.44*
 * Evaluación por el docente
 
 - Originalidad del tema :: Bueno (*7.5*)
-- Material desarrollado :: Suficiente (*5*)
+- Material desarrollado :: Bueno (*7.5*)
 - Contenido :: Excelente (*10*)
 - Fuentes bibliográficas :: Bueno (*7.5*)
 - Uso del tiempo :: Excelente (*10*)
 - Dominio del tema :: Excelente (*10*)
 - Presencia :: Buena (*7.5*)
-- Global :: *8.125*
+- Global :: *8.62*
 
