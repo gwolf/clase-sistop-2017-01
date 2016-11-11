@@ -1,0 +1,27 @@
+Sistema Operativo: Microsoft Windows 7 Ultimate 6.1.7601
+
+Compilador: mingw64-gcc-3.4.2
+
+
+
+CON ENTEROS (INT).-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+Tamaño =64 bytes
+
+- Iteraciones antes de segmentation fault (hacia delante): 71
+
+Comentarios: Como se muestra en las capturas (1 y 2) fue sorpresivo que windows detuviera de tajo el proceso, ya que de alguna manera avanzando con esa cantidad de bits entrará inevitablemente en un Segmentation Fault, lo cual pretende evitar antes de que suceda.
+
+
+
+CON DOUBLES-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+ Tamaño = 128 bytes.
+
+- Iteraciones antes de segmentation fault (hacia delante): 260893 
+
+Comentarios: Es importante como ver (Capturas 3 y 4) que dentro de muchas direcciones de memoria hay ceros, pero la segmentation fault terminó en la misma palabra 71, pero como podemos notar en la captura tardó un orden importante de segundo menos en resultar la acción (2.276 para ser exactos).
+
+Se nota claramente como avanzar con un tamaño de 128 Bytes es más rapido que con un entero, esto gracias al sizeof.
+
+
