@@ -1,0 +1,38 @@
+#+title: Evaluación de exposición: Buffer overflows
+#+author: Gunnar Wolf
+
+Tema presentado por David Pérez
+
+La calificación global es de *7.25*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |        7.5 |      7.5 |       7.5 |  7.50 |
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |        5 |         5 |  7.50 |
+|           10 |         10 |       10 |       7.5 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |        7.5 |        5 |       7.5 |  6.88 |
+|--------------+------------+----------+-----------+-------|
+|         9.55 |       9.55 |     8.86 |      8.18 |  9.04 |
+#+TBLFM: @II$5..@III-1$5=vmean($1..$4); f-2::@>$1..@>$4=vmean(@II..@III-1); f-2::@>$>=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Suficiente (5)
+- Material desarrollado :: Suficiente (5)
+- Contenido :: Bueno (7.5)
+- Fuentes bibliográficas :: Suficiente (5)
+- Uso del tiempo :: Bueno (7.5)
+- Dominio del tema :: Bueno (7.5)
+- Presencia :: Bueno (7.5)
+- Global :: *6.5*
+
