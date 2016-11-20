@@ -1,3 +1,4 @@
+#
 #MICRO SISTEMA DE ARCHIVOS
 #participantes:
 	# Max Armando Sanchez Hernandez

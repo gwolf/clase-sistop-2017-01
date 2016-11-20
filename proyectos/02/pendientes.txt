@@ -1,0 +1,26 @@
+Listos:
+lsd ya funciona
+cat ya funciona
+help ya funciona
+del funciona ineficientemente ver nota1
+new funciona ineficientemente ver nota2
+Pendientes:
+add cadena > archivo
+add cadena >> archivo
+
+Nota1 :
+del funciona solo modificando la tabla de archivos
+En realidad no modifica el archivo por lo que se 
+desperdicia espacio.
+Sugerencia de resolucion: Es probable que no sea necesario
+corregir esto si la asignacion de espacio en el sistema es
+eficiente, marcando solo al archivo y con new verificar si 
+hay archivos borrados y sobre escribiendo con caracteres
+vacios, todo lo que abarcaba el archivo ya borrado,
+VERIFICAR SI LOS REQUERIMIENTOS ESPECIFICA ESTO
+
+Nota2:
+new funciona pero verifica si puede ahorrar espacio usando
+archivos vacios para expanderse
+Sugerencia de resolucion: usar los archivos vacios.
+VERIFICAR SI LOS REQUERIMIENTOS ESPECIFICA ESTO
