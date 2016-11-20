@@ -1,0 +1,38 @@
+#+title: Evaluación de exposición: Heartbleed
+#+author: Gunnar Wolf
+
+Tema presentado por Josué Quiñones y Ángel Vázquez.
+
+La calificación global es de *8.79*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|           10 |          5 |      7.5 |       7.5 |  7.50 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |         10 |      7.5 |       7.5 |  8.75 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|          7.5 |          5 |        5 |       7.5 |  6.25 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |        7.5 |       10 |        10 |  9.38 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|--------------+------------+----------+-----------+-------|
+|         9.77 |       8.86 |     8.86 |      9.32 |  9.20 |
+#+TBLFM: @II$5..@III-1$5=vmean($1..$4); f-2::@>$1..@>$4=vmean(@II..@III-1); f-2::@>$>=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Bueno (*7.5*)
+- Material desarrollado :: Bueno (*7.5*)
+- Contenido :: Excelente (*10*)
+- Fuentes bibliográficas :: Bueno (*7.5*)
+- Uso del tiempo :: Excelente (*10*)
+- Dominio del tema :: Excelente (*10*)
+- Presencia :: Buena (*7.5*)
+- Global :: *8.62*
+
