@@ -109,7 +109,14 @@ namespace MicroFilesystem
                         }
                         break;
                     case "history":
-                        Console.WriteLine("history llamada");
+                        if (input.Length == 1)
+                        {
+                            History();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando no acepta parámetros.");
+                        }
                         break;
                     case "remove":
                         Console.WriteLine("remove");
@@ -133,83 +140,6 @@ namespace MicroFilesystem
 
             }
             while (userInput != "exit");
-
-            /*do
-            {
-                Console.Write(RutaActual + "> ");
-                EntradaDelTeclado = Console.ReadLine();
-                string[] entrada = EntradaDelTeclado.Split(' ');
-
-                if (comandosValidos.Contains(entrada[0].ToLower()))
-                    historial.Add(entrada[0].ToLower());
-
-                switch (entrada[0].ToLower())
-                {
-                    case "dir":
-                        if (entrada.Length == 1)
-                            Dir();
-                        else
-                            Dir(entrada);
-                        break;
-                    case "cd":
-                        try
-                        {
-                            Cd(entrada);
-                        }
-                        catch (NotEnoughParametersException nepe)
-                        {
-                            Console.WriteLine("\tError: " + nepe.Message);
-                        }
-                        break;
-                    case "touch":
-                        try
-                        {
-                            Touch(entrada);
-                        }
-                        catch (NotEnoughParametersException nepe)
-                        {
-                            Console.WriteLine("\tError: " + nepe.Message);
-                        }
-                        catch (FileAlreadyExistsException faee)
-                        {
-                            Console.WriteLine("\tError: " + faee.Message);
-                        }
-                        break;
-                    case "move":
-                        try
-                        {
-                            Move(entrada);
-                        }
-                        catch (NotEnoughParametersException nepe)
-                        {
-                            Console.WriteLine("\tError: " + nepe.Message);
-                        }
-                        break;
-                    case "cls":
-                        Cls();
-                        break;
-                    case "history":
-                        History();
-                        break;
-                    case "exit":
-                        Exit(5);
-                        break;
-                    default:
-                        Console.WriteLine("\tIngresa un comando válido");
-                        break;
-                }
-            }
-            while (EntradaDelTeclado.ToLower() != "exit"); */
-
-            /*Console.WriteLine("El archivo zip original se eliminará...");
-            Console.ReadKey();
-            File.Delete(filesystemPath + "FileSystem.zip");
-            Console.WriteLine("El archivo zip nuevo se está generando...");
-            Console.ReadKey();
-            ZipFile.CreateFromDirectory(filesystemPath + "FileSystem", filesystemPath + "FileSystem.zip");
-            Console.WriteLine("El archivo temporal está a punto de destruirse...");
-            Console.ReadKey();
-            Directory.Delete(filesystemPath + "FileSystem", true);*/
         }
 
         public void CreateFile(string[] input)
@@ -361,7 +291,9 @@ namespace MicroFilesystem
 
         public void History()
         {
-
+            Console.WriteLine("Lista de comandos ingresados: ");
+            foreach (var entry in history)
+                Console.WriteLine("\t>> " + entry);
         }
 
         public void Remove()
