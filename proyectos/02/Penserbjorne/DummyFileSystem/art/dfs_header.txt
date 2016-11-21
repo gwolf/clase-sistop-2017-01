@@ -15,7 +15,3 @@
          /____/                              
 
 	by Penserbjorne
-	
-#Dummy File System
-
-Micro sistema de archivos creado para la materia Sistemas Operativos. Facultad de Ingenieria, UNAM. Semestre 2017-1.
