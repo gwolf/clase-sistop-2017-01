@@ -6,6 +6,10 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include "Colors.h"
+#include <string>
+
+using namespace std;
 
 class Draw
 {
@@ -14,13 +18,14 @@ class Draw
         virtual ~Draw();
 
         // Funcion para diujar el titulo del sistema
-        void drawDFS();
+        void drawHeader(string header, string optionalHeader);
         // Funcion para la parte superior del marco
         void drawTop(int divideBy);
         // Funcion para la parte inferior del marco
         void drawBottom(int divideBy);
     protected:
     private:
+      Colors colors;
 };
 
 #endif // DRAW_H

@@ -16,28 +16,28 @@ class Colors
         virtual ~Colors();
 
         // Texto
-        void FRED(string text);
-        void FGRN(string text);
-        void FYEL(string text);
-        void FBLU(string text);
-        void FMAG(string text);
-        void FCYN(string text);
-        void FWHT(string text);
+        string FRED(string text);
+        string FGRN(string text);
+        string FYEL(string text);
+        string FBLU(string text);
+        string FMAG(string text);
+        string FCYN(string text);
+        string FWHT(string text);
 
         // Fondo
-        void BRED(string text);
-        void BGRN(string text);
-        void BYEL(string text);
-        void BBLU(string text);
-        void BMAG(string text);
-        void BCYN(string text);
-        void BWHT(string text);
+        string BRED(string text);
+        string BGRN(string text);
+        string BYEL(string text);
+        string BBLU(string text);
+        string BMAG(string text);
+        string BCYN(string text);
+        string BWHT(string text);
 
         // Otros
-        void FBOLD(string text);
-        void FUNDL(string text);
-        void FBLINK(string text);
-        void FHIDDEN(string text);
+        string FBOLD(string text);
+        string FUNDL(string text);
+        string FBLINK(string text);
+        string FHIDDEN(string text);
     protected:
     private:
 };

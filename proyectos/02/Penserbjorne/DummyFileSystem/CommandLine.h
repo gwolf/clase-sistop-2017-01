@@ -23,6 +23,8 @@ class CommandLine
         void msgError(string msg);
         // Valida que exista un usuario en la sesion
         bool validateUser();
+        // Muestra la informacion de un commando generico
+        void genericCommand(string header, string optionalHeader,string fileContent);
         // Obtiene el comando introducido y lo ejecuta
         int getAndExecCommand(string command);
         // Interprete de comandos

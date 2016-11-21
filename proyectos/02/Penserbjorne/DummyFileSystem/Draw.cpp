@@ -4,11 +4,14 @@
 */
 
 #include "Draw.h"
+#include "Colors.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 
-#define FRAME_WIDTH 78
+// Referencia https://en.wikipedia.org/wiki/Box-drawing_character#Unicode
+// Referencia http://patorjk.com/software/taag/#p=display&f=Slant&t=Dummy%20File%0ASystem
+#define FRAME_WIDTH 80
 #define FRAME_LINE "\u2550"
 #define FRAME_TOP_LEFT "\u2554"
 #define FRAME_TOP_RIGHT "\u2557"
@@ -28,20 +31,18 @@ Draw::~Draw()
 }
 
 // Funcion para diujar el titulo del sistema
-void Draw::drawDFS(){
+void Draw::drawHeader(string header, string optionalHeader){
     // Cargamos el header para imprimirlo
-    string header_dir = "art_dfs_header.txt";
     string line;
-    ifstream header(header_dir.c_str());
+    ifstream fheader(header.c_str());
     // Abrimos el header
-    if(header){
+    if(fheader){
         // Imprimimos el header
-        while(getline(header,line)){
-            cout<<line<<endl;
+        while(getline(fheader,line)){
+            cout<<colors.FRED(line)<<endl;
         }
     }else{  // En caso de no poder abrir el archivo imprimimos a secas
-        cout<<"\t----------Dummy File System----------\n";
-        cout<<"\t-----------by Penserbjorne-----------\n\n";
+        cout<<colors.FRED(optionalHeader);
     }
 }
 

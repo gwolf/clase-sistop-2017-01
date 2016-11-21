@@ -52,76 +52,76 @@ Colors::~Colors()
     //dtor
 }
 
-void Colors::FRED(string text){
-  cout<<KRED<<text<<RST;
+string Colors::FRED(string text){
+  return text = KRED + text + RST;
 }
 
-void Colors::FGRN(string text){
-  cout<<KGRN<<text<<RST;
+string Colors::FGRN(string text){
+  return text = KGRN + text + RST;
 }
 
-void Colors::FYEL(string text){
-  cout<<KYEL<<text<<RST;
+string Colors::FYEL(string text){
+  return text = KYEL + text + RST;
 }
 
-void Colors::FBLU(string text){
-  cout<<KBLU<<text<<RST;
+string Colors::FBLU(string text){
+  return text = KBLU + text + RST;
 }
 
-void Colors::FMAG(string text){
-  cout<<KMAG<<text<<RST;
+string Colors::FMAG(string text){
+  return text = KMAG + text + RST;
 }
 
-void Colors::FCYN(string text){
-  cout<<KCYN<<text<<RST;
+string Colors::FCYN(string text){
+  return text = KCYN + text + RST;
 }
 
-void Colors::FWHT(string text){
-  cout<<KWHT<<text<<RST;
+string Colors::FWHT(string text){
+  return text = KWHT + text + RST;
 }
 
 // Fondo
-void Colors::BRED(string text){
-  cout<<KBRED<<text<<RST;
+string Colors::BRED(string text){
+  return text = KBRED + text + RST;
 }
 
-void Colors::BGRN(string text){
-  cout<<KBGRN<<text<<RST;
+string Colors::BGRN(string text){
+  return text = KBGRN + text + RST;
 }
 
-void Colors::BYEL(string text){
-  cout<<KBYEL<<text<<RST;
+string Colors::BYEL(string text){
+  return text = KBYEL + text + RST;
 }
 
-void Colors::BBLU(string text){
-  cout<<KBBLU<<text<<RST;
+string Colors::BBLU(string text){
+  return text = KBBLU + text + RST;
 }
 
-void Colors::BMAG(string text){
-  cout<<KBMAG<<text<<RST;
+string Colors::BMAG(string text){
+  return text = KBMAG + text + RST;
 }
 
-void Colors::BCYN(string text){
-  cout<<KBCYN<<text<<RST;
+string Colors::BCYN(string text){
+  return text = KBCYN + text + RST;
 }
 
-void Colors::BWHT(string text){
-  cout<<KBWHT<<text<<RST;
+string Colors::BWHT(string text){
+  return text = KBWHT + text + RST;
 }
 
 // Otros
-void Colors::FBOLD(string text){
-  cout<<BOLD<<text<<RST;
+string Colors::FBOLD(string text){
+  return text = BOLD + text + RST;
 }
 
-void Colors::FUNDL(string text){
-  cout<<UNDL<<text<<RST;
+string Colors::FUNDL(string text){
+  return text = UNDL + text + RST;
 }
 
-void Colors::FBLINK(string text){
-  cout<<BLINK<<text<<RST;
+string Colors::FBLINK(string text){
+  return text = BLINK + text + RST;
 }
 
-void Colors::FHIDDEN(string text){
-  cout<<HIDDEN<<text<<RST;
+string Colors::FHIDDEN(string text){
+  return text = HIDDEN + text + RST;
 }
