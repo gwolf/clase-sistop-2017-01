@@ -72,7 +72,14 @@ namespace MicroFilesystem
                         }
                         break; 
                     case "createfile":
-                        Console.WriteLine("createfile");
+                        if(input.Length >= 2)
+                        {
+                            CreateFile(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando requiere especificar el nombre del archivo a crear.");
+                        }
                         break;
                     case "read":
                         Console.WriteLine("read");
@@ -197,9 +204,51 @@ namespace MicroFilesystem
             Directory.Delete(filesystemPath + "FileSystem", true);*/
         }
 
-        public void CreateFile()
+        public void CreateFile(string[] input)
         {
+            string filename = "";
+            for (int i = 1; i < input.Length; i++) 
+            {
+                //  Al primer caracter no se le agrega un espacio
+                if(i == 1)
+                {
+                    filename += input[i];
+                }
+                //  Si al archivo se le agrega una extensión.
+                else if(input[i].StartsWith("."))
+                {
+                    filename += input[i];
+                }
+                //  Si el archivo no contiene extensión
+                else
+                {
+                    filename += " " + input[i];
+                }
+            }
 
+            if (filename.Length > 15)
+            {
+                Console.WriteLine("El límite de nombre de un archivo son 15 caracteres (incluyendo espacios y extensión).");
+                return;
+            }
+
+            if(File.Exists(filesystemPath + @"FileSystem\" + filename))
+            {
+                Console.WriteLine("Ya existe un archivo con este nombre.");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    var file = File.Create(filesystemPath + @"FileSystem\" + filename);
+                    file.Close();
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("No se pudo crear el archivo. Vuelve a intentarlo más tarde.");
+                }
+            }
         }
 
         public void Read()
@@ -224,7 +273,7 @@ namespace MicroFilesystem
             Console.WriteLine("***************************************************************************************");
 
             Console.WriteLine("> createfile [nombre_archivo]");
-            Console.WriteLine("\tPermite crear un archivo especificando su nombre (no más de 15 letras).\n");
+            Console.WriteLine("\tPermite crear un archivo especificando su nombre (no más de 15 caracteres).\n");
 
             Console.WriteLine("> clear");
             Console.WriteLine("\tLimpia la pantalla.\n");
