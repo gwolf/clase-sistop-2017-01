@@ -126,7 +126,14 @@ namespace MicroFilesystem
                         }
                         break;
                     case "remove":
-                        Console.WriteLine("remove");
+                        if (input.Length >= 2)
+                        {
+                            Remove(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando requiere especificar el nombre del archivo a borrar.");
+                        }
                         break;
                     case "exit":
                         if(input.Length == 1)
@@ -218,7 +225,7 @@ namespace MicroFilesystem
                 }
             }
 
-            //  Si el archivo a editar no existe.
+            //  Si el archivo a leer no existe.
             if (!File.Exists(filesystemPath + @"FileSystem\" + filename))
             {
                 Console.WriteLine("El archivo no existe.");
@@ -226,11 +233,19 @@ namespace MicroFilesystem
             }
             else
             {
-                StreamReader reader = new StreamReader(filesystemPath + @"FileSystem\" + filename);
-                string contents = reader.ReadToEnd();
-                reader.Close();
+                try
+                {
+                    StreamReader reader = new StreamReader(filesystemPath + @"FileSystem\" + filename);
+                    string contents = reader.ReadToEnd();
+                    reader.Close();
 
-                Console.WriteLine(contents);
+                    Console.WriteLine(contents);
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("No se pudo leer el contenido del archivo.");
+                    return;
+                }
             }
         }
 
@@ -336,9 +351,46 @@ namespace MicroFilesystem
                 Console.WriteLine("\t>> " + entry);
         }
 
-        public void Remove()
+        public void Remove(string[] input)
         {
+            string filename = "";
+            for (int i = 1; i < input.Length; i++)
+            {
+                //  Al primer caracter no se le agrega un espacio
+                if (i == 1)
+                {
+                    filename += input[i];
+                }
+                //  Si al archivo se le agrega una extensión.
+                else if (input[i].StartsWith("."))
+                {
+                    filename += input[i];
+                }
+                //  Si el archivo no contiene extensión
+                else
+                {
+                    filename += " " + input[i];
+                }
+            }
 
+            //  Si el archivo a borrar no existe.
+            if (!File.Exists(filesystemPath + @"FileSystem\" + filename))
+            {
+                Console.WriteLine("El archivo no existe.");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    File.Delete(filesystemPath + @"FileSystem\" + filename);
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("No se pudo borrar el archivo.");
+                    return;
+                }
+            }
         }
 
         public void Exit()
