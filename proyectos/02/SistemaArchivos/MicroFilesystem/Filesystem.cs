@@ -60,21 +60,30 @@ namespace MicroFilesystem
                         {
                             Console.WriteLine("\t >>[{0}]", c);
                         }
-                        break;*/ 
+                        break;*/
+                    case "clear":
+                        break; 
                     case "createfile":
                         Console.WriteLine("createfile");
                         break;
                     case "read":
                         Console.WriteLine("read");
                         break;
-                    case "writeto":
+                    case "edit":
                         Console.WriteLine("writeto");
                         break;
                     case "list":
                         Console.WriteLine("list");
                         break;
                     case "help":
-                        Console.WriteLine("help");
+                        if(input.Length == 1)
+                        {
+                            Help();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando no acepta parámetros.");
+                        }
                         break;
                     case "history":
                         Console.WriteLine("history llamada");
@@ -88,7 +97,7 @@ namespace MicroFilesystem
                     case "":
                         break;
                     default:
-                        Console.WriteLine("\tIngresa un comando válido.");
+                        Console.WriteLine("Comando no válido. Ingresa 'help' para ver una lista de los comandos disponibles.");
                         break;
                 }
 
@@ -200,7 +209,38 @@ namespace MicroFilesystem
 
         public void Help()
         {
+            Console.WriteLine("***************************************************************************************");
+            Console.WriteLine("*****{0,36}AYUDA{0,36}*****", "");
+            Console.WriteLine("***************************************************************************************");
 
+            Console.WriteLine("> createfile [nombre_archivo]");
+            Console.WriteLine("\tPermite crear un archivo especificando su nombre (no más de 15 letras).\n");
+
+            Console.WriteLine("> clear");
+            Console.WriteLine("\tLimpia la pantalla.\n");
+
+            Console.WriteLine("> read [nombre_archivo]");
+            Console.WriteLine("\tDespliega todo el contenido de un archivo en pantalla, si es que existe.\n");
+
+            Console.WriteLine("> edit [nombre_archivo]");
+            Console.WriteLine("\tPermite editar el contenido de un archivo, si es que existe.\n");
+
+            Console.WriteLine("> list");
+            Console.WriteLine("\tLista los archivos contenidos dentro del directorio.\n");
+
+            Console.WriteLine("> help");
+            Console.WriteLine("\tDespliega una lista de comandos disponibles.\n");
+
+            Console.WriteLine("> history");
+            Console.WriteLine("\tMuestra una lista de todos los comandos ingresados.\n");
+
+            Console.WriteLine("> remove [nombre_archivo]");
+            Console.WriteLine("\tElimina un archivo (especificando su nombre), si es que existe.\n");
+
+            Console.WriteLine(">> exit");
+            Console.WriteLine("\tTermina la ejecución del programa y guarda todos los cambios.\n");
+
+            Console.WriteLine("***************************************************************************************");
         }
 
         public void History()
@@ -232,7 +272,7 @@ namespace MicroFilesystem
             commands.Add("createfile");     //  Permite crear archivos nuevos
             commands.Add("clear");          //  Limpiar la pantalla
             commands.Add("read");           //  Leer contenido de archivos
-            commands.Add("writeto");        //  Escribir en archivos
+            commands.Add("edit");           //  Editar un archivo
             commands.Add("list");           //  Listar subdirectorios y archivos
             commands.Add("help");           //  Imprime lista de comandos válidos
             commands.Add("history");        //  Historial de comandos ingresados
