@@ -13,9 +13,12 @@ class Draw
         Draw();
         virtual ~Draw();
 
+        // Funcion para diujar el titulo del sistema
         void drawDFS();
-        void drawTop();
-        void drawBottom();
+        // Funcion para la parte superior del marco
+        void drawTop(int divideBy);
+        // Funcion para la parte inferior del marco
+        void drawBottom(int divideBy);
     protected:
     private:
 };

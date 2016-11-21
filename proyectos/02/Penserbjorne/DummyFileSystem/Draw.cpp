@@ -27,6 +27,7 @@ Draw::~Draw()
     //dtor
 }
 
+// Funcion para diujar el titulo del sistema
 void Draw::drawDFS(){
     // Cargamos el header para imprimirlo
     string header_dir = "art_dfs_header.txt";
@@ -38,16 +39,19 @@ void Draw::drawDFS(){
         while(getline(header,line)){
             cout<<line<<endl;
         }
-    }else{
+    }else{  // En caso de no poder abrir el archivo imprimimos a secas
         cout<<"\t----------Dummy File System----------\n";
         cout<<"\t-----------by Penserbjorne-----------\n\n";
     }
 }
 
-void Draw::drawTop(short int divideBy){
+// Funcion para la parte superior del marco
+void Draw::drawTop(int divideBy){
   short int i;
+  // Calculamos el tamaño del marco
   short int width = FRAME_WIDTH / divideBy;
 
+  // Imprimimos la parte del marco
   cout<<FRAME_TOP_LEFT;
   for( i = 0; i < width; i++){
     cout<<FRAME_LINE;
@@ -55,10 +59,13 @@ void Draw::drawTop(short int divideBy){
   cout<<FRAME_TOP_RIGHT<<endl;
 }
 
-void Draw::drawBottom(short int divideBy){
+// Funcion para la parte inferior del marco
+void Draw::drawBottom(int divideBy){
   short int i;
+  // Calculamos el tamaño del marco
   short int width = FRAME_WIDTH / divideBy;
 
+  // Imprimimos la parte del marco
   cout<<FRAME_BOTTOM_LEFT;
   for( i = 0; i < width; i++){
     cout<<FRAME_LINE;
