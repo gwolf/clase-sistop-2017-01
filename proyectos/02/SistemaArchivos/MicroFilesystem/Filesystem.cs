@@ -24,7 +24,7 @@ namespace MicroFilesystem
 
             if(File.Exists(filesystemPath + "FileSystem.zip"))
             {
-                //ZipFile.ExtractToDirectory(filesystemPath + "FileSystem.zip", filesystemPath + "FileSystem");
+                ZipFile.ExtractToDirectory(filesystemPath + "FileSystem.zip", filesystemPath + "FileSystem");
             }
             else
             {
@@ -62,6 +62,14 @@ namespace MicroFilesystem
                         }
                         break;*/
                     case "clear":
+                        if(input.Length == 1)
+                        {
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando no acepta parámetros.");
+                        }
                         break; 
                     case "createfile":
                         Console.WriteLine("createfile");
@@ -92,7 +100,14 @@ namespace MicroFilesystem
                         Console.WriteLine("remove");
                         break;
                     case "exit":
-                        Console.WriteLine("EXIT");
+                        if(input.Length == 1)
+                        {
+                            Exit();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando no acepta parámetros.");
+                        }
                         break;
                     case "":
                         break;
@@ -183,11 +198,6 @@ namespace MicroFilesystem
         }
 
         public void CreateFile()
-        {
-
-        }
-
-        public void Clear()
         {
 
         }
