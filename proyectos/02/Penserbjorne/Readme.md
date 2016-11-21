@@ -1,5 +1,4 @@
-
-
+```
     ____                                     _______ __   
    / __ \__  ______ ___  ____ ___  __  __   / ____(_) /__
   / / / / / / / __ `__ \/ __ `__ \/ / / /  / /_  / / / _ \
@@ -11,8 +10,8 @@
 /____/\__, /____/\__/\___/_/ /_/ /_/                      
      /____/                                               
 
+```
 
-
- #Dummy File System
+#Dummy File System
 
 Micro sistema de archivos creado para la materia Sistemas Operativos. Facultad de Ingenieria, UNAM. Semestre 2017-1.
