@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -54,13 +55,6 @@ namespace MicroFilesystem
 
                 switch(input[0])
                 {
-                    /* case "test":
-                        Console.WriteLine("[{0}]", userInput);
-                        foreach (string c in input)
-                        {
-                            Console.WriteLine("\t >>[{0}]", c);
-                        }
-                        break;*/
                     case "clear":
                         if(input.Length == 1)
                         {
@@ -85,7 +79,14 @@ namespace MicroFilesystem
                         Console.WriteLine("read");
                         break;
                     case "edit":
-                        Console.WriteLine("writeto");
+                        if (input.Length >= 2)
+                        {
+                            Edit(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando requiere especificar el nombre del archivo a editar.");
+                        }
                         break;
                     case "list":
                         if (input.Length == 1)
@@ -263,9 +264,45 @@ namespace MicroFilesystem
 
         }
 
-        public void WriteTo()
+        public void Edit(string[] input)
         {
+            string filename = "";
+            for (int i = 1; i < input.Length; i++)
+            {
+                //  Al primer caracter no se le agrega un espacio
+                if (i == 1)
+                {
+                    filename += input[i];
+                }
+                //  Si al archivo se le agrega una extensión.
+                else if (input[i].StartsWith("."))
+                {
+                    filename += input[i];
+                }
+                //  Si el archivo no contiene extensión
+                else
+                {
+                    filename += " " + input[i];
+                }
+            }
 
+            //  Si el archivo a editar no existe.
+            if(!File.Exists(filesystemPath + @"FileSystem\" + filename))
+            {
+                Console.WriteLine("El archivo no existe.");
+                return;
+            }
+            else
+            {
+                //  Invoca al bloc de notas de Windows para permitir la escritura en el archivo.
+                Process notepad = new Process();
+                notepad.StartInfo = new ProcessStartInfo(@"notepad.exe", (filesystemPath + @"FileSystem\" + filename));
+
+                Console.WriteLine("La ejecución del programa continuará una vez que el bloc de notas se haya cerrado.");
+                notepad.Start();
+                notepad.WaitForExit();
+                Console.WriteLine("Resumiendo la ejecución del programa...");
+            }
         }
 
         public void List()
