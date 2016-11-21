@@ -88,7 +88,14 @@ namespace MicroFilesystem
                         Console.WriteLine("writeto");
                         break;
                     case "list":
-                        Console.WriteLine("list");
+                        if (input.Length == 1)
+                        {
+                            List();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando no acepta parámetros.");
+                        }
                         break;
                     case "help":
                         if(input.Length == 1)
@@ -263,7 +270,20 @@ namespace MicroFilesystem
 
         public void List()
         {
+            var fileList = Directory.EnumerateFiles(filesystemPath + @"FileSystem\");
 
+            if(fileList.Count() == 0)
+            {
+                Console.WriteLine("No hay archivos creados.");
+            }
+            else
+            {
+                Console.WriteLine("Archivos:");
+                foreach (var entry in fileList)
+                {
+                    Console.WriteLine("\t>> {0}", entry.Substring(entry.LastIndexOf(@"\") + 1));
+                }
+            }
         }
 
         public void Help()
