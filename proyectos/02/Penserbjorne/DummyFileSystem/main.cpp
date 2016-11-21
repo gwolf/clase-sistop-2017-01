@@ -1,11 +1,11 @@
 #include <iostream>
-#include <Draw.h>
+#include "CommandLine.h"
 
 using namespace std;
 
 int main()
 {
-    Draw artist;
-    artist.drawDFS();
+    CommandLine cmd;
+    cmd.run();
     return 0;
 }
