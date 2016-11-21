@@ -76,7 +76,14 @@ namespace MicroFilesystem
                         }
                         break;
                     case "read":
-                        Console.WriteLine("read");
+                        if (input.Length >= 2)
+                        {
+                            Read(input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Este comando requiere especificar el nombre del archivo a leer.");
+                        }
                         break;
                     case "edit":
                         if (input.Length >= 2)
@@ -189,9 +196,42 @@ namespace MicroFilesystem
             }
         }
 
-        public void Read()
+        public void Read(string[] input)
         {
+            string filename = "";
+            for (int i = 1; i < input.Length; i++)
+            {
+                //  Al primer caracter no se le agrega un espacio
+                if (i == 1)
+                {
+                    filename += input[i];
+                }
+                //  Si al archivo se le agrega una extensión.
+                else if (input[i].StartsWith("."))
+                {
+                    filename += input[i];
+                }
+                //  Si el archivo no contiene extensión
+                else
+                {
+                    filename += " " + input[i];
+                }
+            }
 
+            //  Si el archivo a editar no existe.
+            if (!File.Exists(filesystemPath + @"FileSystem\" + filename))
+            {
+                Console.WriteLine("El archivo no existe.");
+                return;
+            }
+            else
+            {
+                StreamReader reader = new StreamReader(filesystemPath + @"FileSystem\" + filename);
+                string contents = reader.ReadToEnd();
+                reader.Close();
+
+                Console.WriteLine(contents);
+            }
         }
 
         public void Edit(string[] input)
