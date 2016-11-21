@@ -15,3 +15,7 @@
 #Dummy File System
 
 Micro sistema de archivos creado para la materia Sistemas Operativos. Facultad de Ingenieria, UNAM. Semestre 2017-1.
+
+##Compilar y Ejecutar
+
+Solo es necesario escribir en la terminal ``./build.sh``
