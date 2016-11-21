@@ -14,6 +14,7 @@ using namespace std;
 
 enum commands{
   NO_COMMAND = -1,
+  ABOUT,
   EXIT,
   HELP,
   USAGE
@@ -90,7 +91,14 @@ int CommandLine::getAndExecCommand(string command){
   // Lo convertimos a minusculas
   transform(commandEval.begin(), commandEval.end(), commandEval.begin(), ::tolower);
 
-  if(commandEval == "exit"){
+  if(commandEval == "about"){
+    string header = "art_dfs_header.txt";
+    string optionalHeader = "\t\t\t--------Dummy File System--------\n";
+          optionalHeader += "\t\t\t----------Acerca de DFS----------\n\n";
+    string fileContent = "info_about.txt";
+    this->genericCommand(header, optionalHeader,fileContent);
+    return USAGE;
+  }else if(commandEval == "exit"){
     return EXIT;
   }else if(commandEval == "help"){
     string header = "art_dfs_help.txt";
@@ -102,10 +110,10 @@ int CommandLine::getAndExecCommand(string command){
   }else if(commandEval == "usage"){
     string header = "art_dfs_usage.txt";
     string optionalHeader = "\t\t\t--------Dummy File System--------\n";
-          optionalHeader += "\t\t\t--------------Ayuda--------------\n\n";
+          optionalHeader += "\t\t\t----------Manual de Uso----------\n\n";
     string fileContent = "info_usage.txt";
     this->genericCommand(header, optionalHeader,fileContent);
-    return HELP;
+    return USAGE;
   }else{
     this->msgError(colors.BGRN(commandEvalOriginal) + " no es un comando.");
     return NO_COMMAND;

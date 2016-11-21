@@ -2,5 +2,8 @@ Colors.o
 CommandLine.o
 dfs
 Draw.o
+DummyFileSystem.o
 main.o
+Template.h
+Template.cpp
 *.~

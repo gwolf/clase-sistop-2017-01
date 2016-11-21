@@ -2,6 +2,7 @@
 
   Esta informacion lista todos los comandos disponibles asi como su descripcion.
 
+  about - Muestra informacion sobre FDS.
   exit - Sale del sistema.
   help - Comando que despliega la ayuda general del sistema.
   usage - Pequeño tutorial de como usar el sistema de ficheros.
