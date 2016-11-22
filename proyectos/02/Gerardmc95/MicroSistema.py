@@ -1,10 +1,10 @@
 #Mendoza Colmenares Gerardo
 #Segundo proyecto basado en creación de archivos a partir de un zip
 
-#En este segundo archivo se añadirá el cuerpo de las funciones
+#En este tercer archivo se comentará el cuerpo de las funciones para saber como se hace todo
 
 #CORRECCIONES
-#Lograr el objetivo de la función
+#Explicar el uso de la función
 
 
 #!/usr/bin/python
@@ -16,14 +16,15 @@ def main():
 	global ciclo, dentroDe
 	ciclo = 0
 	dentroDe = 0
-	os.system("clear")
+	#Con 'grep'  buscamos dentro de los archivos las líneas que concuerdan con un patrón
 	os.system("ls | grep WOLF.zip > tmp")
+	#Abrimos el archivo tmp en modo lectura
 	archivo = open("tmp", "r")
-
 	#Buscamos si existe el zip donde se trabajará y se descomprimirá
 	find_zip = archivo.readline()
+
 	if find_zip == "WOLF.zip\n":
-		print("El zip existe!")
+		print("¡El zip existe!")
 		#Descomprimir zip
 		unzip(find_zip)
 		#'chdir' para cambiar de directorio de trabajo
@@ -33,7 +34,7 @@ def main():
 		print("|----------==========----------==========----------|")
 		print("\tnewdir, newfile, removedir, removefile\nedit, read, goin, goback, list-items\nexit, help")
 		print("|----------==========----------==========----------|")
-		#Mientras no pida salir, la terminla seguirá pidiendo comandos
+		#Mientras no pida salir, la terminal seguirá pidiendo comandos
 		while ciclo != 1:		
 			comando = input("root@fi_unam$ ")
 			if comandos(comando):
@@ -41,6 +42,7 @@ def main():
 			else:
 				print("¡Comando invalido!")
 				print("Escribe 'help' para saber mas acerca de los comandos o intenta de nuevo con los de arriba\n")
+
 		#rm -rf tmp usado para borrar y '..' para regresar un directorio, comprimimos la carpeta de nuevo y borramos la
 		#versión de la carpeta 'WOLF' pasada
 		os.system("rm -rf tmp")
@@ -53,19 +55,21 @@ def main():
 		print("¡Archivo no encontrado!\n")
 
 #----------------------------------------------------------------------------------------------------------------------------
-#AÑADIR DESCRIPCIÓN EL CUERPO DE LA FUNCIÓN
+#AÑADIR DESCRIPCIÓN AL CUERPO DE LA FUNCIÓN
 #----------------------------------------------------------------------------------------------------------------------------
 
 #Descomprimir el zip existente
 def unzip(file_zip):
+	#Revisamos si existe el zip
 	if len(file_zip) > 0:
 		os.system("unzip WOLF.zip")
-		print("Se descomprimio el zip correctamente")
+		print("¡Se descomprimio el zip correctamente!")
 	else:
 		print("No existe el zip WOLF!")
 
 #Verificar que comando se mando a llamar
 def comandos(comando):
+	#Comprobamos que el comando recibido sea correcto
 	if comando == "newdir" or comando == "newfile" or comando == "removefile" or comando == "removedir" or comando == "edit" or comando == "read" or comando == "goin" or comando == "goback" or comando == "list-items" or comando == "exit" or comando == "help":
 		return True
 	else:
@@ -75,9 +79,11 @@ def comandos(comando):
 def nuevaCarpeta():
 	print("¿Cómo se va a llamar la carpeta?\nMáximo 12 caracteres")
 	user_input = input(">> ")
+	#'getcwd' para conocer el directorio actual
 	path = os.getcwd()
-
+	#Comprobamos que la longitud permitida sea correcta
 	if len(user_input) < 12:
+		#Creamos el directorio solicitado con makedirs
 		if not os.path.exists(user_input):
 			os.makedirs(user_input)
 		else:
@@ -89,35 +95,39 @@ def nuevaCarpeta():
 def nuevoArchivo():
 	print("¿Cómo se va a llamar archivo?\nMáximo 10 caracteres")
 	user_input = input(">> ")
-
+	#Comprobamos que la longitud permitida sea correcta
 	if len(user_input) < 10:
+		#Creamos el archivo solicitado comprobando no exita previamente con 'exists'
 		if not os.path.exists(user_input):
 			f = open(user_input,'w')
 			f.close()
 		else:
 			print("¡El archivo ya existe!")	
 	else:
-		print("Tu archivo excede los 10 caracteres!")
+		print("¡Tu archivo excede los 10 caracteres!")
 
 #Borra una carpeta de WOLF
 def eliminarCarpeta():
 	print("¿Cómo se llama la carpeta a borrar?")
 	user_input = input(">> ")
+	#'getcwd' para conocer el directorio actual
 	path = os.getcwd()
-
+	#Comprobamos exista la carpeta a borrar
 	if os.path.isdir(path+'/'+user_input):
 		shutil.rmtree(user_input)
-
 	else:
 		print("¡La carpeta no existe!")
+		#'pass' para seguir adelante sin eejecutar nada
 		pass
 
 #Borra un archivo de una carpeta de WOLF
 def eliminarArchivo():
 	print("¿Qué archivo deseas borrar?")
 	file = input(">> ")
+	#Con 'grep'  buscamos dentro de los archivos las líneas que concuerdan con un patrón
 	os.system("ls | grep "+ file +" > tmp")
 	archivo = open("tmp", "r")
+	#Buscamos el archivo y lo borramos con 'rm'
 	find_file = archivo.readline()
 	if len(find_file) > 0:
 		os.system("rm -rf " + find_file)
@@ -129,6 +139,7 @@ def editar():
 	print("¿Cómo se llama el archivo que quieres modificar? ")
 	user_input = input(">> ")
 	os.system("ls | grep "+ user_input +" > tmp")
+	#Si el archivo existe se editará con 'vi'
 	archivo = open("tmp", "r")
 	find_file = archivo.readline()
 	if len(find_file) > 0:
@@ -141,6 +152,7 @@ def leer():
 	print("¿Cómo se llama el archivo que quieres leer?")
 	user_input = input(">> ")
 	if len(user_input) < 6:
+		#Con 'cat' concatenamos archivos para posteriormente desplegarlos en pantalla
 		if os.path.exists(user_input):
 			print("El Archivo '"+user_input+"' contiene: ")
 			print("====================================")
@@ -160,6 +172,7 @@ def ir_a():
 	archivo = open("tmp", "r")
 	find_file = archivo.readline()
 	if len(find_file) > 0:
+		#Buscamos la carpeta a entrar
 		os.chdir(find_file[:-1])
 		dentroDe += 1
 	else:
@@ -169,6 +182,7 @@ def ir_a():
 def regresar_a():
 	global dentroDe
 	if dentroDe > 0:
+		#Regresamos un directorio con '..'
 		os.chdir("..")
 		dentroDe -= 1
 	else:
@@ -176,6 +190,7 @@ def regresar_a():
 
 #Enlista los archivos de la carpeta en la que se esta ubicado
 def enlistar_archivos():
+	#Con '--color=always" se colorean aquellos que ya se habían creado anteriormente
 	os.system("ls --color=always")
 
 #Imprime lo que cada comando realiza
