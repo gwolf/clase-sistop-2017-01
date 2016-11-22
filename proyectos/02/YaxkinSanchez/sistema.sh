@@ -39,7 +39,7 @@ function archivo_existe() {
 #Interfaz de usuario
 cargar_sistema
 echo "Utilice el comando $(tput bold)help$(tput sgr0) para más información."
-echo "Utilice el comando $(tput bold)exit$(tput sgr0) para salir de la aplicación.\n"
+echo -e "Utilice el comando $(tput bold)exit$(tput sgr0) para salir de la aplicación.\n"
 while :; do
 	prompt="\E[0;36mLocation: \E[0;32mroot/ \E[0;37m>\E[0m "
 	echo -en "$prompt"
@@ -114,7 +114,7 @@ while :; do
 			else
 				unzip -uq FAULT.zip $arg1 -d tmp
 				echo -e "$arg2" > "tmp/$arg1"
-				zip -qj FAULT.zip "tmp/$arg1"
+				zip -uqj FAULT.zip "tmp/$arg1"
 			fi
 			;;
 
@@ -133,7 +133,7 @@ while :; do
 			else
 				unzip -uq FAULT.zip $arg1 -d tmp
 				echo -e "$arg2" >> "tmp/$arg1"
-				zip -qj FAULT.zip "tmp/$arg1"
+				zip -uqj FAULT.zip "tmp/$arg1"
 			fi
 			;;
 
@@ -147,8 +147,8 @@ while :; do
 			elif [[ $(archivo_existe) -ne 1  ]]; then
 				echo "No existe un archivo con este nombre."
 			else
-				sed -i "/$arg1/d" tmp/rootlist
-				zip -qj ../FAULT.zip tmp/rootlist
+				sed -i "/\<$arg1\>/d" tmp/rootlist
+				zip -uqj FAULT.zip tmp/rootlist
 			fi
 			;;
 
