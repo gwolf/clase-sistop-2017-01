@@ -1,0 +1,38 @@
+Universidad Nacional Autónoma de México
+Facultad de Ingeniería.
+Miguel Angel Vargas Espinosa
+Sistemas Operativos
+---------------------------------------------
+!!!!!!Importante: El programa requiere de permisos de super usuario para funcionar correctamente.
+--------------------------------------------------------------------
+El programa implementa una intefráz de consola mediante el cual se accede a un archivo montado como volumen (unidad de información) por medio del 
+dispositivo "zero" de 100MB, formateado en ext4 con bloques de 1MB. Esto permitirá ejecutar todas las operaciones descritas abajo.
+Es importante arracnatr el programa colocalndo como parámetro el nombre que tendrá el archivo.
+
+---------------------------------------
+Ejemplo:
+./a.out nombre_arch
+--------------------------------------------
+El shell usa sus propias pseudo instrucciones para acceder a los recuersos y diferentes funcionalidades
+
+-tree:	Genera un listado de los archivos y directorios.
+		
+-delete: Borra un archivo que exista dentro de la carpeta.
+		
+-deletedir: Borra un directorio.
+	
+-cdir:	Cambia de directorio a una ruta especificada dentro del archivo montado por medio de chdir.
+
+-create: Crea un archivo.
+
+-creadir: Crea un directorio.
+
+-edit:	Hace una llamada al programa nano para poder escribir en el archivo generado
+	
+-read: Desplegar el contendio de un archivo.
+
+-list: Realiza un listado del directorio actual.
+
+-out: Salir del programa
+
+------------------------------------------
