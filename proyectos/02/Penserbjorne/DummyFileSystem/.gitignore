@@ -1,9 +1,11 @@
 Colors.o
 CommandLine.o
 dfs
+Disk.o
 Draw.o
 DummyFileSystem.o
 main.o
 Template.h
 Template.cpp
+*.dsk
 *.~

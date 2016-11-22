@@ -2,7 +2,15 @@
 
   Esta informacion lista todos los comandos disponibles asi como su descripcion.
 
-  about - Muestra informacion sobre FDS.
-  exit - Sale del sistema.
-  help - Comando que despliega la ayuda general del sistema.
-  usage - Pequeño tutorial de como usar el sistema de ficheros.
+  about   - Muestra informacion sobre FDS.
+
+  exit    - Sale del sistema.
+
+  help    - Despliega la ayuda general del sistema.
+
+  mkdisk  - Permite crear un disco para operar sobre el. Recibe dos parametros.
+    -Nombre del disco: Nombre con el que se creara el fichero correspondiente.
+                       No puede llevar espacios.
+    -Tamaño del disco: Valor numerico en MB. No puede ser menor a 100 MB.
+
+  usage   - Pequeño tutorial de como usar el sistema de ficheros.

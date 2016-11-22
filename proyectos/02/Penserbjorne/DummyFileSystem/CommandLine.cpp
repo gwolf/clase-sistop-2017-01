@@ -17,6 +17,7 @@ enum commands{
   ABOUT,
   EXIT,
   HELP,
+  MKDISK,
   USAGE
 };
 
@@ -77,44 +78,76 @@ void CommandLine::genericCommand(string header, string optionalHeader,string fil
   }
 }
 
+// Permite crear un disco
+void CommandLine::mkDisk(string nameDisk, long int sizeDisk){
+  if(sizeDisk < 100){
+    this->msgError("El tamaño del disco es muy pequeño.");
+  }else{
+    this->dfs.mkDisk(nameDisk, sizeDisk);
+  }
+}
+
 // Obtiene el comando introducido y lo ejecuta
 int CommandLine::getAndExecCommand(string command){
-  string commandEval;  // Aqui guardaremos el comando
+  vector<string> commandArg;  // Aqui guardaremos el comando y sus parametros
   string commandEvalOriginal;
   string delimiter = " "; // Los comandos se separan por espacios
+  string token;
   size_t pos = 0;
 
-  // Obtenemos el comando enviado
-  commandEval = command.substr(pos, command.find(delimiter));
-  commandEvalOriginal = commandEval;
+  // Obtenemos el comando enviado y los parametros
+  while ((pos = command.find(delimiter)) != string::npos) {
+      token = command.substr(0, pos);
+      commandArg.insert(commandArg.end(), token);
+      command.erase(0, pos + delimiter.length());
+  }
+  commandArg.insert(commandArg.end(), command);
+  commandEvalOriginal = commandArg[0];
 
   // Lo convertimos a minusculas
-  transform(commandEval.begin(), commandEval.end(), commandEval.begin(), ::tolower);
+  transform(commandArg[0].begin(), commandArg[0].end(), commandArg[0].begin(), ::tolower);
 
-  if(commandEval == "about"){
+  //********************Inicio comandos por parte de CMD********************
+  if(commandArg[0] == "about"){
     string header = "art_dfs_header.txt";
     string optionalHeader = "\t\t\t--------Dummy File System--------\n";
           optionalHeader += "\t\t\t----------Acerca de DFS----------\n\n";
     string fileContent = "info_about.txt";
     this->genericCommand(header, optionalHeader,fileContent);
     return USAGE;
-  }else if(commandEval == "exit"){
+  }else if(commandArg[0] == "exit"){
     return EXIT;
-  }else if(commandEval == "help"){
+  }else if(commandArg[0] == "help"){
     string header = "art_dfs_help.txt";
     string optionalHeader = "\t\t\t--------Dummy File System--------\n";
           optionalHeader += "\t\t\t--------------Ayuda--------------\n\n";
     string fileContent = "info_help.txt";
     this->genericCommand(header, optionalHeader,fileContent);
     return HELP;
-  }else if(commandEval == "usage"){
+  }else if(commandArg[0] == "usage"){
     string header = "art_dfs_usage.txt";
     string optionalHeader = "\t\t\t--------Dummy File System--------\n";
           optionalHeader += "\t\t\t----------Manual de Uso----------\n\n";
     string fileContent = "info_usage.txt";
     this->genericCommand(header, optionalHeader,fileContent);
     return USAGE;
-  }else{
+  }//********************Fin comandos por parte de CMD********************
+  //********************Inicio comandos por parte de DFS********************
+  else if(commandArg[0] == "mkdisk"){
+    if(commandArg.size() < 3){
+      this->msgError("Faltan parametros para el comando.");
+    }else{
+      try{
+        string::size_type sz;
+        this->mkDisk(commandArg[1], stol(commandArg[2], &sz));
+      }catch(std::invalid_argument iaex){
+        this->msgError("Envia solo digitos para el tamaño del disco :/");
+      }
+    }
+    return MKDISK;
+  }
+  //********************Inicio comandos por parte de DFS********************
+  else{
     this->msgError(colors.BGRN(commandEvalOriginal) + " no es un comando.");
     return NO_COMMAND;
   }

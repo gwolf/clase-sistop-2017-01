@@ -11,7 +11,7 @@
 
 // Referencia https://en.wikipedia.org/wiki/Box-drawing_character#Unicode
 // Referencia http://patorjk.com/software/taag/#p=display&f=Slant&t=Dummy%20File%0ASystem
-#define FRAME_WIDTH 80
+#define FRAME_WIDTH 78
 #define FRAME_LINE "\u2550"
 #define FRAME_TOP_LEFT "\u2554"
 #define FRAME_TOP_RIGHT "\u2557"

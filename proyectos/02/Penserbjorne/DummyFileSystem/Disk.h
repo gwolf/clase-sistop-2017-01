@@ -6,13 +6,24 @@
 #ifndef DISK_H
 #define DISK_H
 
+#include <ctime>
+#include <string>
+
+using namespace std;
+
 class Disk
 {
     public:
+        time_t idDisk;
+        char* dateCreation;
+        string name;
+        long int size;
+
         Disk();
         virtual ~Disk();
     protected:
     private:
+      string header;
 };
 
 #endif // DISK_H

@@ -8,6 +8,7 @@
 
 #include "Draw.h"
 #include "Colors.h"
+#include "DummyFileSystem.h"
 #include <string>
 
 using namespace std;
@@ -17,6 +18,7 @@ class CommandLine
     public:
         CommandLine();
         virtual ~CommandLine();
+        //*****************Inicio comandos por parte de CMD*****************
         // Limpia el buffer de entrada
         void cleanBuffer();
         // Emitie mensajes de error
@@ -31,6 +33,11 @@ class CommandLine
         void interpreter();
         // Punto de acceso al programa
         void run();
+        //*****************Fin comandos por parte de CMD*****************
+        //****************Inicio comandos por parte de DFS***************
+        // Permite crear un disco
+        void mkDisk(string nameDisk, long int sizeDisk);
+        //*****************Fin comandos por parte de DFS*****************
     protected:
     private:
       // Encargado de dibujar en el sistema|
@@ -39,6 +46,8 @@ class CommandLine
       Colors colors;
       // Usuario para la sesion
       string user;
+      // Simula el sistema de ficheros
+      DummyFileSystem dfs;
 };
 
 #endif // COMMANDLINE_H
