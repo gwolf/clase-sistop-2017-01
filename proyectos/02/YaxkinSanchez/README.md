@@ -20,6 +20,8 @@ Límites:
 * Límite de tamaño total: Ninguno
 * No soporta el uso de directorios.
 
+Para interactuar con el FAULT, se hace uso de una shell que está incluida (fault.sh).
+
 ## Modo de operación
 El sistema está conformado por un archivo zip, que hará de dispositivo de almacenamiento para nuestros archivos.
 
