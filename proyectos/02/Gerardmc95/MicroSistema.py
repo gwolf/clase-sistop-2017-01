@@ -1,3 +1,12 @@
+#Mendoza Colmenares Gerardo
+#Segundo proyecto basado en creación de archivos a partir de un zip
+
+#En este segundo archivo se añadirá el cuerpo de las funciones
+
+#CORRECCIONES
+#Lograr el objetivo de la función
+
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -15,8 +24,9 @@ def main():
 	find_zip = archivo.readline()
 	if find_zip == "WOLF.zip\n":
 		print("El zip existe!")
+		#Descomprimir zip
 		unzip(find_zip)
-		#chdir para cambiar de directorio de trabajo
+		#'chdir' para cambiar de directorio de trabajo
 		os.chdir("WOLF")
 		os.system("clear")
 		print("|----------==========----------==========----------|\n\t\t----COMANDOS----")
@@ -43,50 +53,130 @@ def main():
 		print("¡Archivo no encontrado!\n")
 
 #----------------------------------------------------------------------------------------------------------------------------
-#AÑADIR EL CUERPO DE LA FUNCIÓN
+#AÑADIR DESCRIPCIÓN EL CUERPO DE LA FUNCIÓN
 #----------------------------------------------------------------------------------------------------------------------------
 
 #Descomprimir el zip existente
 def unzip(file_zip):
-	return 0
+	if len(file_zip) > 0:
+		os.system("unzip WOLF.zip")
+		print("Se descomprimio el zip correctamente")
+	else:
+		print("No existe el zip WOLF!")
+
 #Verificar que comando se mando a llamar
 def comandos(comando):
-	return 0
+	if comando == "newdir" or comando == "newfile" or comando == "removefile" or comando == "removedir" or comando == "edit" or comando == "read" or comando == "goin" or comando == "goback" or comando == "list-items" or comando == "exit" or comando == "help":
+		return True
+	else:
+		return False
+
 #Agrega una carpeta a WOLF
 def nuevaCarpeta():
-	return 0
+	print("¿Cómo se va a llamar la carpeta?\nMáximo 12 caracteres")
+	user_input = input(">> ")
+	path = os.getcwd()
+
+	if len(user_input) < 12:
+		if not os.path.exists(user_input):
+			os.makedirs(user_input)
+		else:
+			print("¡La carpeta ya existe!")
+	else:
+		print("¡Tu carpeta excede los 12 caracteres!")
 
 #Agrega un archivo a WOLF
 def nuevoArchivo():
-	return 0
+	print("¿Cómo se va a llamar archivo?\nMáximo 10 caracteres")
+	user_input = input(">> ")
+
+	if len(user_input) < 10:
+		if not os.path.exists(user_input):
+			f = open(user_input,'w')
+			f.close()
+		else:
+			print("¡El archivo ya existe!")	
+	else:
+		print("Tu archivo excede los 10 caracteres!")
 
 #Borra una carpeta de WOLF
 def eliminarCarpeta():
-	return 0
+	print("¿Cómo se llama la carpeta a borrar?")
+	user_input = input(">> ")
+	path = os.getcwd()
+
+	if os.path.isdir(path+'/'+user_input):
+		shutil.rmtree(user_input)
+
+	else:
+		print("¡La carpeta no existe!")
+		pass
 
 #Borra un archivo de una carpeta de WOLF
 def eliminarArchivo():
-	return 0
+	print("¿Qué archivo deseas borrar?")
+	file = input(">> ")
+	os.system("ls | grep "+ file +" > tmp")
+	archivo = open("tmp", "r")
+	find_file = archivo.readline()
+	if len(find_file) > 0:
+		os.system("rm -rf " + find_file)
+	else:
+		print("¡El archivo no existe!")
 
 #Modifica un archivo de WOLF
 def editar():
-	return 0
+	print("¿Cómo se llama el archivo que quieres modificar? ")
+	user_input = input(">> ")
+	os.system("ls | grep "+ user_input +" > tmp")
+	archivo = open("tmp", "r")
+	find_file = archivo.readline()
+	if len(find_file) > 0:
+		os.system("vi " + find_file)
+	else:
+		print("¡El archivo no existe!")
 
 #Abre un archivo de solo lectura
 def leer():
-	return 0
+	print("¿Cómo se llama el archivo que quieres leer?")
+	user_input = input(">> ")
+	if len(user_input) < 6:
+		if os.path.exists(user_input):
+			print("El Archivo '"+user_input+"' contiene: ")
+			print("====================================")
+			os.system("cat " + user_input)
+			print("====================================")
+		else:
+			print("¡El archivo no existe!")	
+	else:
+		print("Tu achivo tiene más de 6 caracteres!")
 
 #Dirige a una carpeta específica
 def ir_a():
-	return 0
+	global dentroDe
+	print("¿Cómo se llama la carpeta a la que quieres entrar? ")
+	user_input = input(">> ")
+	os.system("ls | grep "+ user_input +" > tmp")
+	archivo = open("tmp", "r")
+	find_file = archivo.readline()
+	if len(find_file) > 0:
+		os.chdir(find_file[:-1])
+		dentroDe += 1
+	else:
+		print("¡La carpeta no existe!")
 
 #Regresa un directorio
 def regresar_a():
-	return 0
+	global dentroDe
+	if dentroDe > 0:
+		os.chdir("..")
+		dentroDe -= 1
+	else:
+		print("Imposible, estas en la raíz")
 
 #Enlista los archivos de la carpeta en la que se esta ubicado
 def enlistar_archivos():
-	return 0
+	os.system("ls --color=always")
 
 #Imprime lo que cada comando realiza
 def ayuda():
