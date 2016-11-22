@@ -1,15 +1,36 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- Encoding: utf-8 -*-
 #Nombre: Carlos Alberto Díaz Olivares
+
+import os.path
+
+
+def existeDirectorio():
+	if os.path.exists(archivo):
+	return True
+	else:
+	return False
+
+def crearDirectorio(nombreDirectorio):
+	if existeDirectorio(nombreDirectorio):
+		return False
+	else:
+		archivo = open(nombreDirectorio,"a+")
+		return archivo
+
+
+
 
 
 
 inicio_nombre=[]
 fin_nombre=[]
+
 inicio_archivo=[]
 fin_archivo=[]
-archivo = open("prueba","a+")
-inicio_nombre.append(archivo.tell())
+nombre=input("Escribe el nombre del nuevo directorio")+".dat"
+if crearDirectorio(nombre):
+	inicio_nombre.append()
 print(type(archivo.tell()))
 nombre=input("Escribe el nombre del nuevo archivo")
 archivo.write(nombre)
@@ -26,5 +47,6 @@ for x in inicio_nombre:
 	print(x)
 for x in fin_nombre:
 	print(x)
+buscarArchivo("hola",nombre)
 
 
