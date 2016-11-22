@@ -89,9 +89,15 @@ while :; do
 				echo "No existe un archivo con este nombre."
 			else
 				unzip -uq FAULT.zip $arg1 -d tmp
+				echo -e "\n   $arg1 "
+				for (( i = 0; i < `expr ${#arg1} + 6`; i++ )); do
+					echo -n "-"
+				done
+				echo
 				while read line; do
 					echo "$line"
 				done <"tmp/$arg1"
+				echo
 			fi
 			;;
 
@@ -154,9 +160,10 @@ while :; do
 			echo -e "\t\t\tSintáxis: create <archivo>\n"
 			echo -e "\tread\t\tLee un archivo"
 			echo -e "\t\t\tSintáxis: read <archivo>\n"
-			echo -e "\twritet\t\tEscribe <cadena> en <archivo>. Nota: Este comando realiza sobreescritura"
+			echo -e "\twrite\t\tEscribe <cadena> en <archivo>."
+			echo -e "\t\t\tNota: Este comando realiza sobreescritura"
 			echo -e "\t\t\tSintáxis: write <archivo>\n"
-			echo -e "\twritet\t\Agrega <cadena> en <archivo>."
+			echo -e "\tappend\t\tAgrega <cadena> en <archivo>."
 			echo -e "\t\t\tSintáxis: append <archivo>\n"
 			echo -e "\tdel\t\tElimina un archivo"
 			echo -e "\t\t\tSintáxis: del <archivo>\n"
