@@ -1,10 +1,11 @@
 #Mendoza Colmenares Gerardo
 #Segundo proyecto basado en creación de archivos a partir de un zip
 
-#En este cuarto archivo se hará uso de funciones para poner más presentación a la hora de ejecución
+#En este último archivo se finaliza cambiando palabras claves de comandos y poniendo ayuda para quien use este .py
+#además de agregar 'if' que distingan archivos de carpetas
 
 #CORRECCIONES
-#Ninguna
+#Agregar ayuda y cambiar palabras claves, ademas de dar un formato más presentable y diferenciar entre carpetas y archivos
 
 
 #!/usr/bin/python
@@ -17,9 +18,9 @@ def main():
 	ciclo = 0
 	dentroDe = 0
 	#Con 'grep'  buscamos dentro de los archivos las líneas que concuerdan con un patrón
-	os.system("ls | grep WOLF.zip > tmp")
-	#Abrimos el archivo tmp en modo lectura
-	archivo = open("tmp", "r")
+	os.system("ls | grep WOLF.zip > temporal")
+	#Abrimos el archivo temporal en modo lectura
+	archivo = open("temporal", "r")
 	#Buscamos si existe el zip donde se trabajará y se descomprimirá
 	find_zip = archivo.readline()
 
@@ -30,10 +31,7 @@ def main():
 		#'chdir' para cambiar de directorio de trabajo
 		os.chdir("WOLF")
 		os.system("clear")
-		print("|----------==========----------==========----------|\n\t\t----COMANDOS----")
-		print("|----------==========----------==========----------|")
-		print("\tnewdir, newfile, removedir, removefile\nedit, read, goin, goback, list-items\nexit, help")
-		print("|----------==========----------==========----------|")
+		muestra_comandos()
 		#Mientras no pida salir, la terminal seguirá pidiendo comandos
 		while ciclo != 1:
 			fuente_normal()
@@ -41,23 +39,23 @@ def main():
 			if comandos(comando):
 				diccionarioComandos[comando]()
 			else:
+				fuente_error()
 				print("¡Comando invalido!")
-				print("Escribe 'help' para saber mas acerca de los comandos o intenta de nuevo con los de arriba\n")
+				print("Escribe 'ayuda' para saber mas acerca de los comandos")
 
-		#rm -rf tmp usado para borrar y '..' para regresar un directorio, comprimimos la carpeta de nuevo y borramos la
+		#rm -rf temporal usado para borrar y '..' para regresar un directorio, comprimimos la carpeta de nuevo y borramos la
 		#versión de la carpeta 'WOLF' pasada
-		os.system("rm -rf tmp")
+		os.system("rm -rf temporal")
 		os.chdir("..")
 		os.system("zip -r WOLF.zip WOLF")
 		os.system("rm -rf WOLF")
 		os.system("clear")
+		fuente_aceptado()
 		print("¡Hasta la proxima!")
 	else:
-		print("¡Archivo no encontrado!\n")
+		fuente_error()
+		print("¡Archivo no encontrado!\nPor favor cree el archivo que se especifíca en la documentación")
 
-#----------------------------------------------------------------------------------------------------------------------------
-#
-#----------------------------------------------------------------------------------------------------------------------------
 
 #Fuentes para presentacion en terminal
 def fuente_error():
@@ -66,13 +64,22 @@ def fuente_error():
 def fuente_exito():
     print (chr(27)+"[1;33m"+"¡ÉXITO!")
 
+def fuente_aceptado():
+    print (chr(27)+"[1;33m")
+
 def fuente_normal():
     print (chr(27)+"[0;37m")
 
 def fuente_pregunta():
 	print (chr(27)+"[3;34m")
 
-
+def muestra_comandos():
+	fuente_normal()
+	print("|----------==========----------==========----------|\n\t----COMANDOS DISPONIBLES----")
+	print("|----------==========----------==========----------|")
+	print("\t<CREACIÓN >> nuevaCarp, nuevoArch\n\t<<BORRADO>> elimCarp, elimArch")
+	print("\t<<OTROS>> editar, leer\n\t<<DIRECTORIOS>> ir, regresar, enlistar\n\t<<MAS>> limpiar, ayuda, salir")
+	print("|----------==========----------==========----------|")
 
 #Descomprimir el zip existente
 def unzip(file_zip):
@@ -83,29 +90,27 @@ def unzip(file_zip):
 		print("¡Se descomprimio el zip correctamente!")
 	else:
 		fuente_error()
-		print("No existe el zip WOLF!")
+		print("¡No existe el zip WOLF!")
 
 #Verificar que comando se mando a llamar
 def comandos(comando):
 	#Comprobamos que el comando recibido sea correcto
-	if comando == "newdir" or comando == "newfile" or comando == "removefile" or comando == "removedir" or comando == "edit" or comando == "read" or comando == "goin" or comando == "goback" or comando == "list-items" or comando == "exit" or comando == "help":
+	if comando in diccionarioComandos :
 		return True
-	else:
-		return False
 
 #Agrega una carpeta a WOLF
 def nuevaCarpeta():
 	fuente_pregunta()
 	print("¿Cómo se va a llamar la carpeta?\nMáximo 12 caracteres")
-	user_input = input(">> ")
+	palabra = input(">> ")
 	#'getcwd' para conocer el directorio actual
 	path = os.getcwd()
 	#Comprobamos que la longitud permitida sea correcta
-	if len(user_input) < 12:
+	if len(palabra) < 12:
 		#Creamos el directorio solicitado con makedirs
-		if not os.path.exists(user_input):
+		if not os.path.exists(palabra):
 			fuente_exito()
-			os.makedirs(user_input)
+			os.makedirs(palabra)
 		else:
 			fuente_error()
 			print("¡La carpeta ya existe!")
@@ -117,12 +122,12 @@ def nuevaCarpeta():
 def nuevoArchivo():
 	fuente_pregunta()
 	print("¿Cómo se va a llamar archivo?\nMáximo 10 caracteres")
-	user_input = input(">> ")
+	palabra = input(">> ")
 	#Comprobamos que la longitud permitida sea correcta
-	if len(user_input) < 10:
+	if len(palabra) < 10:
 		#Creamos el archivo solicitado comprobando no exita previamente con 'exists'
-		if not os.path.exists(user_input):
-			f = open(user_input,'w')
+		if not os.path.exists(palabra):
+			f = open(palabra,'w')
 			f.close()
 			fuente_exito()
 		else:
@@ -136,12 +141,12 @@ def nuevoArchivo():
 def eliminarCarpeta():
 	fuente_pregunta()
 	print("¿Cómo se llama la carpeta a borrar?")
-	user_input = input(">> ")
+	palabra = input(">> ")
 	#'getcwd' para conocer el directorio actual
 	path = os.getcwd()
 	#Comprobamos exista la carpeta a borrar
-	if os.path.isdir(path+'/'+user_input):
-		shutil.rmtree(user_input)
+	if os.path.isdir(path+'/'+palabra):
+		os.system("rm -rf "+ palabra)
 		fuente_exito()
 	else:
 		fuente_error()
@@ -155,12 +160,12 @@ def eliminarArchivo():
 	print("¿Qué archivo deseas borrar?")
 	file = input(">> ")
 	#Con 'grep'  buscamos dentro de los archivos las líneas que concuerdan con un patrón
-	os.system("ls | grep "+ file +" > tmp")
-	archivo = open("tmp", "r")
+	os.system("ls | grep "+ file +" > temporal")
+	archivo = open("temporal", "r")
 	#Buscamos el archivo y lo borramos con 'rm'
 	find_file = archivo.readline()
 	if len(find_file) > 0:
-		os.system("rm -rf " + find_file)
+		os.system("rm " + find_file)
 		fuente_exito()
 	else:
 		fuente_error()
@@ -170,52 +175,67 @@ def eliminarArchivo():
 def editar():
 	fuente_pregunta()
 	print("¿Cómo se llama el archivo que quieres modificar? ")
-	user_input = input(">> ")
-	os.system("ls | grep "+ user_input +" > tmp")
-	#Si el archivo existe se editará con 'vi'
-	archivo = open("tmp", "r")
+	palabra = input(">> ")
+	os.system("ls | grep "+ palabra +" > temporal")
+	#Si el archivo existe se editará con 'nano'
+	archivo = open("temporal", "r")
 	find_file = archivo.readline()
-	if len(find_file) > 0:
-		os.system("vi " + find_file)
-		fuente_exito()
+	if os.path.isfile(palabra):
+		if len(find_file) > 0:
+			os.system("nano " + find_file)
+			fuente_aceptado()
+		else:
+			fuente_error()
+			print("¡El archivo no existe!")
 	else:
 		fuente_error()
-		print("¡El archivo no existe!")
+		print("¡No se puede editar una carpeta!")
 
 #Abre un archivo de solo lectura
 def leer():
 	fuente_pregunta()
 	print("¿Cómo se llama el archivo que quieres leer?")
-	user_input = input(">> ")
-	if len(user_input) < 6:
-		#Con 'cat' concatenamos archivos para posteriormente desplegarlos en pantalla
-		if os.path.exists(user_input):
-			fuente_exito()
-			print("El Archivo '"+user_input+"' contiene: ")
-			print("====================================")
-			os.system("cat " + user_input)
-			print("====================================")
+	palabra = input(">> ")
+	if os.path.isfile(palabra):
+		if len(palabra) < 10:
+			#Con 'cat' concatenamos archivos para posteriormente desplegarlos en pantalla
+			if os.path.exists(palabra):
+				fuente_aceptado()
+				print("El Archivo '"+palabra+"' contiene: ")
+				print("------------------------------------------------------------------------")
+				os.system("more " + palabra)
+				print("------------------------------------------------------------------------")
+			else:
+				fuente_error()
+				print("¡El archivo no existe!")	
 		else:
 			fuente_error()
-			print("¡El archivo no existe!")	
+			print("Tu achivo tiene más de 10 caracteres!")
 	else:
-		fuente_error()
-		print("Tu achivo tiene más de 6 caracteres!")
+		if os.path.isdir(palabra):
+			fuente_error()
+			print(palabra + " no es un archivo, sin embargo la carpeta contiene:")
+			fuente_aceptado()
+			os.system("ls "+ palabra)
+		else:
+			fuente_error()
+			print("¡El archivo no exite!")
 
 #Dirige a una carpeta específica
 def ir_a():
 	fuente_pregunta()
 	global dentroDe
 	print("¿Cómo se llama la carpeta a la que quieres entrar? ")
-	user_input = input(">> ")
-	os.system("ls | grep "+ user_input +" > tmp")
-	archivo = open("tmp", "r")
+	palabra = input(">> ")
+	os.system("ls | grep "+ palabra +" > temporal")
+	archivo = open("temporal", "r")
 	find_file = archivo.readline()
 	if len(find_file) > 0:
 		#Buscamos la carpeta a entrar
 		os.chdir(find_file[:-1])
 		dentroDe += 1
-		fuente_exito()
+		fuente_aceptado()
+		print("Estas dentro de '"+palabra+"'")
 	else:
 		fuente_error()
 		print("¡La carpeta no existe!")
@@ -226,8 +246,10 @@ def regresar_a():
 	global dentroDe
 	if dentroDe > 0:
 		fuente_exito()
+		print("Regresaste a ")
 		#Regresamos un directorio con '..'
 		os.chdir("..")
+		os.system("pwd")
 		dentroDe -= 1
 	else:
 		fuente_error()
@@ -235,21 +257,38 @@ def regresar_a():
 
 #Enlista los archivos de la carpeta en la que se esta ubicado
 def enlistar_archivos():
-	fuente_exito()
-	#Con '--color=always" se colorean aquellos que ya se habían creado anteriormente
+	fuente_aceptado()
+	#Con '--color=always" se diferencian las carpetas de los archivos
 	os.system("ls --color=always")
 
 #Imprime lo que cada comando realiza
 def ayuda():
 	fuente_pregunta()
-	return 0
+	print("==========================================================================================================")
+	print(">> nuevaCarp: Crea una nueva carpeta dentro de la carpeta actual")
+	print(">> nuevaArch: Crea un nuevo archivo dentro de al carpeta actual")
+	print(">> ellimCarp: Borra una carpeta existente")
+	print(">> alimArch: Borra un archivo existente")
+	print(">> editar: Edita un archivo con 'nano'")
+	print(">> ir: Permite entrar a una carpeta")
+	print(">> regresar: Permite salir de la carpeta actual a la carpeta anterior, estando en raíz no hará nada")
+	print(">> enlistar: Despliega las carpetas y archivos existentes")
+	print(">> leer: Despliega el contenido de un archivo existente")
+	print(">> limpiar: Limpia pantalla para mostrar nuevamente los comandos disponibles")
+	print(">> ayuda: Despliega detalles de los comandos existentes")
+	print(">> salir: Salida del programa")
+	print("==========================================================================================================")
+
+def limpiar():
+	os.system("clear")
+	muestra_comandos()
 
 def salir():
 	global ciclo
 	ciclo = 1
 
 #Diccionario que facilita la llamada a los comandos
-diccionarioComandos = {'newdir': nuevaCarpeta, 'newfile': nuevoArchivo, 'removedir':eliminarCarpeta, 'removefile':eliminarArchivo, 'edit':editar,'read':leer, 'goin':ir_a, 'goback':regresar_a, 'list-items':enlistar_archivos, 'help':ayuda, 'exit': salir}
+diccionarioComandos = {'nuevaCarp': nuevaCarpeta, 'nuevoArch': nuevoArchivo, 'elimCarp':eliminarCarpeta, 'elimArch':eliminarArchivo, 'editar':editar,'leer':leer, 'ir':ir_a, 'regresar':regresar_a, 'enlistar':enlistar_archivos, 'ayuda':ayuda, 'limpiar': limpiar, 'salir': salir}
 
 #Llamamos a la funcion para empezar a pedir coomandos
 if __name__ == '__main__':
