@@ -1,0 +1,106 @@
+
+# Archivos de usuario (Visual Studio)
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.filters
+
+# Archivos de usuario (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Archivos generados de la compilación
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Directorio de opciones/caché, Visual Studio 2015
+.vs/
+
+# MSTest
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Archivos de caché de Visual C++
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.coverage
+*.coveragexml
+
+# Microsoft Azure
+csx/
+*.build.csdef
+ecf/
+rcf/
+
+# Archivos de caché Visual Studio pero mantiene directorios.
+*.[Cc]ache
+!*.[Cc]ache/
+
+# Otros
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+publish/
+*.publishsettings
+node_modules/
+orleans.codegen.cs
