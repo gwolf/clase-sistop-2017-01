@@ -100,3 +100,10 @@ Las siguientes tareas son calificadas sobre 5:
 * **Archivo:** [Gerardmc95.pdf](Gerardmc95.pdf)
 * **Calificación:** 5
 * **Comentarios:** Buen resumen.
+
+## Andrés López
+* **Archivo:** [Lopez_Juarez_Andres.jpg](Lopez_Juarez_Andres.jpg)
+* **Calificación:** 5
+* **Comentarios:** Me has dicho, y lo comprendo, que el inglés no es
+  tu fuerte... Pero, al no "entender" lo que traducen, la información
+  del artículo te llega con varios conceptos tergiversados.
