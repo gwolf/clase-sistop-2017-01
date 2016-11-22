@@ -11,9 +11,18 @@
 #																	#
 #####################################################################
 
-#Carga la Lista de Asignación en tmp si no se encuentra
-function cargar_lista() {
+#Verifica si el sistema de archivos y la Lista de Asignación existe y carga la Lista en tmp
+function cargar_sistema() {
+	if [[ ! -f FAULT.zip ]]; then
+		echo "Error: Sistema de archivos FAULT no encontrado :<"
+		exit 1
+	else
 		unzip -uq FAULT.zip rootlist -d tmp
+		if [[ $? -ne 0 ]]; then
+			echo "Error: No se encuentra la Lista de Asignación :<"
+			exit 1
+		fi
+	fi
 }
 
 #Verifica si a un archivo le corresponde una entrada en la Lista de Asignación
@@ -28,14 +37,14 @@ function archivo_existe() {
 }
 
 #Interfaz de usuario
-cargar_lista
+cargar_sistema
 echo "Utilice el comando $(tput bold)help$(tput sgr0) para más información."
-echo -e "Utilice el comando $(tput bold)exit$(tput sgr0) para salir de la aplicación.\n"
+echo "Utilice el comando $(tput bold)exit$(tput sgr0) para salir de la aplicación.\n"
 while :; do
 	prompt="\E[0;36mLocation: \E[0;32mroot/ \E[0;37m>\E[0m "
 	echo -en "$prompt"
 	read comando
-	read -r arg0 arg1 <<< "$comando"
+	read -r arg0 arg1 arg2 <<< "$comando"
 	case $arg0 in
 
 		#Listado de los contenidos del directorio raíz:
@@ -54,15 +63,18 @@ while :; do
 		#	- Si existe, notifica al usuario
 		#	- Si no existe, crea el archivo y una entrada en la Lista de Asignación en tmp
 		#	  y hace la respectiva escritura en el sistema de archivos
-		create )		
-			if [[ $(archivo_existe) -eq 1 ]]; then
-				echo "Ya existe un archivo con este nombre"
+		create )
+			if [[ $arg1 = "" ]]; then
+				echo "Faltan argumentos. Sintáxis: create <archivo>"
+	 		elif [[ $(archivo_existe) -eq 1 ]]; then
+				echo "Ya existe un archivo con este nombre."
+			elif [[ "${#arg1}" -gt 12 ]]; then
+				echo "Longitud máxima de nombre de archivo (incluyendo extensión): 12."
+				echo "Intente de nuevo."
 			else
 				touch "tmp/$arg1"
 				echo $arg1 >> tmp/rootlist
-				cd tmp
-				zip -q ../FAULT.zip "$arg1" rootlist
-				cd ..
+				zip -qj FAULT.zip "tmp/$arg1" tmp/rootlist
 			fi
 			;;
 
@@ -70,9 +82,11 @@ while :; do
 		#Se verifica si la Lista de Asignacion contiene una entrada para el nombre del archivo:
 		#	- Si existe, carga el archivo y lo imprime en la salida estándar
 		#	- Si no existe, notifica al usuario
-		read )			
-			if [[ $(archivo_existe) -ne 1  ]]; then
-				echo "No existe un archivo con este nombre"
+		read )
+			if [[ $arg1 = "" ]]; then
+				echo "Faltan argumentos. Sintáxis: read <archivo>"
+			elif [[ $(archivo_existe) -ne 1  ]]; then
+				echo "No existe un archivo con este nombre."
 			else
 				unzip -uq FAULT.zip $arg1 -d tmp
 				while read line; do
@@ -81,34 +95,54 @@ while :; do
 			fi
 			;;
 
-		#Lectura de un nuevo archivo:
+		#Escritura en un archivo:
 		#Se verifica si la Lista de Asignacion contiene una entrada para el nombre del archivo:
-		#	- Si existe, carga el archivo y lo abre con el editor de texto vi
+		#	- Si existe, carga el archivo y escribe la cadena pasada como parámetro en el archivo
 		#	- Si no existe, notifica al usuario
-		edit )			
-			if [[ $(archivo_existe) -ne 1  ]]; then
-				echo "No existe un archivo con este nombre"
+		#Nota: este método sobreescribe el archivo
+		write )
+			if [[ $arg1 = "" && $arg2 = "" ]]; then
+				echo "Faltan argumentos. Sintáxis: write <archivo> <cadena>"
+			elif [[ $(archivo_existe) -ne 1  ]]; then
+				echo "No existe un archivo con este nombre."
 			else
 				unzip -uq FAULT.zip $arg1 -d tmp
-				vi "tmp/$arg1"
-				cd tmp
-				zip -q ../FAULT.zip "$arg1"
-				cd ..
+				echo -e "$arg2" > "tmp/$arg1"
+				zip -qj FAULT.zip "tmp/$arg1"
 			fi
 			;;
 
-		#Lectura de un nuevo archivo:
+
+		#Agregar en un archivo:
+		#Se verifica si la Lista de Asignacion contiene una entrada para el nombre del archivo:
+		#	- Si existe, carga el archivo y agrega la cadena pasada como parámetro en el archivo
+		#	- Si no existe, notifica al usuario
+		#Nota: este método sobreescribe el archivo
+		append )
+			if [[ $arg1 = "" && $arg2 = "" ]]; then
+				echo "Faltan argumentos. Sintáxis: append <archivo> <cadena>"
+				
+			elif [[ $(archivo_existe) -ne 1  ]]; then
+				echo "No existe un archivo con este nombre."
+			else
+				unzip -uq FAULT.zip $arg1 -d tmp
+				echo -e "$arg2" >> "tmp/$arg1"
+				zip -qj FAULT.zip "tmp/$arg1"
+			fi
+			;;
+
+		#Eliminación de un archivo:
 		#Se verifica si la Lista de Asignacion contiene una entrada para el nombre del archivo:
 		#	- Si existe, elimina su entrada correspondiente en la Lista de Asignación
 		#	- Si no existe, notifica al usuario
-		del )			
-			if [[ $(archivo_existe) -ne 1  ]]; then
-				echo "No existe un archivo con este nombre"
+		del )
+			if [[ $arg1 = "" ]]; then
+				echo "Faltan argumentos. Sintáxis: del <archivo>"
+			elif [[ $(archivo_existe) -ne 1  ]]; then
+				echo "No existe un archivo con este nombre."
 			else
 				sed -i "/$arg1/d" tmp/rootlist
-				cd tmp
-				zip -q ../FAULT.zip rootlist
-				cd ..
+				zip -qj ../FAULT.zip tmp/rootlist
 			fi
 			;;
 
@@ -120,8 +154,10 @@ while :; do
 			echo -e "\t\t\tSintáxis: create <archivo>\n"
 			echo -e "\tread\t\tLee un archivo"
 			echo -e "\t\t\tSintáxis: read <archivo>\n"
-			echo -e "\tedit\t\tEdita un archivo en vi"
-			echo -e "\t\t\tSintáxis: edit <archivo>\n"
+			echo -e "\twritet\t\tEscribe <cadena> en <archivo>. Nota: Este comando realiza sobreescritura"
+			echo -e "\t\t\tSintáxis: write <archivo>\n"
+			echo -e "\twritet\t\Agrega <cadena> en <archivo>."
+			echo -e "\t\t\tSintáxis: append <archivo>\n"
 			echo -e "\tdel\t\tElimina un archivo"
 			echo -e "\t\t\tSintáxis: del <archivo>\n"
 			echo -e "\thelp\t\tMuestra esta ayuda\n"
