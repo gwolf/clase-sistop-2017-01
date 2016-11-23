@@ -87,3 +87,23 @@ Las siguientes tareas son calificadas sobre 5:
 * **Calificación:** 5
 * **Comentarios:** Muy bueno y de fácil lectura. Pocos de tus
   compañeros usan la "estrategia" de etiquetas en los vértices.
+
+## Alberto Díaz
+* **Archivo:** [AlbertoDiazTarea4.pdf](AlbertoDiazTarea4.pdf)
+* **Calificación:** 5
+* **Comentarios:** No me queda clara la diferencia entre tus flechas
+  sólidas y punteadas, sentido de las flechas o significado de las
+  diferentes formas de componente utilizadas. Como sea, la información
+  que presentas es un buen resumen.
+
+## Gerardo Mendoza
+* **Archivo:** [Gerardmc95.pdf](Gerardmc95.pdf)
+* **Calificación:** 5
+* **Comentarios:** Buen resumen.
+
+## Andrés López
+* **Archivo:** [Lopez_Juarez_Andres.jpg](Lopez_Juarez_Andres.jpg)
+* **Calificación:** 5
+* **Comentarios:** Me has dicho, y lo comprendo, que el inglés no es
+  tu fuerte... Pero, al no "entender" lo que traducen, la información
+  del artículo te llega con varios conceptos tergiversados.
