@@ -15,6 +15,13 @@
 
     Ej: "lsdisk disk"
 
+  [42mmkfile[0m   - Permite crear un fichero en un disco. Recibe dos parametros.
+      -Ruta del fichero: Iniciando por el disco, las rutas, se separan por "/" y
+                            el nombre del archivo con o sin extension.
+      -Contenido del fichero: El texto que contendra el fichero.
+
+      Ej: "mkfile disk/dir/file.txt Content"
+
   [42mmkdir[0m   - Permite crear un directorio en un disco. Recibe un parametro.
     -Ruta del directorio: Iniciando por el disco, las rutas, se separan por "/".
 

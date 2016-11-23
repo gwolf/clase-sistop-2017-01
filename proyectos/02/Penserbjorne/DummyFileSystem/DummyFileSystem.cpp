@@ -31,6 +31,51 @@ void DummyFileSystem::msgError(string msg){
   cout<<msg;
 }
 
+// Permite crear un fichero
+void DummyFileSystem::mkFile(string content){
+  vector<string> splitPath;  // Aqui guardaremos la ruta ya separada
+  string delimiter = "/"; // Las rutas se separan por diagonales
+  string token;
+  size_t pos = 0;
+
+  FILE* fileDisk;
+  int i,j;
+  // Obtenemos los directorios
+  while ((pos = content.find(delimiter)) != string::npos) {
+      token = content.substr(0, pos);
+      splitPath.insert(splitPath.end(), token);
+      content.erase(0, pos + delimiter.length());
+  }
+
+  splitPath[0] += DISKEXT;
+  // corroboramos si el archivo del disco existe
+  fileDisk = fopen( splitPath[0].c_str(), "r");
+  if(fileDisk){
+    // Existe!!! lo cerramos y abrimos a modos escritura
+    fclose(fileDisk);
+    fileDisk = fopen( splitPath[0].c_str(), "a");
+
+    // Escribimos los directorios
+    for(i = 1; i < splitPath.size(); i++){
+      for( j = 1; j < i+1; j++){  // Tabulamos para que se vea mejor
+        fprintf(fileDisk, "\t");
+      }
+      splitPath[i] = this->colors.FCYN(splitPath[i]);
+      fprintf(fileDisk, "%s /\n", splitPath[i].c_str());  // Escribimos el directorio
+    }
+
+    for( j = 1; j < i; j++){  // Tabulamos para que se vea mejor
+      fprintf(fileDisk, "\t");
+    }
+    fprintf(fileDisk, "%s\n", content.c_str());  // Escribimos el fichero
+
+    fclose(fileDisk);
+  }else{
+    string msg = "No se pudo abrir el disco " + this->colors.BYEL(splitPath[0]) + ". ¿Si existe?";
+    this->msgError(msg);
+  }
+}
+
 // Permite crear un directorio
 void DummyFileSystem::mkDir(string path){
   vector<string> splitPath;  // Aqui guardaremos la ruta ya separada

@@ -35,6 +35,8 @@ class CommandLine
         void run();
         //*****************Fin comandos por parte de CMD*****************
         //****************Inicio comandos por parte de DFS***************
+        // Permite crear un fichero
+        void mkFile(string content);
         // Permite crear un directorio
         void mkDir(string path);
         // Permite crear un disco

@@ -50,6 +50,12 @@ Los comandos disponibles son:
 
     Ej: ``lsdisk disk``
 
+- mkfile   - Permite crear un fichero en un disco. Recibe dos parametros.
+    -Ruta del fichero: Iniciando por el disco, las rutas, se separan por "/" y el nombre del archivo con o sin extension.
+    -Contenido del fichero: El texto que contendra el fichero.
+
+      Ej: ``mkfile disk/dir/file.txt Content``
+
 - mmkdir   - Permite crear un directorio en un disco. Recibe un parametro.
     -Ruta del directorio: Iniciando por el disco, las rutas, se separan por "/".
 
@@ -83,3 +89,7 @@ Los comandos disponibles son:
 - Para mostrar el contenido de un disco puede usar "lsdisk" enviando como para metro el nombre del disco a listar.
 
     Ej: ``lsdisk disco1``
+
+- Para crear un fichero se usa el comando "mkfile", enviando como parametro la ruta del fichero (son o sin extension) iniciando por el disco, las rutas se separan por "/" y como segundo parametro el contenido del fichero.
+
+    Ej: ``mkdir disco1/directorio/fichero.txt Contenido del fichero``

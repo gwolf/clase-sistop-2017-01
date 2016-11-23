@@ -21,3 +21,10 @@
       como para metro el nombre del disco a listar.
 
       Ej: lsdisk disco1
+
+      *Para crear un fichero se usa el comando "mkfile", enviando como
+      parametro la ruta del fichero (son o sin extension) iniciando por
+      el disco, las rutas se separan por "/" y como segundo parametro el
+      contenido del fichero.
+
+      Ej: mkdir disco1/directorio/fichero.txt Contenido del fichero

@@ -18,6 +18,7 @@ enum commands{
   EXIT,
   HELP,
   LSDISK,
+  MKFILE,
   MKDIR,
   MKDISK,
   USAGE
@@ -90,6 +91,11 @@ void CommandLine::lsDisk(string diskName){
   this->dfs.lsDisk(diskName);
 }
 
+// Permite crear un fichero
+void CommandLine::mkFile(string content){
+  this->dfs.mkFile(content);
+}
+
 // Permite crear un directorio
 void CommandLine::mkDir(string path){
   this->dfs.mkDir(path);
@@ -117,6 +123,13 @@ int CommandLine::getAndExecCommand(string command){
       token = command.substr(0, pos);
       commandArg.insert(commandArg.end(), token);
       command.erase(0, pos + delimiter.length());
+      // Inicio Hack del desprecio :(
+      transform(token.begin(), token.end(), token.begin(), ::tolower);
+      if(token == "mkfile"){
+        break;
+      }
+      // Fin Hack del desprecio :(
+
   }
   commandArg.insert(commandArg.end(), command);
   commandEvalOriginal = commandArg[0];
@@ -131,7 +144,7 @@ int CommandLine::getAndExecCommand(string command){
           optionalHeader += "\t\t\t----------Acerca de DFS----------\n\n";
     string fileContent = "info_about.txt";
     this->genericCommand(header, optionalHeader,fileContent);
-    return USAGE;
+    return ABOUT;
   }else if(commandArg[0] == "exit"){
     return EXIT;
   }else if(commandArg[0] == "help"){
@@ -150,13 +163,20 @@ int CommandLine::getAndExecCommand(string command){
     return USAGE;
   }//********************Fin comandos por parte de CMD********************
   //********************Inicio comandos por parte de DFS********************
-  else if(commandArg[0] == "mkdir"){
+  else if(commandArg[0] == "mkfile"){
+    if(commandArg.size() < 2){
+      this->msgError("Faltan parametros para el comando.");
+    }else{
+        this->mkFile(commandArg[1]);
+    }
+    return MKFILE;
+  }else if(commandArg[0] == "mkdir"){
     if(commandArg.size() < 2){
       this->msgError("Faltan parametros para el comando.");
     }else{
         this->mkDir(commandArg[1]);
     }
-    return MKDISK;
+    return MKDIR;
   }else if(commandArg[0] == "mkdisk"){
     if(commandArg.size() < 3){
       this->msgError("Faltan parametros para el comando.");
