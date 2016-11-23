@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- Encoding: utf-8 -*-
 #Nombre: Carlos Alberto Díaz Olivares
+#Proyecto: MiniSistemaArchivos
 
 import os.path
 
@@ -25,17 +26,17 @@ def crearArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
 		print("El nombre de archivo sobrepasa los 20 caracteres")
 		return False
 	else:
-		if len(fin_nombre)>0:
+		if len(fin_nombre)>0:#Verifica que si ya existen archivos
 			if str(buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre)) != 'False':
 				print("El nombre de archivo ya existe")
 				return False
-		directorioActual.seek(inicio_nombre[len(inicio_nombre)-1])
-		print("Aqui empieza "+ str(directorioActual.tell()))
+		directorioActual.seek(inicio_nombre[len(inicio_nombre)-1])#Posicionar el cursor en donde empieza el espacio de nombre
+		#print("Aqui empieza "+ str(directorioActual.tell())) Para saber en que posicion empieza el nombre
 		directorioActual.write(nombreArchivo)
-		print("Aqui termina "+ str(directorioActual.tell()))
-		fin_nombre.append(directorioActual.tell())
-		inicio_nombre.append(inicio_nombre[len(inicio_nombre)-1]+71)
-		inicio_archivo.append(inicio_nombre[len(inicio_nombre)-2]+21)
+		#print("Aqui termina "+ str(directorioActual.tell())) Para saber en que posicion se termina el nombre
+		fin_nombre.append(directorioActual.tell())#Guarda la posicion del nombre
+		inicio_nombre.append(inicio_nombre[len(inicio_nombre)-1]+71) #Guarda la posicion del siguiente inicio de nombre
+		inicio_archivo.append(inicio_nombre[len(inicio_nombre)-2]+21) #Guarda la posicion de inicio del contenido del archivo que acabamos de nombrar
 		directorioActual.close()
 		return directorioActual
 
@@ -83,6 +84,9 @@ def borrarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
 	return
 def escribirArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo,cadena):
 	directorioActual =  open(nombreDirectorio,"r+")
+	if(len(cadena) > 50):
+		print("La cadena sobrepasa el tamaño maximo del archivo")
+		return
 	if len(fin_nombre)>0:
 		posicion = buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre)
 		if(str(posicion)=='False'):
@@ -120,6 +124,10 @@ def leerArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre,inicio_a
 	return
 def concatenarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo,cadena):
 	directorioActual =  open(nombreDirectorio,"r+")
+	lectura = leerArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo)
+	if(len(cadena)+len(lectura) > 50):
+		print("Se sobrepasa el tamaño maximo del archivo")
+		return
 	if len(fin_nombre)>0:
 		posicion = buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre)
 		if(str(posicion)=='False'):
@@ -140,77 +148,53 @@ def concatenarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre,in
 	return
 
 
-inicio_nombre=[]
-fin_nombre=[]
+inicio_nombre=[] #Lista para guardar posiciones de inicio de nombre
+fin_nombre=[] #Lista para guardar posiciones de fin de nombre
 
-inicio_archivo=[]
-fin_archivo=[]
-
-
-
-nombreDirectorio=input("Escribe el nombre del nuevo directorio")+".dat"
-directorioActual = crearDirectorio(nombreDirectorio)
+inicio_archivo=[] #Lista para guardar posiciones de inicio de contenido
+fin_archivo=[] #Lista para guardar posiciones de fin de contenido
 
 
-if  directorioActual == False:
-	print ("Error el directorio ya existe")
-else:
-	inicio_nombre.append(directorioActual.tell())
-	directorioActual.close()
+existe = True
+while existe == True:
+	nombreDirectorio=input("Escribe el nombre del nuevo directorio")+".dat"
+	existe = existeDirectorio(nombreDirectorio)
+	directorioActual = crearDirectorio(nombreDirectorio)
+	if  directorioActual == False:
+		print ("Error el directorio ya existe")
+	else:
+		inicio_nombre.append(directorioActual.tell())
+		directorioActual.close()
 
 opcion = True
 while opcion != False:
-	for x in inicio_nombre:
-		print("in")
-		print(x)
-	for x in fin_nombre:
-		print("fn")
-		print(x)
-	for x in inicio_archivo:
-		print("ia")
-		print(x)
-	for x in fin_archivo:
-		print("fa")
-		print(x)
-	print("Escoge una opcion\n  1.-Crear un archivo\n  2.-Escribir Archivo\n  3.- Leer Archivo\n  4.-Concatenar en archivo\n  5.- Borrar Archivo\n  6.-Listar Archivos del Directorio")
+	print("Escoge una opcion\n  1.-Crear un archivo\n  2.-Escribir Archivo\n  3.- Leer Archivo\n  4.-Concatenar en archivo\n  5.- Borrar Archivo\n  6.-Listar Archivos del Directorio\n  7.-Salir")
 	opcion = input()
 	if(opcion == '1'):
-		nombre=input("Escribe el nombre del nuevo archivo")
+		nombre=input("Escribe el nombre del nuevo archivo\n")
 		directorioActual = crearArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
 	elif(opcion == '2'):
-		nombre=input("Escribe el nombre del archivo")
-		cadena=input("Escribe la cadena a escribir en el archivo(Cualquier dato en el archivo se sobreescribira)")
+		nombre=input("Escribe el nombre del archivo\n")
+		cadena=input("Escribe la cadena a escribir en el archivo(Cualquier dato en el archivo se sobreescribira)\n")
 		escribirArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo,cadena)
 	elif(opcion == '3'):
-		nombre=input("Escribe el nombre del archivo")
+		nombre=input("Escribe el nombre del archivo\n")
 		lectura = leerArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo)
 		print(lectura)
 	elif(opcion == '4'):
-		nombre=input("Escribe el nombre del archivo")
-		cadena=input("Escribe la cadena a escribir en el archivo")
+		nombre=input("Escribe el nombre del archivo\n")
+		cadena=input("Escribe la cadena a escribir en el archivo\n")
 		concatenarArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre,inicio_archivo,fin_archivo,cadena)
 	elif(opcion == '5'):
-		nombre=input("Escribe el nombre del archivo")
+		nombre=input("Escribe el nombre del archivo\n")
 		borrarArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
 	elif(opcion == '6'):
 		listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
 	elif(opcion == '7'):
 		opcion = False
 	else:
-		print("Opcion Invalida")
+		print("Opcion Invalida\n")
 
 
-"""listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
-for i in range(5):
-	nombre=input("Escribe el nombre del nuevo archivo")
-	archivo.write(nombre)
-	fin_nombre.append(archivo.tell())
-	inicio_nombre.append(archivo.tell())
-	directorioActual = crearArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
-listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
-nombre=input("Escribe el nombre del nuevo archivo")
-borrarArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
-listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
-"""
 
 
