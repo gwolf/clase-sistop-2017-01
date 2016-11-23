@@ -22,7 +22,8 @@ Micro sistema de archivos creado para la materia Sistemas Operativos. Facultad d
 
 ##Compilar y Ejecutar
 
-El archivo necesario se encuentra en la carpeta ``DummyFileSystem``
+El archivo necesario se encuentra en la carpeta ``DummyFileSystem``.
+
 - Compilar y ejecutar -> ``./build.sh``
 - Compilar -> ``make -f makefile.mk``
 - Ejecutar -> ``./dfs``
