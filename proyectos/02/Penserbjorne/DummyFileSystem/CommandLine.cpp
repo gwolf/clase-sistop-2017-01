@@ -17,6 +17,7 @@ enum commands{
   ABOUT,
   EXIT,
   HELP,
+  LSDISK,
   MKDISK,
   USAGE
 };
@@ -87,6 +88,11 @@ void CommandLine::mkDisk(string nameDisk, long int sizeDisk){
   }
 }
 
+// Permite listar los discos existentes
+void CommandLine::lsDisk(){
+  this->dfs.lsDisk();
+}
+
 // Obtiene el comando introducido y lo ejecuta
 int CommandLine::getAndExecCommand(string command){
   vector<string> commandArg;  // Aqui guardaremos el comando y sus parametros
@@ -145,6 +151,9 @@ int CommandLine::getAndExecCommand(string command){
       }
     }
     return MKDISK;
+  }else if(commandArg[0] == "lsdisk"){
+    this->lsDisk();
+    return LSDISK;
   }
   //********************Inicio comandos por parte de DFS********************
   else{

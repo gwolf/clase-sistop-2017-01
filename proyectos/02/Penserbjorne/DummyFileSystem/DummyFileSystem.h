@@ -17,8 +17,13 @@ class DummyFileSystem
         DummyFileSystem();
         virtual ~DummyFileSystem();
 
+        // Emitie mensajes de error
+        void msgError(string msg);
         // Permite crear un disco
         bool mkDisk(string diskName, long int diskSize, string user);
+        // Permite listar los discos existentes
+        void lsDisk();
+
     protected:
     private:
       Colors colors;

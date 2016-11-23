@@ -1,3 +1,12 @@
 
 
       Esta informacion muestra un uso basico del sistema de ficheros DFS.
+
+      *Primeramente hay que ingresar un nombre de usuario para la sesion.
+
+      *Crear un disco con el comando "mkdisk", enviando como parametros el
+      nombre del disco y el tamaño.
+
+      Ej: mkdisk disco1 100
+
+      *Para enlistar los discos creados puede usar "lsdisk".

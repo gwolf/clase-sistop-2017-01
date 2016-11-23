@@ -37,6 +37,7 @@ class CommandLine
         //****************Inicio comandos por parte de DFS***************
         // Permite crear un disco
         void mkDisk(string nameDisk, long int sizeDisk);
+        void lsDisk();
         //*****************Fin comandos por parte de DFS*****************
     protected:
     private:
