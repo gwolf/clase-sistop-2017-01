@@ -18,6 +18,8 @@ def crearDirectorio(nombreDirectorio):
 		return open(nombreDirectorio,"a+")
 
 def crearArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
+	if len(nombreArchivo) == 0:
+		return False
 	directorioActual =  open(nombreDirectorio,"r+")
 	if len(nombreArchivo)>20:
 		print("El nombre de archivo sobrepasa los 20 caracteres")
@@ -37,6 +39,19 @@ def crearArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
 		print("Aqui termina "+ str(directorioActual.tell()))
 		fin_nombre.append(directorioActual.tell())
 		inicio_nombre.append(inicio_nombre[len(inicio_nombre)-1]+50)
+		directorioActual.close()
+		return directorioActual
+
+def listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre):
+	directorioActual =  open(nombreDirectorio,"r+")
+	if len(fin_nombre)>0:
+		for x in range(len(inicio_nombre)-1):
+			directorioActual.seek(inicio_nombre[x])
+			nombre = directorioActual.read(fin_nombre[x]-inicio_nombre[x])
+			print (nombre)
+	else:
+		print("No hay archivos para listar")
+	directorioActual.close()
 
 
 inicio_nombre=[]
@@ -52,22 +67,16 @@ if  directorioActual == False:
 else:
 	inicio_nombre.append(directorioActual.tell())
 	directorioActual.close()
-
-nombre=input("Escribe el nombre del nuevo archivo")
-"""archivo.write(nombre)
-fin_nombre.append(archivo.tell())
-inicio_nombre.append(archivo.tell())"""
-crearArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
-nombre=input("Escribe el nombre del nuevo archivo")
-crearArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
-archivo= open(nombreDirectorio,"r+")
-archivo.seek(inicio_nombre[0])
-print(archivo.read(fin_nombre[0]-inicio_nombre[0]))
-archivo.seek(inicio_nombre[1])
-print(archivo.read(fin_nombre[1]-inicio_nombre[1]))
+listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
+for i in range(5):
+	nombre=input("Escribe el nombre del nuevo archivo")
+	"""archivo.write(nombre)
+	fin_nombre.append(archivo.tell())
+	inicio_nombre.append(archivo.tell())"""
+	directorioActual = crearArchivo(nombreDirectorio,nombre,inicio_nombre,fin_nombre)
+listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre)
 for x in inicio_nombre:
 	print(x)
 for x in fin_nombre:
 	print(x)
-archivo.seek(0)
-print(archivo.read(8))
+
