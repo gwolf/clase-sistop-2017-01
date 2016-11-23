@@ -85,6 +85,11 @@ void CommandLine::lsDisk(){
   this->dfs.lsDisk();
 }
 
+// Permite listar el contenido de un disco
+void CommandLine::lsDisk(string diskName){
+  this->dfs.lsDisk(diskName);
+}
+
 // Permite crear un directorio
 void CommandLine::mkDir(string path){
   this->dfs.mkDir(path);
@@ -165,7 +170,11 @@ int CommandLine::getAndExecCommand(string command){
     }
     return MKDISK;
   }else if(commandArg[0] == "lsdisk"){
-    this->lsDisk();
+    if(commandArg.size() > 1){
+      this->lsDisk(commandArg[1]);
+    }else{
+      this->lsDisk();
+    }
     return LSDISK;
   }
   //********************Inicio comandos por parte de DFS********************

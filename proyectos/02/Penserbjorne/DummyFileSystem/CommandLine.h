@@ -41,6 +41,8 @@ class CommandLine
         void mkDisk(string nameDisk, long int sizeDisk);
         // Permite listar los discos existentes
         void lsDisk();
+        // Permite listar el contenido de un disco
+        void lsDisk(string diskName);
         //*****************Fin comandos por parte de DFS*****************
     protected:
     private:

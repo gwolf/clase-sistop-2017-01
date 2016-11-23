@@ -25,6 +25,8 @@ class DummyFileSystem
         bool mkDisk(string diskName, long int diskSize, string user);
         // Permite listar los discos existentes
         void lsDisk();
+        // Permite listar el contenido de un disco
+        void lsDisk(string diskName);
 
     protected:
     private:

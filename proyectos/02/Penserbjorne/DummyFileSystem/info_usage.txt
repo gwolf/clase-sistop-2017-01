@@ -16,3 +16,8 @@
       se separan por "/".
 
       Ej: mkdir disco1/directorio
+
+      *Para mostrar el contenido de un disco puede usar "lsdisk" enviando
+      como para metro el nombre del disco a listar.
+
+      Ej: lsdisk disco1

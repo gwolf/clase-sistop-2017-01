@@ -13,6 +13,7 @@
 #include <algorithm>
 
 #define DISKTABLE "disktable.tbl"
+#define DISKEXT ".dsk"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ void DummyFileSystem::mkDir(string path){
   }
   splitPath.insert(splitPath.end(), path);
 
-  splitPath[0] += ".dsk";
+  splitPath[0] += DISKEXT;
   // corroboramos si el archivo del disco existe
   fileDisk = fopen( splitPath[0].c_str(), "r");
   if(fileDisk){
@@ -57,10 +58,11 @@ void DummyFileSystem::mkDir(string path){
 
     // Escribimos los directorios
     for(i = 1; i < splitPath.size(); i++){
-      for( j = 1; j < i; j++){  // Tabulamos para que se vea mejor
+      for( j = 1; j < i+1; j++){  // Tabulamos para que se vea mejor
         fprintf(fileDisk, "\t");
       }
-      fprintf(fileDisk, "-> %s\n", splitPath[i].c_str());  // Escribimos el directorio
+      splitPath[i] = this->colors.FCYN(splitPath[i]);
+      fprintf(fileDisk, "%s /\n", splitPath[i].c_str());  // Escribimos el directorio
     }
 
     fclose(fileDisk);
@@ -85,7 +87,7 @@ bool DummyFileSystem::mkDisk(string diskName, long int diskSize, string user){
     disk.size = diskSize;
     disk.user = user;
 
-    fileDiskName = diskName + ".dsk";
+    fileDiskName = diskName + DISKEXT;
     fileDisk = fopen( fileDiskName.c_str(), "w");
 
     if(fileDisk){ // Abrimos el disco
@@ -126,7 +128,6 @@ bool DummyFileSystem::mkDisk(string diskName, long int diskSize, string user){
 
 // Permite listar los discos existentes
 void DummyFileSystem::lsDisk(){
-  Disk disk;
   int countDisk;
   FILE* fileDiskTable;
   char caracter;
@@ -138,7 +139,9 @@ void DummyFileSystem::lsDisk(){
       countDisk = 0;
       while(!feof(fileDiskTable)){  // Leemos los registros de la tabla
         caracter = fgetc(fileDiskTable);
-        cout<<caracter;
+        if(caracter != EOF){
+          cout<<caracter;
+        }
         if(caracter == '\n'){
           countDisk++;
         }
@@ -150,5 +153,30 @@ void DummyFileSystem::lsDisk(){
   }else{
     // No se pudo abrir la tabla de discos
     this->msgError("No se puede abrir la tabla de discos.");
+  }
+}
+
+// Permite listar los discos existentes
+void DummyFileSystem::lsDisk(string diskName){
+  FILE* fileDisk;
+  char caracter;
+
+  diskName += DISKEXT;
+  fileDisk = fopen(diskName.c_str(), "r"); // Abrimos la tabla de discos exitentes
+
+  if(fileDisk){  // Abrimos la tabla de discos
+      cout<<endl;
+      while(!feof(fileDisk)){  // Leemos los registros de la tabla
+        caracter = fgetc(fileDisk);
+        if(caracter != EOF){
+          cout<<caracter;
+        }
+      }
+      cout<<endl;
+      fclose(fileDisk);
+  }else{
+    // No se pudo abrir la tabla de discos
+    string msg = "No se pudo abrir el disco " + this->colors.BYEL(diskName) + ". ¿Si existe?";
+    this->msgError(msg);
   }
 }
