@@ -1,4 +1,4 @@
-require "rubygems"
+
 require "zip/zipfilesystem"
 
 =begin
