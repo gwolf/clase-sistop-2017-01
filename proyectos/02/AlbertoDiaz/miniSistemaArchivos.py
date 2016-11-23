@@ -26,13 +26,10 @@ def crearArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
 		return False
 	else:
 		if len(fin_nombre)>0:
-			for x in range(len(inicio_nombre)-1):
-				print (x)
-				directorioActual.seek(inicio_nombre[x])
-				nombre = directorioActual.read(fin_nombre[x]-inicio_nombre[x])
-				if nombre == nombreArchivo:
-					print("El nombre de archivo ya existe")
-					return False
+			print(str(buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre)))
+			if str(buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre)) != 'False':
+				print("El nombre de archivo ya existe")
+				return False
 		directorioActual.seek(inicio_nombre[len(inicio_nombre)-1])
 		print("Aqui empieza "+ str(directorioActual.tell()))
 		directorioActual.write(nombreArchivo)
@@ -52,6 +49,20 @@ def listarArchivos(nombreDirectorio,inicio_nombre,fin_nombre):
 	else:
 		print("No hay archivos para listar")
 	directorioActual.close()
+
+def buscarArchivo(nombreDirectorio,nombreArchivo,inicio_nombre,fin_nombre):
+	directorioActual =  open(nombreDirectorio,"r+")
+	if len(fin_nombre)>0:
+			for x in range(len(inicio_nombre)-1):
+				directorioActual.seek(inicio_nombre[x])
+				nombre = directorioActual.read(fin_nombre[x]-inicio_nombre[x])
+				print("Actual "+ nombre)
+				print("buscando "+ nombreArchivo)
+				if nombre == nombreArchivo:
+					return inicio_nombre[x]
+			return False
+	else:
+		return False
 
 
 inicio_nombre=[]
