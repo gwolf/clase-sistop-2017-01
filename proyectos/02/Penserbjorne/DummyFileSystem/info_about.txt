@@ -1,0 +1,6 @@
+
+
+  Dummy File System es un proyecto realizado por Paul Sebastian Aguilar Enriquez
+   a.k.a Penserbjorne para la materia de Sistemas Operativos, impartida por el
+   profesor Gunnar Wolf en la Faultad de  Ingeniería de la Universidad Nacional
+                  Autónoma de México en el semestre 2017-1.

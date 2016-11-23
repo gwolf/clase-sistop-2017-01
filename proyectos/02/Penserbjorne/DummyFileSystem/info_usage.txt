@@ -1,0 +1,30 @@
+
+
+      Esta informacion muestra un uso basico del sistema de ficheros DFS.
+
+      *Primeramente hay que ingresar un nombre de usuario para la sesion.
+
+      *Crear un disco con el comando "mkdisk", enviando como parametros el
+      nombre del disco y el tamaño.
+
+      Ej: mkdisk disco1 100
+
+      *Para enlistar los discos creados puede usar "lsdisk".
+
+      *Para crear una carpeta se usa el comando "mkdir", enviando como
+      parametro la ruta de la carpeta iniciando por el disco, las rutas
+      se separan por "/".
+
+      Ej: mkdir disco1/directorio
+
+      *Para mostrar el contenido de un disco puede usar "lsdisk" enviando
+      como para metro el nombre del disco a listar.
+
+      Ej: lsdisk disco1
+
+      *Para crear un fichero se usa el comando "mkfile", enviando como
+      parametro la ruta del fichero (son o sin extension) iniciando por
+      el disco, las rutas se separan por "/" y como segundo parametro el
+      contenido del fichero.
+
+      Ej: mkdir disco1/directorio/fichero.txt Contenido del fichero

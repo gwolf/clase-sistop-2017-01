@@ -1,0 +1,37 @@
+
+
+  Esta informacion lista todos los comandos disponibles asi como su descripcion.
+
+  [42mabout[0m   - Muestra informacion sobre FDS.
+
+  [42mexit[0m    - Sale del sistema.
+
+  [42mhelp[0m    - Despliega la ayuda general del sistema.
+
+  [42mlsdisk[0m  - (Sin parametro) Enlista todos los discos creados.
+
+  [42mlsdisk[0m  - (Con parametro) Enlista el contenido de un disco. Recibe un parametro.
+    -Nombre del disco a mostrar.
+
+    Ej: "lsdisk disk"
+
+  [42mmkfile[0m   - Permite crear un fichero en un disco. Recibe dos parametros.
+      -Ruta del fichero: Iniciando por el disco, las rutas, se separan por "/" y
+                            el nombre del archivo con o sin extension.
+      -Contenido del fichero: El texto que contendra el fichero.
+
+      Ej: "mkfile disk/dir/file.txt Content"
+
+  [42mmkdir[0m   - Permite crear un directorio en un disco. Recibe un parametro.
+    -Ruta del directorio: Iniciando por el disco, las rutas, se separan por "/".
+
+    Ej: "mkdir disk/dir"
+
+  [42mmkdisk[0m  - Permite crear un disco para operar sobre el. Recibe dos parametros.
+    -Nombre del disco: Nombre con el que se creara el fichero correspondiente.
+                       No puede llevar espacios.
+    -Tamaño del disco: Valor numerico en MB. No puede ser menor a 100 MB.
+
+    Ej: "mkdisk disk 100"
+
+  [42musage[0m   - Pequeño tutorial de como usar el sistema de ficheros.
