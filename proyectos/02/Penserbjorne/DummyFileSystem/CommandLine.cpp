@@ -18,6 +18,7 @@ enum commands{
   EXIT,
   HELP,
   LSDISK,
+  MKDIR,
   MKDISK,
   USAGE
 };
@@ -79,6 +80,16 @@ void CommandLine::genericCommand(string header, string optionalHeader,string fil
   }
 }
 
+// Permite listar los discos existentes
+void CommandLine::lsDisk(){
+  this->dfs.lsDisk();
+}
+
+// Permite crear un directorio
+void CommandLine::mkDir(string path){
+  this->dfs.mkDir(path);
+}
+
 // Permite crear un disco
 void CommandLine::mkDisk(string nameDisk, long int sizeDisk){
   if(sizeDisk < 100){
@@ -86,11 +97,6 @@ void CommandLine::mkDisk(string nameDisk, long int sizeDisk){
   }else{
     this->dfs.mkDisk(nameDisk, sizeDisk, this->user);
   }
-}
-
-// Permite listar los discos existentes
-void CommandLine::lsDisk(){
-  this->dfs.lsDisk();
 }
 
 // Obtiene el comando introducido y lo ejecuta
@@ -139,7 +145,14 @@ int CommandLine::getAndExecCommand(string command){
     return USAGE;
   }//********************Fin comandos por parte de CMD********************
   //********************Inicio comandos por parte de DFS********************
-  else if(commandArg[0] == "mkdisk"){
+  else if(commandArg[0] == "mkdir"){
+    if(commandArg.size() < 2){
+      this->msgError("Faltan parametros para el comando.");
+    }else{
+        this->mkDir(commandArg[1]);
+    }
+    return MKDISK;
+  }else if(commandArg[0] == "mkdisk"){
     if(commandArg.size() < 3){
       this->msgError("Faltan parametros para el comando.");
     }else{

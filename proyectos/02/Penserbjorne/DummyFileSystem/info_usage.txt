@@ -10,3 +10,9 @@
       Ej: mkdisk disco1 100
 
       *Para enlistar los discos creados puede usar "lsdisk".
+
+      *Para crear una carpeta se usa el comando "mkdir", enviando como
+      parametro la ruta de la carpeta iniciando por el disco, las rutas
+      se separan por "/".
+
+      Ej: mkdir disco1/directorio

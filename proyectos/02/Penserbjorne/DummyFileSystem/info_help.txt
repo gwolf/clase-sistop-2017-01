@@ -9,7 +9,10 @@
   help    - Despliega la ayuda general del sistema.
 
   lsdisk  - Enlista todos los discos creados.
-  
+
+  mkdir   - Ruta de la carpeta iniciando por el disco, las rutas, se separan
+            por "/".
+
   mkdisk  - Permite crear un disco para operar sobre el. Recibe dos parametros.
     -Nombre del disco: Nombre con el que se creara el fichero correspondiente.
                        No puede llevar espacios.

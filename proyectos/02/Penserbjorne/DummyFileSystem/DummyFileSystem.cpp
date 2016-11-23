@@ -9,7 +9,8 @@
 #include <ctime>
 #include <string>
 #include <cstring>
-#include <stdio.h>  // Mas rapido que fstream :3
+#include <cstdio>  // Mas rapido que fstream :3
+#include <algorithm>
 
 #define DISKTABLE "disktable.tbl"
 
@@ -27,6 +28,46 @@ DummyFileSystem::~DummyFileSystem(){
 void DummyFileSystem::msgError(string msg){
   msg = this->colors.FRED("\tError:\t") + msg + "\n";
   cout<<msg;
+}
+
+// Permite crear un directorio
+void DummyFileSystem::mkDir(string path){
+  vector<string> splitPath;  // Aqui guardaremos la ruta ya separada
+  string delimiter = "/"; // Las rutas se separan por diagonales
+  string token;
+  size_t pos = 0;
+
+  FILE* fileDisk;
+  int i,j;
+  // Obtenemos los directorios
+  while ((pos = path.find(delimiter)) != string::npos) {
+      token = path.substr(0, pos);
+      splitPath.insert(splitPath.end(), token);
+      path.erase(0, pos + delimiter.length());
+  }
+  splitPath.insert(splitPath.end(), path);
+
+  splitPath[0] += ".dsk";
+  // corroboramos si el archivo del disco existe
+  fileDisk = fopen( splitPath[0].c_str(), "r");
+  if(fileDisk){
+    // Existe!!! lo cerramos y abrimos a modos escritura
+    fclose(fileDisk);
+    fileDisk = fopen( splitPath[0].c_str(), "a");
+
+    // Escribimos los directorios
+    for(i = 1; i < splitPath.size(); i++){
+      for( j = 1; j < i; j++){  // Tabulamos para que se vea mejor
+        fprintf(fileDisk, "\t");
+      }
+      fprintf(fileDisk, "-> %s\n", splitPath[i].c_str());  // Escribimos el directorio
+    }
+
+    fclose(fileDisk);
+  }else{
+    string msg = "No se pudo abrir el disco " + this->colors.BYEL(splitPath[0]) + ". ¿Si existe?";
+    this->msgError(msg);
+  }
 }
 
 // Permite crear un disco
@@ -78,7 +119,7 @@ bool DummyFileSystem::mkDisk(string diskName, long int diskSize, string user){
     }
   }else{
     // No se pudo abrir la tabla de discos
-    this->msgError("No se puede abrir la tabla de discos.");
+    this->msgError("No se puede abrir la tabla de discos. Prueba añadiendo un disco.");
     return false;
   }
 }

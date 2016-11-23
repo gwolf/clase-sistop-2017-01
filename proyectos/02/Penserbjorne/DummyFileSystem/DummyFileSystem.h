@@ -19,6 +19,8 @@ class DummyFileSystem
 
         // Emitie mensajes de error
         void msgError(string msg);
+        // Permite crear un directorio
+        void mkDir(string path);
         // Permite crear un disco
         bool mkDisk(string diskName, long int diskSize, string user);
         // Permite listar los discos existentes
