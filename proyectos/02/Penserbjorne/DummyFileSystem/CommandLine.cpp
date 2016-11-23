@@ -83,7 +83,7 @@ void CommandLine::mkDisk(string nameDisk, long int sizeDisk){
   if(sizeDisk < 100){
     this->msgError("El tamaño del disco es muy pequeño.");
   }else{
-    this->dfs.mkDisk(nameDisk, sizeDisk);
+    this->dfs.mkDisk(nameDisk, sizeDisk, this->user);
   }
 }
 

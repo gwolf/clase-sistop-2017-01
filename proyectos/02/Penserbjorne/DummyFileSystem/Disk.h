@@ -18,6 +18,8 @@ class Disk
         char* dateCreation;
         string name;
         long int size;
+        string user;
+        bool idMounted;
 
         Disk();
         virtual ~Disk();

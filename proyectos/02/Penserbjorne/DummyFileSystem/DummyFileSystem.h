@@ -18,7 +18,7 @@ class DummyFileSystem
         virtual ~DummyFileSystem();
 
         // Permite crear un disco
-        bool mkDisk(string diskName, long int diskSize);
+        bool mkDisk(string diskName, long int diskSize, string user);
     protected:
     private:
       Colors colors;

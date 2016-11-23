@@ -11,6 +11,7 @@ Disk::Disk(){
     this->header = "DFS_DSk";
     this->idDisk = time(0);
     this->dateCreation = ctime(&this->idDisk);
+    this->isMounted = false;
 }
 
 Disk::~Disk(){

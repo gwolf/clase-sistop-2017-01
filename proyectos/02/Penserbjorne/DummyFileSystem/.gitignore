@@ -8,4 +8,5 @@ main.o
 Template.h
 Template.cpp
 *.dsk
+*.tbl
 *.~
