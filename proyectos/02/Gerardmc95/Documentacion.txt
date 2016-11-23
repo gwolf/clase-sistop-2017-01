@@ -1,0 +1,25 @@
+PROYECTOR POR:
+Mendoza Colmenares Gerardo
+
+
+LENGUJAE:
+Python 3.4
+
+  
+PROBLEMA A RESOLVER:
+Se busca hacer el uso de un micro-sistema de archivos con las instrucciones más básicas posibles como crear, borrar y leer
+
+
+SOLUCION:
+Para resolver este problema, fue necesario  crear funciones con los nombres de ciertos comandos (traducidos al español) de linux, en las cuales se pidiera "prestado" algun comando para ejecutar y asi poder hacer lo solicitado.
+Dicho prestamo se logro mediante la libreria "os"; dentro de las funciones se colocaron 'ifs' que controlan el buen funcionamiento de la solicitud evitando errores. Ademas del uso de un diccionario para lograr que el comando introducido
+sea de los disponibles en el programa.
+
+
+FORMA DE USO DEL PRROGRAMA
+Para poder ejecutar el programa:
+Deberá crear una carpeta llamada 'WOLF', esta carpeta deberá ser comprimida en un .zip; para lograr esto en una terminal
+escriba: ' mkdir WOLF ', después escriba ' zip -r WOLF.zip WOLF ' y se creará, si se desea se puede hacer de otro modo, mientras se conserve el nombre de 'WOLF'
+Después abra una terminal, dentro de ella dirigirse  al directorio donde se encuentra lo anteriormente creado, una vez
+dentro de dicha carpeta contenedora se deberá escribir 'python3 MicroSistema.py', se recomienda que una vez iniciado el
+programa escriba 'ayuda' para un mejor entendimiento del mismo.
