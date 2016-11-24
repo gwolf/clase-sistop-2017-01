@@ -1,0 +1,404 @@
+#+title: Evaluación del segundo proyecto (micro-sistema de archivos)
+#+author: Gunnar Wolf
+
+Las calificaciones aquí registradas son producto de la aplicación de
+la [[http://sistop.gwolf.org/rubricas.pdf][rúbrica correspondiente a este proyecto]].
+
+Iré calificando las entregas en el órden que recibí los /pull
+requests/ (y en ese mismo órden las presenta este listado).
+
+* Ángel Vázquez, Josué Quiñones
+
+- Directorio de entrega :: [[./SistemaArchivos]]
+- Documentación :: [[./SistemaArchivos/README.md]]
+- Estrategia de representación :: Directorio temporal "congelado" a un
+     archivo .zip al finalizar ejecución, descomprimido al iniciar
+- Lenguaje de desarrollo :: C#
+- Observaciones ::
+  - Al /delegar/ la lógica del programa a =ZipFile=, la mayor
+    complejidad del programa fue desarrollar la interfaz... Una tarea
+    que no les hace apreciar cómo organiza la información un
+    micro-sistema de archivos (que era mi objetivo con este
+    ejercicio). ¡Tengo que replantear el ejercicio para generaciones
+    posteriores!
+  - Veo que no siempre asumen éxito, que hay un cierto grado de manejo
+    amigable de errores. ¡Bien!
+  - En el =switch= del ciclo de evaluación de =run()=, todas las
+    opciones inician con una verificación del número de argumentos
+    (¡bien!) Me llama la atención que verifiquen un tamaño igual a 1
+    para las opciones que no reciben argumentos, pero mayor o igual a
+    dos para las que sí lo reciben. ¿Por qué no estrictamente igual?
+    - Creo que el código podría fácilmente reducirse y hacerse más
+      claro si hicieran esta validación antes del =switch=. Por
+      ejemplo, si tuvieran algo como lo siguiente en la línea 55:
+      #+BEGIN_SRC C++
+      List<string> noargs = new List<string>(new string[] { "clear", "list", "help", "history", "exit" });
+      List<string> un_arg = new List<string>(new string[] { "createfile", "read", "edit", "remove" });
+      #+END_SRC
+      Incluso sería más bonito si yo conociera suficiente C# para
+      poder presentarlo como un diccionario, en que fuera una sola
+      estructura indexada por el número de argumentos. Podría hacerse
+      la verificación que penosamente hacen caso por caso, dándole
+      generalidad al programa y haciéndolo más fácil de depurar.
+    - Ah, ya veo por qué >= 2 → A ustedes les gustan los archivos que
+      tienen espacios dentro de su nombre... Bueno, ya ven las
+      marometas que tienen que dar para soportar esa cosa antinatural
+      ☺
+  - Me gusta que, lanzando y esperando al Notepad, hagan uso de
+    herramientas de sincronización, y de paso le simplifiquen la vida
+    al usuario.
+  - Para probar la compilación en un entorno que conozco, generé el
+    siguiente archivo =ZipFile.cs=, aunque claramente hace inoperante
+    al sistema (pero le permite compilar):
+    #+BEGIN_SRC C++
+    class ZipFile {
+        public static void ExtractToDirectory(string arg1, string arg2) {}
+        public static void CreateFromDirectory(string arg1, string arg2) {}
+    }
+    #+END_SRC
+  - El código tiene mucho "andamiaje" propio de Visual Studio. Para
+    compilarlo, basta con los dos archivos que ustedes escribieron,
+    =Program.cs= y =Filesystem.cs=. Todo lo demás es autogenerado y
+    sale sobrando.
+
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |     1.67 |
+| Complejidad            |         5 |        |     0.33 |
+| Claridad desarrollo    |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |     1.67 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |         5 |        |     0.33 |
+| Código válido          |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |     8.35 |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Yaxkin Sánchez
+
+- Directorio de entrega :: [[./YaxkinSanchez]]
+- Documentación :: [[./YaxkinSanchez/README.md]]
+- Estrategia de representación :: Archivo .zip como almacén de
+     archivos, empleando un archivo para directorio explícito;
+     descomprimiendo archivos individuales sobre demanda, "congelado"
+     los cambios al finalizar la ejecución
+- Lenguaje de desarrollo :: Bourne Shell (=bash=)
+- Observaciones ::
+  - ¡Ouch! Implementar esto en shell seguramente te llevó a darte un
+    par de topes con el límite de lo práctico. Es un buen lenguaje
+    para algunas cosas... Pero muy limitado para implementar un
+    sistema decentemente complejo
+  - El uso de un directorio (tu =rootlist=) es una manera ingeniosa de
+    escapar de la excesiva simplicidad que le critico a algunos
+    compañeros de simplemente comprimir/descomprimir. Sin embargo,
+    ¿qué ganas con el uso de =rootlist= que no tengas con una
+    verificación por el nombre de archivo? Vamos, ¿y si en vez de
+    =if $(archivo_existe)= hicieras un =if [ -e $arg1 ]=... Obtendrías
+    un resultado muy similar.
+  - De la documentación: El término /recolector de basura/ tiene un
+    significado más o menos preciso en nuestro campo: Tendría que ser
+    algo que esté revisando /periódicamente/, o por lo menos basado en
+    eventos. Lo que tu programa hace es un proceso de limpieza al
+    cerrar.
+  - Es dificil juzgar estructura/nomenclatura en un programa sencillo
+    en bash (habla bien de tu manejo del entorno ☻), porque usas muy
+    pocos nombres de símbolos. Sólo critico a =arg1, arg2, arg3= —
+    ¿Por qué no llamarles, por ejemplo, =accion, archivo, dato=?
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |     1.84 |
+| Complejidad            |       7.5 |        |     0.50 |
+| Claridad desarrollo    |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |     2.01 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |     8.86 |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Miguel Vargas
+
+- Directorio de entrega :: [[./Migue_Blogs]]
+- Documentación ::  [[./Migue_Blogs/info.txt]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Max Sánchez y David Pérez
+
+- Directorio de entrega :: [[./SistemaSanPer]]
+- Documentación ::  [[./SistemaSanPer/README.md]],
+     [[./SistemaSanPer/help.txt]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Sebastián Aguilar
+
+- Directorio de entrega :: [[./Penserbjorne]]
+- Documentación :: [[./Penserbjorne/Readme.md]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Abraham Ortega y Bidkar Paez
+
+- Directorio de entrega :: [[./OrtegayPaez]]
+- Documentación ::  [[./OrtegayPaez/Documentacion.pdf]],
+     [[./OrtegayPaez/Documento_VISION.odt]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Jesús García y Andrés López
+
+- Directorio de entrega :: [[./Proyecto_final2]] o [[Gestor_de_archivos]] (¿?)
+- Documentación :: [[./Proyecto_final2/Reporte.pdf]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Alberto Díaz
+
+- Directorio de entrega :: [[./AlbertoDiaz]]
+- Documentación :: [[./AlbertoDiaz/reaedme.md]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+
+* Gerardo Mendoza
+
+- Directorio de entrega :: [[./Gerardmc95]]
+- Documentación :: [[./Gerardmc95/Documentacion.txt]]
+- Estrategia de representación :: 
+- Lenguaje de desarrollo :: 
+- Observaciones ::
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |          |
+| Cumplimiento           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |          |
+| Complejidad            |           |        |          |
+| Claridad desarrollo    |           |        |          |
+| Interfaz usuario       |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |          |
+| Doc. externa           |           |        |          |
+| Entorno y dependencias |           |        |          |
+| Comentarios            |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |          |
+| Historia en Git        |           |        |          |
+| Dir. de proyecto       |           |        |          |
+| Código válido          |           |        |          |
+|------------------------+-----------+--------+----------|
+| *Legibilidad*          |           |    0.2 |          |
+| Estructura             |           |        |          |
+| Nomenclatura           |           |        |          |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |          |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
