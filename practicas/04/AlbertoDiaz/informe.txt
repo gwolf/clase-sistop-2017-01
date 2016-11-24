@@ -1,0 +1,14 @@
+Sistema Operativo
+Linux  4.2.0-42-generic #49-Ubuntu SMP
+
+Compilador
+gcc (Ubuntu 5.2.1-22ubuntu2) 5.2.1 20151010
+
+Numero de iteraciones logrado antes de la violacion de segmento
+33787 para ambos intentos(int y double)
+
+El tamaño de int es de 4 bytes. Datos = 64 bytes
+El tamaño de double es de 8 bytes. Datos = 128 bytes
+
+Toda la memoria aparecio llena de ceros a pesar de que corri el programa varias veces.
+
