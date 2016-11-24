@@ -153,35 +153,94 @@ requests/ (y en ese mismo órden las presenta este listado).
 
 - Directorio de entrega :: [[./Migue_Blogs]]
 - Documentación ::  [[./Migue_Blogs/info.txt]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación :: Creación, montaje y desmontaje de un
+     sistema de archivos ext4 en un archivo
+- Lenguaje de desarrollo :: C
 - Observaciones ::
+  - Al /delegar/ la lógica del programa al sistema operativo mismo
+    mediante el uso de un sistema ext4, la mayor complejidad del
+    programa fue desarrollar la interfaz... Una tarea que no les hace
+    apreciar cómo organiza la información un micro-sistema de archivos
+    (que era mi objetivo con este ejercicio). ¡Tengo que replantear el
+    ejercicio para generaciones posteriores!
+  - Incluíste una segunda copia del código (idéntica) en un archivo
+    .rar; eso no debe hacerse en un repositorio Git.
+  - Tu programa no compila como lo enviaste; tuve que corregir. ¿El
+    problema? Muy simple: Al cerrar el primer comentario, en la línea
+    4, usaste =*//= — El segundo =/= hace que tu programa no sea C
+    válido.
+  - Abusas de =sudo=. No es algo que abordamos en el curso, así que no
+    te puedo "penalizar" por ello, pero me hace rechinar las
+    muelas... Y es una malísima práctica de seguridad. Además, asumes
+    que mi configuración de =sudo= es compatible con la tuya (no lo
+    es, mi =sudo= es mucho más restrictivo.
+
+    ¿Recomendación? Piensa siempre en el mínimo nivel de privilegios
+    para cada operación que realices. Montar y desmontar un volumen,
+    sí, requieren privilegios de administrador. Todo lo demás, si
+    permites que el usuario actual (puedes obtenerlo con =getuid()=,
+    definido en =unistd.h=) tienes todo lo que hace falta.
+  - Uno de los puntos más débiles del lenguaje C es su manejo de
+    cadenas. Esto se hace obvio al intentar usar tu programa: Los
+    muchos =strcmp= de tu función =shell()= fallan, porque las cadenas
+    son diferentes: =fgets()= entrega una cadena que incluye el =\n=
+    (si es un comando sin argumentos) o el espacio, los argumentos y
+    el =\n=.
+
+    Para el uso que estás haciendo, deberías emplear =strncmp()=,
+    indicando la cantidad de caracteres a comparar, por ejemplo:
+    =strcmp(comando, "create", 6)=, =strcmp(comando, "tree", 4)=, etc.
+
+    Me queda la duda: ¿Te funcionó en tu equipo?
+  - Me da comezón tu uso de =strcpy()= y =strcat()= para construir
+    llamadas a =system()=. Además de que es muy frágil, se vuelve
+    dificil de leer. Considera reemplazar, por ejemplo:
+
+    #+BEGIN_SRC C
+    	if(existe==NULL){
+		strcpy(chain,"dd if=/dev/zero of=");
+		strcat(chain,argu);
+		strcat(chain," bs=1M count=100");
+		system(chain);
+	}else{
+		fclose(existe);
+	}
+    #+END_SRC
+
+    por
+
+    #+BEGIN_SRC C
+    if (existe == NULL) {
+        system(sprintf("dd if=/dev/zero of=%s bs=1M count=100", argu));
+    } else {
+    }
+    #+END_SRC
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     1.33 |
+| Complejidad            |       7.5 |        |     0.50 |
+| Claridad desarrollo    |       7.5 |        |     0.50 |
+| Interfaz usuario       |         5 |        |     0.33 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |      1.5 |
+| Doc. externa           |       7.5 |        |     0.50 |
+| Entorno y dependencias |         5 |        |     0.33 |
+| Comentarios            |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     1.67 |
+| Historia en Git        |       7.5 |        |     0.50 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |     1.25 |
+| Estructura             |       7.5 |        |     0.75 |
+| Nomenclatura           |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     7.25 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
@@ -190,35 +249,48 @@ requests/ (y en ese mismo órden las presenta este listado).
 - Directorio de entrega :: [[./SistemaSanPer]]
 - Documentación ::  [[./SistemaSanPer/README.md]],
      [[./SistemaSanPer/help.txt]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación :: Un archivo con el directorio,
+     inicios y longitudes, un archivo con área de datos.
+- Lenguaje de desarrollo :: Python
 - Observaciones ::
+  - ¡Bien! Un equipo que se anima a /realmente/ hacer un microsistema
+    de archivos, no emplear una herramienta externa manipulando un
+    .zip o similar
+  - Comentarios insuficientes. Marcan la estructura, pero no son
+    suficientes para comprender la lógica
+  - Nombres de no suficientemente descriptivos para indicar función
+    - Sería probablemente mucho más seguible si hicieran el programa
+      orientado a objetos
+    - Verán que no he hecho este comentario a los demás compañeros –
+      ¡Esto es bueno! (vamos, lo califico un poco /menos severamente/
+      de lo que marca la rúbrica): Indica que lograron expresar una
+      mucho mayor complejidad.
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |       2. |
+| Cumplimiento           |        10 |        |     2.00 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     1.84 |
+| Complejidad            |        10 |        |     0.67 |
+| Claridad desarrollo    |       7.5 |        |     0.50 |
+| Interfaz usuario       |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |     1.67 |
+| Doc. externa           |       7.5 |        |     0.50 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     1.67 |
+| Historia en Git        |         5 |        |     0.33 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     8.68 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
@@ -226,35 +298,142 @@ requests/ (y en ese mismo órden las presenta este listado).
 
 - Directorio de entrega :: [[./Penserbjorne]]
 - Documentación :: [[./Penserbjorne/Readme.md]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación :: Maneja múltiples "discos virtuales",
+     dentro de los cuales cada archivo es representado por una línea
+     de texto
+- Lenguaje de desarrollo :: C++
 - Observaciones ::
+  - Antes de otra cosa: ¡Muy buen estilo de programación! Falta un
+    poco de atención al detalle de las especificaciones, pero da gusto
+    leer tu programa.
+  - Para poder compilar el proyecto, tuve que agregar la siguiente
+    línea a tu =DummyFileSystem/CommandLine.cpp=:
+    #+BEGIN_SRC C++
+    #include <stdexcept>
+    #+END_SRC
+    Esa biblioteca proporciona el encabezado =std::invalid_argument=,
+    y sin ésto, el programa no compilaba.
+  - Respecto al =Makefile=:
+    - ¿Por qué elegiste el nombre no-estándar de =makefile.mk=?
+    - Para evitar errores, en el objetivo =clean= normalmente se
+      explicita que tolera errores (anteponiéndole un =-= a la
+      instrucción), o se hace un =rm -f= en vez de un =rm= a secas.
+  - Falta implementar parte de las funciones básicas presentadas en la
+    descripción del problema: Todas las operaciones que se hacen hacia
+    adentro un archivo (no sobre el directorio).
+  - Un error en tu lógica: Puedo crear un disco (con =mkdisk=) con el
+    mismo nombre de uno ya existente, y lo sobreescribe sin ningún
+    tipo de alerta, perdiendo todo acceso a la información que tenía
+    anteriormente. Y dado que los datos de los discos los guarda en
+    =disktable.tbl=, puedo encontrarme con situaciones como la
+    siguiente:
+    #+BEGIN_SRC text
+    ╔══════════════════════════════════════════════════════════════════════════════╗
+	5 @ fooski > lsdisk
+
+	ID: 1479961657
+	Name: disco
+	Size: 100 MB
+	Creator: fooski
+	Created: Wed Nov 23 22:27:37 2016
+
+	ID: 1479961684
+	Name: otro
+	Size: 100 MB
+	Creator: fooski
+	Created: Wed Nov 23 22:28:04 2016
+
+	ID: 1479961959
+	Name: disco
+	Size: 100 MB
+	Creator: gw
+	Created: Wed Nov 23 22:32:39 2016
+
+	ID: 1479962273
+	Name: disco
+	Size: 100 MB
+	Creator: fooski
+	Created: Wed Nov 23 22:37:53 2016
+
+	ID: 1479962282
+	Name: disco
+	Size: 100 MB
+	Creator: fooski
+	Created: Wed Nov 23 22:38:02 2016
+
+    ╚══════════════════════════════════════════════════════════════════════════════╝
+    #+END_SRC
+  - Tampoco validas que los archivos solicitados existan antes de
+    crearlos:
+
+    #+BEGIN_SRC text
+      ╔══════════════════════════════════════════════════════════════════════════════╗
+              1 @ gw > mkdisk cuac 100
+
+              Disco creado
+
+              ID: 1479962597
+              Name: cuac
+              Size: 100 MB
+              Creator: gw
+              Created: Wed Nov 23 22:43:17 2016
+
+      ╚══════════════════════════════════════════════════════════════════════════════╝
+      ╔══════════════════════════════════════════════════════════════════════════════╗
+              2 @ gw > mkfile cuac/uno.txt cuá   
+      ╚══════════════════════════════════════════════════════════════════════════════╝
+      ╔══════════════════════════════════════════════════════════════════════════════╗
+              3 @ gw > mkfile cuac/uno.txt cuacuá
+      ╚══════════════════════════════════════════════════════════════════════════════╝
+      ╔══════════════════════════════════════════════════════════════════════════════╗
+              4 @ gw > mkfile cuac/uno.txt cuacuacuá
+      ╚══════════════════════════════════════════════════════════════════════════════╝
+      ╔══════════════════════════════════════════════════════════════════════════════╗
+              5 @ gw > lsdisk cuac
+
+              ID: 1479962597
+              Name: cuac
+              Size: 100 MB
+              Creator: gw
+              Created: Wed Nov 23 22:43:17 2016
+
+      uno.txt cuá
+      uno.txt cuacuá
+      uno.txt cuacuacuá
+
+      ╚══════════════════════════════════════════════════════════════════════════════╝
+    #+END_SRC
+  - ¿Qué significa el tamaño del disco? ¿Y el usuario? Además de
+    guardarse en el encabezado de cada disco, no veo que sean
+    utilizados.
+
+
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |       1. |
+| Cumplimiento           |         5 |        |     1.00 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     2.01 |
+| Complejidad            |        10 |        |     0.67 |
+| Claridad desarrollo    |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     1.84 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |     1.67 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     8.53 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
@@ -263,107 +442,165 @@ requests/ (y en ese mismo órden las presenta este listado).
 - Directorio de entrega :: [[./OrtegayPaez]]
 - Documentación ::  [[./OrtegayPaez/Documentacion.pdf]],
      [[./OrtegayPaez/Documento_VISION.odt]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación :: Manejo de archivos directamente
+     dentro de un =.zip=, manipulado /en caliente/ usando una
+     biblioteca auxiliar
+- Lenguaje de desarrollo :: Ruby
 - Observaciones ::
+  - Me dejaron un rato rascándome la cabeza... Porque instalé
+    ruby-zip, pero el programa indicaba que =zip/zipfilesystem= no
+    existía ☹ Hasta que, [[https://stackoverflow.com/questions/18659551/ruby-on-rails-roo-gem-cannot-load-zip-zipfilesystem][revisando en StackOverflow]], me encontré que
+    usaron una versión bastante obsoleta de la biblioteca. Tuve que
+    bajar la versión 0.9.9, y agregar esta línea al inicio del
+    programa:
+    #+BEGIN_SRC ruby
+    gem 'rubyzip','<1.0.0'
+    #+END_SRC
+  - Al /delegar/ la lógica del programa a =ZipFileSystem=, la mayor
+    complejidad del programa fue desarrollar la interfaz... Una tarea
+    que no les hace apreciar cómo organiza la información un
+    micro-sistema de archivos (que era mi objetivo con este
+    ejercicio). ¡Tengo que replantear el ejercicio para generaciones
+    posteriores!
+  - Incluyeron a su =HardDrive.zip= como parte del contenido de Git,
+    pero si hago cualquier operación con él, Git me marca que hay
+    datos por actualizar (este archivo cambia, obviamente). ¡Deberían
+    haberlo marcado en un =.gitignore=!
+  - Comentarios excesivos, al punto que se vuelven ruido y dificultan
+    la lectura. ¿Cuál es el sentido, por ejemplo, de esto?
+    #+BEGIN_SRC ruby
+      if zip_arc.file.directory?"volumec:"#Revisa si existe en el directorio el archivo volumec:
+          return true# si se cumple regresa true
+      else
+          return false#si no regresa false
+      end
+    #+END_SRC
+    - Aunque, ¡felicidades por hacer documentación técnica con
+      =rubydoc=!
+    - Ahora... Respecto a la documentación técnica que forma parte de
+      =Documentacion.pdf= — Puede ser cuestión de gustos,
+      pero... Prefiero el estilo más coloquial que usaron en la
+      documentación dentro del código a la innecesariamente formal del
+      PDF.
+  - Hacen una bastante decente verificación de errores, ¡bien!
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     1.33 |
+| Complejidad            |         5 |        |     0.33 |
+| Claridad desarrollo    |       7.5 |        |     0.50 |
+| Interfaz usuario       |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |      1.5 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |         5 |        |     0.33 |
+| Comentarios            |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     1.67 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |       7.5 |        |     0.50 |
+| Código válido          |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |     1.42 |
+| Estructura             |       7.5 |        |     0.75 |
+| Nomenclatura           |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     7.42 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
 * Jesús García y Andrés López
 
-- Directorio de entrega :: [[./Proyecto_final2]] o [[Gestor_de_archivos]] (¿?)
+- Directorio de entrega :: [[./Proyecto_final2]]
 - Documentación :: [[./Proyecto_final2/Reporte.pdf]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación :: Archivo .rar como almacén de
+     archivos, empleando un archivo para directorio explícito;
+     descomprimiendo archivos individuales sobre demanda, "congelado"
+     los cambios al finalizar la ejecución
+- Lenguaje de desarrollo :: Visual BASIC
 - Observaciones ::
+  - Demasiados archivos autogenerados, entorno del IDE empleado
+    (Visual Studio): De 35 archivos dentro del directorio
+    =Gestor_de_archivos=, únicamente =Form1.vb= y =com.vb= parecen
+    haber sido generados por ustedes.
+  - Me resulta prácticamente imposible determinar qué código es el que
+    debo calificar.
+  - La documentación menciona que el desarrollo fue hecho en C#, pero
+    el código que pude ver (incluso el que presentan como ejemplo en
+    la documentación misma) es Visual BASIC. ¿Me falta entender algo?
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |       1. |
+| Complejidad            |         5 |        |     0.33 |
+| Claridad desarrollo    |         0 |        |     0.00 |
+| Interfaz usuario       |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |       1. |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |         5 |        |     0.33 |
+| Comentarios            |         0 |        |     0.00 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     1.33 |
+| Historia en Git        |         5 |        |     0.33 |
+| Dir. de proyecto       |         5 |        |     0.33 |
+| Código válido          |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     6.33 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
 * Alberto Díaz
 
 - Directorio de entrega :: [[./AlbertoDiaz]]
-- Documentación :: [[./AlbertoDiaz/reaedme.md]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Documentación :: [[./AlbertoDiaz/readme.md]]
+- Estrategia de representación :: Registros de tamaño fijo en un
+     archivo manejado por acceso aleatorio
+- Lenguaje de desarrollo :: Python
 - Observaciones ::
+  - Los comentarios son de ámbito muy míope, esto es, se refieren a la
+    línea específica actual; nunca te detuviste a explicar el por qué
+    de una función o un punto de lógica compleja.
+  - Tu código podría beneficiarse mucho de un poco de programación
+    orientada a objetos. Particularmente, la cantidad de parámetros
+    que tienen que estarse pasando y la agrupación temática de las
+    funciones ganaría mucho.
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |       2. |
+| Cumplimiento           |        10 |        |     2.00 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     1.67 |
+| Complejidad            |        10 |        |     0.67 |
+| Claridad desarrollo    |       7.5 |        |     0.50 |
+| Interfaz usuario       |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |     1.67 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |         5 |        |     0.33 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     2.01 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     8.85 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
@@ -371,34 +608,38 @@ requests/ (y en ese mismo órden las presenta este listado).
 
 - Directorio de entrega :: [[./Gerardmc95]]
 - Documentación :: [[./Gerardmc95/Documentacion.txt]]
-- Estrategia de representación :: 
-- Lenguaje de desarrollo :: 
+- Estrategia de representación ::  Directorio temporal "congelado" a
+     un archivo .zip al finalizar ejecución, descomprimido al iniciar
+- Lenguaje de desarrollo :: Python
 - Observaciones ::
+  - Le falta funcionalidad: Permite trabajar con los archivos que
+    estaban dentro de WOLF.zip, pero no /refresca/ al archivo al
+    término de la ejecución
 
 | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
 |------------------------+-----------+--------+----------|
-| *Requisitos*           |           |    0.2 |          |
-| Cumplimiento           |           |        |          |
+| *Requisitos*           |           |    0.2 |       1. |
+| Cumplimiento           |         5 |        |     1.00 |
 |------------------------+-----------+--------+----------|
-| *Proyecto*             |           |    0.2 |          |
-| Complejidad            |           |        |          |
-| Claridad desarrollo    |           |        |          |
-| Interfaz usuario       |           |        |          |
+| *Proyecto*             |           |    0.2 |     1.84 |
+| Complejidad            |       7.5 |        |     0.50 |
+| Claridad desarrollo    |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Documentación*        |           |    0.2 |          |
-| Doc. externa           |           |        |          |
-| Entorno y dependencias |           |        |          |
-| Comentarios            |           |        |          |
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Entrega*              |           |    0.2 |          |
-| Historia en Git        |           |        |          |
-| Dir. de proyecto       |           |        |          |
-| Código válido          |           |        |          |
+| *Entrega*              |           |    0.2 |     2.01 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |        10 |        |     0.67 |
 |------------------------+-----------+--------+----------|
-| *Legibilidad*          |           |    0.2 |          |
-| Estructura             |           |        |          |
-| Nomenclatura           |           |        |          |
+| *Legibilidad*          |           |    0.2 |      1.5 |
+| Estructura             |        10 |        |     1.00 |
+| Nomenclatura           |       7.5 |        |     0.50 |
 |------------------------+-----------+--------+----------|
-| *TOTAL*                |           |        |          |
+| *TOTAL*                |           |        |     8.36 |
 |------------------------+-----------+--------+----------|
 #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
