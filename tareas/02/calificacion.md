@@ -318,3 +318,9 @@
    La ejecución parece ser correcta... Pero dado que no puedo ya darte
    calificación, únicamente anoto la tarea como entregada, y no entro
    a hacer una revisión a detalle.
+
+## David Pérez
+* **Archivos:** [PerezMartinez.py](Fuente Python)
+* **Problema elegido:** Cruce de avenidas
+* **Calificación:** 0
+* **Comentarios:** Sin calificación por entrega *muy* extemporánea

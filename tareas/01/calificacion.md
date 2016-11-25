@@ -157,3 +157,9 @@
   Es un buen resumen, lástima que no lo entregaste en tiempo :(
   La cámara con que tomaste la foto, o el mecanismo de compresión que
   elegiste, son... Bastante malos!
+
+# David Pérez
+* **Archivo:** PerezMartinez.JPG](PerezMartinez.jpg)
+* **Calificación:** 0
+* **Comentarios:** Muy, muy extemporánea; sin derecho a calificación
+  (sólo a contarse como entregada)
