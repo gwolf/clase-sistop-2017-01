@@ -1,0 +1,34 @@
+#+title: Evaluación de exposición: Sistemas de archivo distribuidos
+#+author: Gunnar Wolf
+
+Tema presentado por Andrés López y Jesús García
+
+La calificación global es de *8.55*
+
+* Evaluación grupal
+
+|--------------+------------+----------+-----------+-------|
+| Originalidad | Relevancia | Claridad | Presencia | Total |
+|--------------+------------+----------+-----------+-------|
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |        7.5 |      7.5 |        10 |  8.75 |
+|           10 |         10 |       10 |        10 |    10 |
+|           10 |         10 |      7.5 |        10 |  9.38 |
+|           10 |        7.5 |      7.5 |        10 |  8.75 |
+|--------------+------------+----------+-----------+-------|
+|           10 |       9.29 |     8.93 |        10 |  9.56 |
+#+TBLFM: @>$1..@>$4=vmean(@II..@III-1); f-2::@>$>=vmean($1..$4); f-2::@2$5..@>>$5=vmean($1..$4); f-2
+
+* Evaluación por el docente
+
+- Originalidad del tema :: Bueno (7.5)
+- Material desarrollado :: Suficiente (5)
+- Contenido :: Excelente (10)
+- Fuentes bibliográficas :: Excelente (10)
+- Uso del tiempo :: Bueno (7.5)
+- Dominio del tema :: Bueno (7.5)
+- Presencia :: Excelente (10)
+- Global :: *8.125*
+
