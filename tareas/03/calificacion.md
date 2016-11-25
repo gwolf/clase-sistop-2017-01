@@ -305,3 +305,10 @@
     de tus compañeros, ganaría mucho si redujeras la duplicación de
     código.
   - ¡Lástima que entregaste tan tarde esta tarea!
+
+## Alberto Díaz
+* **Archivos:**
+  [Código en Python](./AlbertoDiaz/algoritmosPlanificacion.py),
+  [./AlbertoDiaz/Prueba1.png](Prueba de ejecución 1),
+  [./AlbertoDiaz/Prueba2.png](Prueba de ejecución 2)
+* **Calificación:** 0 (extremadamente extemporáneo)
